@@ -16,6 +16,14 @@ import 'package:bookingapp/src/features/auth/domain/use_cases/get_status_usecase
 import 'package:bookingapp/src/features/auth/domain/use_cases/log_in_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/register_usecase.dart';
 import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/data/data_sources/facilities_remote_data_source.dart';
+import 'package:bookingapp/src/features/search_explore/data/data_sources/hotels_remote_data_source.dart';
+import 'package:bookingapp/src/features/search_explore/data/repository/facilities_repository_impl.dart';
+import 'package:bookingapp/src/features/search_explore/data/repository/hotels_repository_impl.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/facilities_repository.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/hotels_repository.dart';
+import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_facilities_use_case.dart';
+import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_hotels_use_case.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -33,9 +41,9 @@ Future<void> init() async {
       ));
 
   // use cases
-  sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
-  sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
-  sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
+  sl.registerLazySingleton<AuthUsecase>(() => AuthUsecase(authRepository: sl()));
+  sl.registerLazySingleton<GetFacilitiesUseCase>(() => GetFacilitiesUseCase(facilitiesRepository: sl()));
+  sl.registerLazySingleton<GetHotelsUseCase>(() => GetHotelsUseCase(hotelsRepository: sl()));
 
   // repositories
   sl.registerLazySingleton<StatusRepository>(() => StatusRepositoryImpl(
@@ -51,18 +59,19 @@ Future<void> init() async {
         networkInfo: sl(),
         registerRemoteDataSource: sl(),
       ));
+  sl.registerLazySingleton<FacilitiesRepository>(() => FacilitiesRepositoryImpl(
+        networkInfo: sl(),
+        remoteDataSource: sl(),
+      ));
+  sl.registerLazySingleton<HotelsRepository>(() => HotelsRepositoryImpl(
+        networkInfo: sl(),
+        remoteDataSource: sl(),
+      ));
 
   // data sources
-  // remote
-  sl.registerLazySingleton<StatusRemoteDataSource>(
-      () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<LoginRemoteDataSource>(
-      () => LoginRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<RegisterRemoteDataSource>(
-      () => RegisterRemoteDataSourceImpl(apiConsumer: sl()));
-  // local
-  sl.registerLazySingleton<StatusLocalDataSource>(
-      () => StatusLocalDataSourceImpl(sharedPreferences: sl()));
+  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<FacilitiesRemoteDataSource>(() => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<HotelsRemoteDataSource>(() => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
 
   /// ===========================================================================================
   /// core
