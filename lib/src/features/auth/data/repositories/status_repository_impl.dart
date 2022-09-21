@@ -3,7 +3,6 @@ import 'package:bookingapp/src/core/error/failures.dart';
 import 'package:bookingapp/src/core/network/network_info.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/local/status_local_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/remote/status_remote_data_source.dart';
-import 'package:bookingapp/src/features/auth/data/models/status_model.dart';
 import 'package:bookingapp/src/features/auth/domain/entities/status_entity.dart';
 import 'package:bookingapp/src/features/auth/domain/repositories/status_repository.dart';
 import 'package:dartz/dartz.dart';

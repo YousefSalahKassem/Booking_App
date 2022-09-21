@@ -1,6 +1,5 @@
 import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/core/usecases/usecase.dart';
-import 'package:bookingapp/src/features/auth/data/models/status_model.dart';
 import 'package:bookingapp/src/core/error/failures.dart';
 import 'package:bookingapp/src/core/utils/app_strings.dart';
 import 'package:bookingapp/src/features/auth/data/models/login_model.dart';
@@ -82,7 +81,7 @@ class AuthCubit extends Cubit<AuthState> {
 
   void navigateToTestHome(BuildContext context) {
     if (isLoggedIn == true) {
-      Navigator.pushNamed(context, Routes.testHomeRoute);
+      Navigator.pushNamed(context, Routes.initialRoute);
     }
   }
 }
