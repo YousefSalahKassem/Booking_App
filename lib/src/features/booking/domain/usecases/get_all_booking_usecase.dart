@@ -3,12 +3,15 @@ import 'package:bookingapp/src/features/booking/domain/entity/booking.dart';
 import 'package:bookingapp/src/features/booking/domain/repository/booking_repository_abs.dart';
 import 'package:dartz/dartz.dart';
 
-class GetAllBookingsUseCase {
+import '../../../../core/usecases/usecase.dart';
+
+class GetAllBookingsUseCase implements UseCase<List<Booking>, String> {
   final BookingRepository bookingRepository;
 
   GetAllBookingsUseCase(this.bookingRepository);
 
-  Future<Either<Failure, List<Booking>>> execute() async {
-    return await bookingRepository.getAllBookings();
+  @override
+  Future<Either<Failure, List<Booking>>> call(String params) async {
+    return bookingRepository.getAllBookings(params);
   }
 }

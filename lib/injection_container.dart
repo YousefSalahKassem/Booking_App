@@ -16,6 +16,10 @@ import 'package:bookingapp/src/features/auth/domain/use_cases/get_status_usecase
 import 'package:bookingapp/src/features/auth/domain/use_cases/log_in_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/register_usecase.dart';
 import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookingapp/src/features/booking/data/datasource/booking_remote-data_source.dart';
+import 'package:bookingapp/src/features/booking/data/repository/booking_repository_impl.dart';
+import 'package:bookingapp/src/features/booking/domain/repository/booking_repository_abs.dart';
+import 'package:bookingapp/src/features/booking/domain/usecases/get_all_booking_usecase.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/create_booking_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/facilities_remote_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/filter_data_source.dart';
@@ -63,14 +67,11 @@ Future<void> init() async {
   sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
   sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
   sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
+  sl.registerLazySingleton<GetAllBookingsUseCase>(() => GetAllBookingsUseCase(sl()));
 
   // use cases
-  sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
-  sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
-  sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
   sl.registerLazySingleton<GetFacilitiesUseCase>(
       () => GetFacilitiesUseCase(facilitiesRepository: sl()));
-  sl.registerLazySingleton<GetFacilitiesUseCase>(() => GetFacilitiesUseCase(facilitiesRepository: sl()));
   sl.registerLazySingleton<GetHotelsUseCase>(() => GetHotelsUseCase(hotelsRepository: sl()));
   sl.registerLazySingleton<CreateBookingUseCase>(() => CreateBookingUseCase(repository: sl()));
   sl.registerLazySingleton<UpdateBookingUseCase>(() => UpdateBookingUseCase(repository: sl()));
@@ -109,7 +110,7 @@ Future<void> init() async {
       networkInfo: sl(),
       remoteDataSource: sl()
   ));
-
+  sl.registerLazySingleton<BookingRepository>(() => BookingRepositoryImpl(sl()));
   // data sources
   sl.registerLazySingleton<StatusRemoteDataSource>(
       () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
@@ -123,21 +124,11 @@ Future<void> init() async {
       () => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<HotelsRemoteDataSource>(
       () => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<FacilitiesRemoteDataSource>(() => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<HotelsRemoteDataSource>(() => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<CreateBookingDataSource>(() => CreateBookingDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UpdateBookingDataSource>(() => UpdateBookingDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<FilterRemoteDataSource>(() => FilterRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<BookingRemoteDataSource>(() => BookingRemoteDataSourceImpl(apiConsumer: sl()));
   // remote
-  sl.registerLazySingleton<StatusRemoteDataSource>(
-          () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<LoginRemoteDataSource>(
-          () => LoginRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<RegisterRemoteDataSource>(
-          () => RegisterRemoteDataSourceImpl(apiConsumer: sl()));
-  // local
-  sl.registerLazySingleton<StatusLocalDataSource>(
-          () => StatusLocalDataSourceImpl(sharedPreferences: sl()));
 
   /// ===========================================================================================
   /// core
