@@ -1,14 +1,15 @@
-import 'package:bookingapp/src/features/search_explore/domain/entities/facilities_entity.dart';
 
-class FacilitiesModel extends FacilitiesEntity {
-  FacilitiesModel({
+import 'package:bookingapp/src/features/booking/domain/entity/booking_facilities.dart';
+
+class BookingFacilitiesModel extends BookingFacilitiesEntity {
+  BookingFacilitiesModel({
     required final String name,
     required final String image,
     required final int id,
   }) : super(name: name, image: image, id: id);
 
-  factory FacilitiesModel.fromJson(Map<String, dynamic> json) {
-    return FacilitiesModel(
+  factory BookingFacilitiesModel.fromJson(Map<String, dynamic> json) {
+    return BookingFacilitiesModel(
       name: json["name"],
       image: json["image"],
       id: json["id"],
@@ -17,7 +18,7 @@ class FacilitiesModel extends FacilitiesEntity {
 }
 
 class HotelFacilityModel {
-  final int id;
+  final String id;
 
   HotelFacilityModel({
     required this.id,
@@ -25,7 +26,7 @@ class HotelFacilityModel {
 
   factory HotelFacilityModel.fromJson(Map<String, dynamic> json) {
     return HotelFacilityModel(
-      id: json['id'],
+      id: json["facility_id"],
     );
   }
 }

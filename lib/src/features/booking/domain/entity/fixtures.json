@@ -1,0 +1,214 @@
+{
+  "status": {
+    "type": "1"
+  },
+  "data": {
+    "current_page": 1,
+    "data": [
+      {
+        "id": 6,
+        "user_id": "11",
+        "hotel_id": "13",
+        "type": "cancelled",
+        "created_at": "2022-09-13T09:46:54.000000Z",
+        "updated_at": "2022-09-13T09:47:21.000000Z",
+        "user": {
+          "id": 11,
+          "name": "amr naser elsayed",
+          "email": "amrnaserr1`@gmail.com",
+          "email_verified_at": null,
+          "api_token": "DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u",
+          "image": "39561663606971.jpg",
+          "created_at": "2022-09-13T05:48:17.000000Z",
+          "updated_at": "2022-09-20T17:38:57.000000Z",
+          "google_id": "2",
+          "provider": null
+        },
+        "hotel": {
+          "id": 13,
+          "name": "With images",
+          "description": "description",
+          "price": "200",
+          "address": "rome",
+          "longitude": "100",
+          "latitude": "200",
+          "rate": "4.50",
+          "created_at": "2022-09-11T13:58:30.000000Z",
+          "updated_at": "2022-09-11T13:58:30.000000Z",
+          "hotel_images": [
+            {
+              "id": 9,
+              "hotel_id": "13",
+              "image": "45911662904710.png",
+              "created_at": null,
+              "updated_at": null
+            },
+            {
+              "id": 10,
+              "hotel_id": "13",
+              "image": "81321662904710.png",
+              "created_at": null,
+              "updated_at": null
+            }
+          ],
+          "facilities": [
+            {
+              "id": 3,
+              "name": "Wifi",
+              "image": "50631662902867.png",
+              "created_at": "2022-09-11T13:27:47.000000Z",
+              "updated_at": "2022-09-11T13:27:47.000000Z"
+            },
+            {
+              "id": 4,
+              "name": "A/C",
+              "image": "83631662902917.png",
+              "created_at": "2022-09-11T13:28:37.000000Z",
+              "updated_at": "2022-09-11T13:28:37.000000Z"
+            }
+          ]
+        }
+      },
+      {
+        "id": 15,
+        "user_id": "11",
+        "hotel_id": "15",
+        "type": "cancelled",
+        "created_at": "2022-09-18T20:30:00.000000Z",
+        "updated_at": "2022-09-19T13:33:53.000000Z",
+        "user": {
+          "id": 11,
+          "name": "amr naser elsayed",
+          "email": "amrnaserr1`@gmail.com",
+          "email_verified_at": null,
+          "api_token": "DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u",
+          "image": "39561663606971.jpg",
+          "created_at": "2022-09-13T05:48:17.000000Z",
+          "updated_at": "2022-09-20T17:38:57.000000Z",
+          "google_id": "2",
+          "provider": null
+        },
+        "hotel": {
+          "id": 15,
+          "name": "Nasr Ciry Price 5000",
+          "description": "description",
+          "price": "5000",
+          "address": "tanta",
+          "longitude": "31.3590117",
+          "latitude": "30.0504042",
+          "rate": "4.50",
+          "created_at": "2022-09-13T06:02:04.000000Z",
+          "updated_at": "2022-09-13T06:02:04.000000Z",
+          "hotel_images": [
+            {
+              "id": 13,
+              "hotel_id": "15",
+              "image": "39761663048924.png",
+              "created_at": null,
+              "updated_at": null
+            },
+            {
+              "id": 14,
+              "hotel_id": "15",
+              "image": "26751663048924.png",
+              "created_at": null,
+              "updated_at": null
+            }
+          ],
+          "facilities": [
+            {
+              "id": 3,
+              "name": "Wifi",
+              "image": "50631662902867.png",
+              "created_at": "2022-09-11T13:27:47.000000Z",
+              "updated_at": "2022-09-11T13:27:47.000000Z"
+            },
+            {
+              "id": 4,
+              "name": "A/C",
+              "image": "83631662902917.png",
+              "created_at": "2022-09-11T13:28:37.000000Z",
+              "updated_at": "2022-09-11T13:28:37.000000Z"
+            }
+          ]
+        }
+      },
+      {
+        "id": 26,
+        "user_id": "11",
+        "hotel_id": "10",
+        "type": "cancelled",
+        "created_at": "2022-09-18T22:02:07.000000Z",
+        "updated_at": "2022-09-18T23:53:28.000000Z",
+        "user": {
+          "id": 11,
+          "name": "amr naser elsayed",
+          "email": "amrnaserr1`@gmail.com",
+          "email_verified_at": null,
+          "api_token": "DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u",
+          "image": "39561663606971.jpg",
+          "created_at": "2022-09-13T05:48:17.000000Z",
+          "updated_at": "2022-09-20T17:38:57.000000Z",
+          "google_id": "2",
+          "provider": null
+        },
+        "hotel": {
+          "id": 10,
+          "name": "hotel23",
+          "description": "desc4",
+          "price": "200",
+          "address": "rome",
+          "longitude": "100",
+          "latitude": "200",
+          "rate": "10.50",
+          "created_at": "2022-09-11T13:45:09.000000Z",
+          "updated_at": "2022-09-11T13:45:09.000000Z",
+          "hotel_images": [],
+          "facilities": [
+            {
+              "id": 1,
+              "name": "facilit5",
+              "image": "37371662897079.jpg",
+              "created_at": "2022-09-11T11:51:19.000000Z",
+              "updated_at": "2022-09-11T11:51:19.000000Z"
+            },
+            {
+              "id": 2,
+              "name": "Wifi",
+              "image": "71711662902782.jpeg",
+              "created_at": "2022-09-11T13:26:22.000000Z",
+              "updated_at": "2022-09-11T13:26:22.000000Z"
+            }
+          ]
+        }
+      }
+    ],
+    "first_page_url": "http://api.mahmoudtaha.com/api/get-bookings?page=1",
+    "from": 1,
+    "last_page": 1,
+    "last_page_url": "http://api.mahmoudtaha.com/api/get-bookings?page=1",
+    "links": [
+      {
+        "url": null,
+        "label": "&laquo; Previous",
+        "active": false
+      },
+      {
+        "url": "http://api.mahmoudtaha.com/api/get-bookings?page=1",
+        "label": "1",
+        "active": true
+      },
+      {
+        "url": null,
+        "label": "Next &raquo;",
+        "active": false
+      }
+    ],
+    "next_page_url": null,
+    "path": "http://api.mahmoudtaha.com/api/get-bookings",
+    "per_page": "10",
+    "prev_page_url": null,
+    "to": 3,
+    "total": 3
+  }
+}
