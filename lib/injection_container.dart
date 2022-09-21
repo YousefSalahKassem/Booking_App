@@ -16,14 +16,28 @@ import 'package:bookingapp/src/features/auth/domain/use_cases/get_status_usecase
 import 'package:bookingapp/src/features/auth/domain/use_cases/log_in_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/register_usecase.dart';
 import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/data/data_sources/create_booking_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/facilities_remote_data_source.dart';
+import 'package:bookingapp/src/features/search_explore/data/data_sources/filter_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/hotels_remote_data_source.dart';
+import 'package:bookingapp/src/features/search_explore/data/data_sources/update_booking_data_source.dart';
+import 'package:bookingapp/src/features/search_explore/data/repository/create_book_repositiory_impl.dart';
 import 'package:bookingapp/src/features/search_explore/data/repository/facilities_repository_impl.dart';
+import 'package:bookingapp/src/features/search_explore/data/repository/filter_repository_impl.dart';
 import 'package:bookingapp/src/features/search_explore/data/repository/hotels_repository_impl.dart';
+import 'package:bookingapp/src/features/search_explore/data/repository/update_book_repository_impl.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/create_book_repository.dart';
 import 'package:bookingapp/src/features/search_explore/domain/repository/facilities_repository.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/filter_repository.dart';
 import 'package:bookingapp/src/features/search_explore/domain/repository/hotels_repository.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/update_book_repository.dart';
+import 'package:bookingapp/src/features/search_explore/domain/use_cases/create_book_use_case.dart';
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_facilities_use_case.dart';
+import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_filter_use_case.dart';
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_hotels_use_case.dart';
+import 'package:bookingapp/src/features/search_explore/domain/use_cases/update_book_use_case.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/create_booking/booking_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -40,11 +54,22 @@ Future<void> init() async {
         registerUseCase: sl(),
       ));
 
+  sl.registerFactory<BookingCubit>(() => BookingCubit(
+        createBookingUseCase: sl(),
+        updateBookingUseCase: sl(),
+      ));
+  sl.registerFactory<HotelsCubit>(() => HotelsCubit(hotelsUseCase: sl(), filterUseCase: sl(),));
+
+  sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
+  sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
+  sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
+
   // use cases
-  sl.registerLazySingleton<AuthUsecase>(() => AuthUsecase(authRepository: sl()));
   sl.registerLazySingleton<GetFacilitiesUseCase>(() => GetFacilitiesUseCase(facilitiesRepository: sl()));
   sl.registerLazySingleton<GetHotelsUseCase>(() => GetHotelsUseCase(hotelsRepository: sl()));
-
+  sl.registerLazySingleton<CreateBookingUseCase>(() => CreateBookingUseCase(repository: sl()));
+  sl.registerLazySingleton<UpdateBookingUseCase>(() => UpdateBookingUseCase(repository: sl()));
+  sl.registerLazySingleton<GetFilterUseCase>(() => GetFilterUseCase(filterRepository: sl()));
   // repositories
   sl.registerLazySingleton<StatusRepository>(() => StatusRepositoryImpl(
         networkInfo: sl(),
@@ -67,11 +92,35 @@ Future<void> init() async {
         networkInfo: sl(),
         remoteDataSource: sl(),
       ));
+  sl.registerLazySingleton<CreateBookRepository>(() => CreateBookingRepositoryImpl(
+      networkInfo: sl(),
+      createBookingDataSource: sl()
+  ));
+  sl.registerLazySingleton<UpdateBookingRepository>(() => UpdateBookRepositoryImpl(
+      networkInfo: sl(),
+      updateBookingDataSource: sl()
+  ));
+  sl.registerLazySingleton<FilterRepository>(() => FilterRepositoryImpl(
+      networkInfo: sl(),
+      remoteDataSource: sl()
+  ));
 
   // data sources
-  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<FacilitiesRemoteDataSource>(() => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<HotelsRemoteDataSource>(() => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<CreateBookingDataSource>(() => CreateBookingDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UpdateBookingDataSource>(() => UpdateBookingDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<FilterRemoteDataSource>(() => FilterRemoteDataSourceImpl(apiConsumer: sl()));
+  // remote
+  sl.registerLazySingleton<StatusRemoteDataSource>(
+          () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<LoginRemoteDataSource>(
+          () => LoginRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<RegisterRemoteDataSource>(
+          () => RegisterRemoteDataSourceImpl(apiConsumer: sl()));
+  // local
+  sl.registerLazySingleton<StatusLocalDataSource>(
+          () => StatusLocalDataSourceImpl(sharedPreferences: sl()));
 
   /// ===========================================================================================
   /// core
