@@ -3,4 +3,8 @@ class Endpoints {
   static const String auth = '$baseUrl/auth';
   static const String login = '$auth/login';
   static const String getBooking = '$baseUrl/get-bookings';
+
+
+  static const String facilites = '$baseUrl/facilities';
+  static const String hotels = '$baseUrl/hotels?count=10&page=1';
 }

@@ -9,15 +9,37 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
-class AuthLoading extends AuthState {}
+class StatusLoading extends AuthState {}
 
-class AuthComplete extends AuthState {
-  final StatusEntity auth;
+class StatusComplete extends AuthState {
+  final StatusEntity status;
 
-  const AuthComplete({required this.auth});
+  const StatusComplete({required this.status});
 
   @override
-  List<Object> get props => [auth];
+  List<Object> get props => [status];
+}
+
+class LoginLoading extends AuthState {}
+
+class LoginComplete extends AuthState {
+  final StatusEntity status;
+
+  const LoginComplete({required this.status});
+
+  @override
+  List<Object> get props => [status];
+}
+
+class RegisterLoading extends AuthState {}
+
+class RegisterComplete extends AuthState {
+  final StatusEntity status;
+
+  const RegisterComplete({required this.status});
+
+  @override
+  List<Object> get props => [status];
 }
 
 class AuthError extends AuthState {
