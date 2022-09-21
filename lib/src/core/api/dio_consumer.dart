@@ -25,8 +25,10 @@ class DioConsumer implements ApiConsumer {
       ..baseUrl = Endpoints.baseUrl
       ..responseType = ResponseType.plain
       ..followRedirects = false
+      ..headers = {
+        "token": 'DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u'
+      }
       ..validateStatus = (status) => status! < StatusCode.internalServerError;
-
     client.interceptors.add(di.sl<AppInterceptors>());
     if (kDebugMode) {
       client.interceptors.add(di.sl<LogInterceptor>());

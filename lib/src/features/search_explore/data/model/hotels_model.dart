@@ -16,7 +16,7 @@ class HotelsModel extends HotelsEntity{
     required super.facilities,
   });
 
-  factory HotelsModel.fromJson(Map<String, dynamic> json) {
+  factory HotelsModel.fromJson(Map<String, dynamic> json, String filterFacilities) {
     return HotelsModel(
       id: json["id"],
       name: json["name"],
@@ -26,8 +26,7 @@ class HotelsModel extends HotelsEntity{
       latitude: json["latitude"],
       longitude: json["longitude"],
       images: List<HotelImages>.from(json["hotel_images"].map((x) => HotelImages.fromJson(x))),
-      facilities: List<HotelFacilityModel>.from(json["hotel_facilities"].map((x) => HotelFacilityModel.fromJson(x))),
+      facilities: List<HotelFacilityModel>.from(json[filterFacilities].map((x) => HotelFacilityModel.fromJson(x))),
     );
   }
-
 }

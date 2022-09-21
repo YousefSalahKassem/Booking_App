@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main () async {
   await di.init();
   test("get hotels", () async {
-    final cubit =  HotelsCubit(hotelsUseCase: di.sl());
+    final cubit =  HotelsCubit(hotelsUseCase: di.sl() , filterUseCase: di.sl());
     expectLater(cubit.getHotels(), completes);
   });
 }

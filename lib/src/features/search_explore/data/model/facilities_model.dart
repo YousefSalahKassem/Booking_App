@@ -17,7 +17,7 @@ class FacilitiesModel extends FacilitiesEntity {
 }
 
 class HotelFacilityModel {
-  final String id;
+  final int id;
 
   HotelFacilityModel({
     required this.id,
@@ -25,7 +25,7 @@ class HotelFacilityModel {
 
   factory HotelFacilityModel.fromJson(Map<String, dynamic> json) {
     return HotelFacilityModel(
-      id: json["facility_id"],
+      id: json['id'],
     );
   }
 }

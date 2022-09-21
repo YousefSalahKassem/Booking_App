@@ -14,7 +14,7 @@ class HotelsRemoteDataSourceImpl implements HotelsRemoteDataSource {
   @override
   Future<List<HotelsModel>> getHotels() async{
     final response = await apiConsumer.get(Endpoints.hotels);
-    return (response["data"]["data"] as List).map((e) => HotelsModel.fromJson(e)).toList();
+    return (response["data"]["data"] as List).map((e) => HotelsModel.fromJson(e,"hotel_facilities")).toList();
   }
 
 }
