@@ -16,7 +16,7 @@ class FilterRemoteDataSourceImpl implements FilterRemoteDataSource {
   @override
   Future<List<HotelsModel>> getFilters(FilterModel filterModel) async {
     final response = await apiConsumer.get(
-        Endpoints.getBooking, queryParameters: filterModel.toJson());
+        Endpoints.searchHotels, queryParameters: filterModel.toJson());
     return (response["data"]["data"]as List).map((e) =>
         HotelsModel.fromJson(e,"facilities")).toList();
   }

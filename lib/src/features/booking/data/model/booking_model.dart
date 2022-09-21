@@ -1,6 +1,7 @@
 import 'package:bookingapp/src/features/booking/data/model/booking_hotel_model.dart';
 import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
 import 'package:bookingapp/src/features/booking/domain/entity/booking.dart';
+import 'package:bookingapp/src/features/search_explore/data/model/hotels_model.dart';
 
 class BookingModel extends Booking {
   BookingModel({
@@ -10,8 +11,8 @@ class BookingModel extends Booking {
     required super.type,
     required super.createdAt,
     required super.updatedAt,
-    required super.user,
     required super.hotel,
+    required super.user,
   });
 
   factory BookingModel.fromJson(Map<String, dynamic> json) {
@@ -22,8 +23,8 @@ class BookingModel extends Booking {
       type: json["type"],
       createdAt: json["created_at"],
       updatedAt: json["updated_at"],
-      user: List<BookingUserModel>.from(json["user"].map((x) => BookingUserModel.fromJson(x))),
-      hotel: List<BookingHotelModel>.from(json["hotel"].map((x) => BookingHotelModel.fromJson(x))),
+      hotel: BookingHotelModel.fromJson(json["hotel"]),
+      user: BookingUserModel.fromJson(json["user"]),
     );
   }
 }

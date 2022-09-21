@@ -26,7 +26,7 @@ class BookingHotelModel extends BookingHotelsEntity {
       longitude: json["longitude"],
       images: List<BookingHotelImages>.from(
           json["hotel_images"].map((e) => BookingHotelImages.fromJson(e))),
-      facilities: List<BookingFacilitiesModel>.from(json["hotel_facilities"]
+      facilities: List<BookingFacilitiesModel>.from(json["facilities"]
           .map((e) => BookingFacilitiesModel.fromJson(e))),
     );
   }

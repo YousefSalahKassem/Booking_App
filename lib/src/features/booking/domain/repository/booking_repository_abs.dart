@@ -9,7 +9,7 @@ abstract class BookingRepository {
 
   // abstract function which I'm working with
   //-------------------------------------------------------------
-  Future<Either<Failure, List<Booking>>> getAllBookings();
+  Future<Either<Failure, List<Booking>>> getAllBookings(String type);
   // -------------------------------------------------------
   Future<Either<Failure, Booking>> getBookingById(String id);
 }

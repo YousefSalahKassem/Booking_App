@@ -12,8 +12,8 @@ class BookingRepositoryImpl extends BookingRepository {
 
 
   @override
-  Future<Either<Failure, List<Booking>>> getAllBookings() async {
-    final result = await bookingRemoteDataSource.getAllBookings();
+  Future<Either<Failure, List<Booking>>> getAllBookings(String type) async {
+    final result = await bookingRemoteDataSource.getAllBookings(type);
     try {
       return Right(result);
     } catch (e) {

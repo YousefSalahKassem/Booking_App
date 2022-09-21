@@ -8,5 +8,5 @@ class Endpoints {
   static const String hotels = '$baseUrl/hotels?count=10&page=1';
   static const String booking = '$baseUrl/create-booking';
   static const String updateBooking = '$baseUrl/update-booking-status';
-  static const String getBooking = '$baseUrl/search-hotels';
+  static const String searchHotels = '$baseUrl/search-hotels';
 }

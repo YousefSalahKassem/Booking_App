@@ -15,7 +15,7 @@ class BookingUserModel extends BookingUser {
 
   factory BookingUserModel.fromJson(Map<String, dynamic> json) {
     return BookingUserModel(
-      userId: json['user_id'],
+      userId: json['id'],
       name: json['name'],
       email: json['email'],
       emailVerifiedAt: json['email_verified_at'],
