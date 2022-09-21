@@ -41,8 +41,11 @@ Future<void> init() async {
       ));
 
   // use cases
-  sl.registerLazySingleton<AuthUsecase>(() => AuthUsecase(authRepository: sl()));
-  sl.registerLazySingleton<GetFacilitiesUseCase>(() => GetFacilitiesUseCase(facilitiesRepository: sl()));
+  sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
+  sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
+  sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
+  sl.registerLazySingleton<GetFacilitiesUseCase>(
+      () => GetFacilitiesUseCase(facilitiesRepository: sl()));
   sl.registerLazySingleton<GetHotelsUseCase>(() => GetHotelsUseCase(hotelsRepository: sl()));
 
   // repositories
@@ -69,9 +72,18 @@ Future<void> init() async {
       ));
 
   // data sources
-  sl.registerLazySingleton<AuthRemoteDataSource>(() => AuthRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<FacilitiesRemoteDataSource>(() => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<HotelsRemoteDataSource>(() => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<StatusRemoteDataSource>(
+      () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<LoginRemoteDataSource>(
+      () => LoginRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<RegisterRemoteDataSource>(
+      () => RegisterRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<StatusLocalDataSource>(
+      () => StatusLocalDataSourceImpl(sharedPreferences: sl()));
+  sl.registerLazySingleton<FacilitiesRemoteDataSource>(
+      () => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<HotelsRemoteDataSource>(
+      () => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
 
   /// ===========================================================================================
   /// core

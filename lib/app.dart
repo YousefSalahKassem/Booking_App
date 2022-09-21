@@ -23,7 +23,6 @@ class BookingApp extends StatelessWidget {
         theme: AppThemes.appTheme(isLight: true),
         darkTheme: AppThemes.appTheme(isLight: false),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.initialRoute,
         onGenerateRoute: AppRoutes.onGenerateRoute,
       ),
     );

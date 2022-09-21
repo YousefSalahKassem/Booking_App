@@ -1,6 +1,8 @@
 class AppStrings {
   static const String appName = 'Booking App';
 
+  static const String fontFamily = 'Peter';
+
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
 
