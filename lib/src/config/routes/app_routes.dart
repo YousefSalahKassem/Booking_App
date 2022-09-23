@@ -7,6 +7,7 @@ import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookingapp/injection_container.dart' as di;
+import '../../features/profile/pages/profile-page.dart';
 
 class Routes {
   static const String initialRoute = '/';
@@ -15,6 +16,7 @@ class Routes {
   static const String registerRoute = '/register';
   static const String onBoardingRoute = '/onboarding';
   static const String homeExploreRoute = '/homeExplore';
+  static const String profile = '/profile';
 }
 
 class AppRoutes {
@@ -45,6 +47,9 @@ class AppRoutes {
         case Routes.homeExploreRoute:
         return MaterialPageRoute(builder: ((context) {
           return const BottomTabScreen();
+      case Routes.profile:
+        return MaterialPageRoute(builder: ((context) {
+          return const PrfilePage();
         }));
       default:
         return undefinedRoute();
