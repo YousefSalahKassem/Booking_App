@@ -76,7 +76,6 @@ Future<void> init() async {
         hotelsUseCase: sl(),
         filterUseCase: sl(),
       ));
-  sl.registerFactory<HotelsCubit>(() => HotelsCubit(hotelsUseCase: sl(), filterUseCase: sl(),));
   sl.registerFactory<AllBookingCubit>(() => AllBookingCubit(getAllBookingsUseCase: sl()));
   sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(updateUser: sl(), getUserInfo: sl()));
 
@@ -137,8 +136,6 @@ Future<void> init() async {
       () => FacilitiesRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<HotelsRemoteDataSource>(
       () => HotelsRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<CreateBookingDataSource>(
-      () => CreateBookingDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UpdateBookingDataSource>(
       () => UpdateBookingDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<FilterRemoteDataSource>(
@@ -147,9 +144,6 @@ Future<void> init() async {
       () => BookingRemoteDataSourceImpl(apiConsumer: sl()));
 
   sl.registerLazySingleton<CreateBookingDataSource>(() => CreateBookingDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<UpdateBookingDataSource>(() => UpdateBookingDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<FilterRemoteDataSource>(() => FilterRemoteDataSourceImpl(apiConsumer: sl()));
-  sl.registerLazySingleton<BookingRemoteDataSource>(() => BookingRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UpdateInfoDataSource>(() => UpdateInfoDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UserInfoDataSource>(() => UserInfoDataSourceImpl(consumer: sl()));
   // remote
