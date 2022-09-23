@@ -20,7 +20,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel, context);
+  void _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel);
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
