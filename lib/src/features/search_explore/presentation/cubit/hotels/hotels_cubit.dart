@@ -1,5 +1,4 @@
 import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
-import 'package:bookingapp/src/features/search_explore/domain/entities/filter_entity.dart';
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_hotels_use_case.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,7 +12,9 @@ import 'hotels_state.dart';
 class HotelsCubit extends Cubit<HotelsState> {
   final GetHotelsUseCase hotelsUseCase;
   final GetFilterUseCase filterUseCase;
-  HotelsCubit({required this.hotelsUseCase , required this.filterUseCase}) : super(HotelsInitial());
+  HotelsCubit({required this.hotelsUseCase , required this.filterUseCase}) : super(HotelsInitial()){
+    getHotels();
+  }
 
   Future<void> getHotels() async {
     emit(HotelsLoading());

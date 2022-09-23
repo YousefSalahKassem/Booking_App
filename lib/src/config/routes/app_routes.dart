@@ -3,6 +3,7 @@ import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.d
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookingapp/injection_container.dart' as di;
@@ -13,6 +14,7 @@ class Routes {
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String onBoardingRoute = '/onboarding';
+  static const String homeExploreRoute = '/homeExplore';
 }
 
 class AppRoutes {
@@ -20,7 +22,7 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
-          return const SplashScreen();
+          return const BottomTabScreen();
         }));
       case Routes.loginRoute:
         return MaterialPageRoute(builder: ((context) {
@@ -39,6 +41,10 @@ class AppRoutes {
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: ((context) {
           return const OnBoardingScreen();
+        }));
+        case Routes.homeExploreRoute:
+        return MaterialPageRoute(builder: ((context) {
+          return const BottomTabScreen();
         }));
       default:
         return undefinedRoute();
