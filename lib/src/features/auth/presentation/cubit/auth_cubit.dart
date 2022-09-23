@@ -44,7 +44,7 @@ class AuthCubit extends Cubit<AuthState> {
     ));
   }
 
-  Future<void> logIn(LoginModel loginModel, BuildContext ctx) async {
+  Future<void> logIn(LoginModel loginModel) async {
     emit(LoginLoading());
     Either<Failure, StatusEntity> response = await logInUseCase(loginModel);
     emit(response.fold(
@@ -53,7 +53,6 @@ class AuthCubit extends Cubit<AuthState> {
         var state = LoginComplete(status: login);
         if (login.type == '1') {
           isLoggedIn = true;
-          Navigator.pushNamed(ctx, Routes.profile);
         }
         return state;
       },
