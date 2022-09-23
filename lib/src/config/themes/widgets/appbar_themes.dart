@@ -13,6 +13,7 @@ class AppBarThemes {
       elevation: 0,
       iconTheme: AppIconThemes.iconTheme(isLight: isLight),
       actionsIconTheme: AppIconThemes.iconTheme(isLight: isLight),
+      scrolledUnderElevation: 0,
     );
   }
 }

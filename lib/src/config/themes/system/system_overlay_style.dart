@@ -6,6 +6,7 @@ class AppSystemUiOverlayStyle {
     systemNavigationBarColor: Colors.transparent,
     systemNavigationBarDividerColor: Colors.transparent,
     systemNavigationBarIconBrightness: Brightness.dark,
+    systemNavigationBarContrastEnforced: false,
     statusBarColor: Colors.transparent,
     statusBarBrightness: Brightness.light,
     statusBarIconBrightness: Brightness.dark,
@@ -15,12 +16,14 @@ class AppSystemUiOverlayStyle {
     systemNavigationBarColor: Colors.transparent,
     systemNavigationBarDividerColor: Colors.transparent,
     systemNavigationBarIconBrightness: Brightness.light,
+    systemNavigationBarContrastEnforced: false,
     statusBarColor: Colors.transparent,
     statusBarBrightness: Brightness.dark,
     statusBarIconBrightness: Brightness.light,
   );
 
   static SystemUiOverlayStyle setSystemUiOverlayStyle({required bool isLight}) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return isLight ? AppSystemUiOverlayStyle.light : AppSystemUiOverlayStyle.dark;
   }
 }

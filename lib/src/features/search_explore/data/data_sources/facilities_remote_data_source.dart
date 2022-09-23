@@ -13,9 +13,8 @@ class FacilitiesRemoteDataSourceImpl implements FacilitiesRemoteDataSource {
   FacilitiesRemoteDataSourceImpl({required this.apiConsumer});
 
   @override
-  Future<List<FacilitiesModel>> getFacilities() async{
-    final response = await apiConsumer.get(Endpoints.facilites);
+  Future<List<FacilitiesModel>> getFacilities() async {
+    final response = await apiConsumer.get(Endpoints.facilities);
     return (response["data"] as List).map((e) => FacilitiesModel.fromJson(e)).toList();
   }
-
 }

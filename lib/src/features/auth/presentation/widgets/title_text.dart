@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AuthTitleWidget extends StatelessWidget {
-  const AuthTitleWidget({
+class TitleText extends StatelessWidget {
+  const TitleText({
     Key? key,
     required this.text,
   }) : super(key: key);
