@@ -6,6 +6,7 @@ import 'package:bookingapp/src/features/auth/data/data_sources/remote/status_rem
 import 'package:bookingapp/src/features/auth/domain/entities/status_entity.dart';
 import 'package:bookingapp/src/features/auth/domain/repositories/status_repository.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter/cupertino.dart';
 
 class StatusRepositoryImpl implements StatusRepository {
   final NetworkInfo networkInfo;
@@ -22,6 +23,8 @@ class StatusRepositoryImpl implements StatusRepository {
   Future<Either<Failure, StatusEntity>> getLoginStatus() async {
     try {
       final response = await statusRemoteDataSource.getLoginStatus();
+      debugPrint('$runtimeType');
+      debugPrint('response = $response');
       statusLocalDataSource.cacheStatus(response);
       return Right(response);
     } on ServerException {

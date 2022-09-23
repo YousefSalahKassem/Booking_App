@@ -9,12 +9,12 @@ class ClickableText extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final Function? onTap;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Text(
         text,
         style: AppStyles.clickableTextStyle(),

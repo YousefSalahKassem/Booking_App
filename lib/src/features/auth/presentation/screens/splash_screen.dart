@@ -1,9 +1,13 @@
 import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/config/themes/app_styles.dart';
+import 'package:bookingapp/src/config/themes/system/system_overlay_style.dart';
 import 'package:bookingapp/src/core/shareable_components/my_button.dart';
 import 'package:bookingapp/src/core/utils/asset_manager.dart';
+import 'package:bookingapp/src/core/utils/media_query_values.dart';
 import 'package:bookingapp/src/features/auth/presentation/widgets/account_check_text_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,6 +27,7 @@ class SplashScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(height: context.paddingTop),
                     _buildTitleImage(),
                     const SizedBox(height: 10),
                     _buildTitleText(),
@@ -31,7 +36,7 @@ class SplashScreen extends StatelessWidget {
                     const Spacer(),
                     MyButton(
                       text: 'Get started',
-                      onPressed: () => Navigator.pushNamed(context, Routes.registerRoute),
+                      onPressed: () => Navigator.pushNamed(context, Routes.onBoardingRoute),
                     ),
                     const SizedBox(height: 15),
                     const AccountCheckTextWidget(),
@@ -69,10 +74,7 @@ class SplashScreen extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(10),
-        child: Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.white,
-            child: Image.asset(ImageAssets.motel, height: 50)),
+        child: Container(color: Colors.white, child: Image.asset(ImageAssets.icon, height: 60)),
       ),
     );
   }

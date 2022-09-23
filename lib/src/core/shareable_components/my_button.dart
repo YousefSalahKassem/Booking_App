@@ -26,7 +26,13 @@ class MyButton extends StatelessWidget {
         children: [
           icon != null ? Icon(icon, color: Colors.white, size: 20) : const SizedBox(),
           icon != null ? const SizedBox(width: 5) : const SizedBox(),
-          Text(text, style: const TextStyle(color: Colors.white)),
+          Text(
+            text,
+            style: TextStyle(
+              color: backgroundColor == Colors.white ? Colors.black : Colors.white,
+              fontSize: 16,
+            ),
+          ),
         ],
       ),
     );

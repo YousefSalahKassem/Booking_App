@@ -7,6 +7,7 @@ class MyTextFormField extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     this.obscureText = false,
+    required this.focusNode,
     required this.controller,
     required this.inputAction,
     required this.inputType,
@@ -14,10 +15,11 @@ class MyTextFormField extends StatelessWidget {
 
   final String labelText;
   final String hintText;
+  bool obscureText;
+  final FocusNode focusNode;
   final TextEditingController controller;
   final TextInputAction inputAction;
   final TextInputType inputType;
-  bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class MyTextFormField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          focusNode: focusNode,
           controller: controller,
           textInputAction: inputAction,
           keyboardType: inputType,

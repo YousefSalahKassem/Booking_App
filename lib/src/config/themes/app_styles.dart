@@ -21,7 +21,7 @@ class AppStyles {
     return context.brightness == Brightness.dark;
   }
 
-  static setSystemOverlay(BuildContext context) {
+  static void setSystemOverlay(BuildContext context) {
     AppStyles.isLightMode(context)
         ? AppStyles._setSystemOverlayLight()
         : AppStyles._setSystemOverlayDark();
@@ -32,6 +32,6 @@ class AppStyles {
   }
 
   static clickableTextStyle() {
-    return const TextStyle(color: AppColors.buttonGreen, fontSize: 18);
+    return const TextStyle(color: AppColors.buttonGreen, fontSize: 15);
   }
 }
