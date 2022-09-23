@@ -20,6 +20,16 @@ import 'package:bookingapp/src/features/booking/data/datasource/booking_remote-d
 import 'package:bookingapp/src/features/booking/data/repository/booking_repository_impl.dart';
 import 'package:bookingapp/src/features/booking/domain/repository/booking_repository_abs.dart';
 import 'package:bookingapp/src/features/booking/domain/usecases/get_all_booking_usecase.dart';
+import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
+import 'package:bookingapp/src/features/profile/data/datasource/update_info_data_source.dart';
+import 'package:bookingapp/src/features/profile/data/datasource/user_info_data_source.dart';
+import 'package:bookingapp/src/features/profile/data/repository/update_info_repository_impl.dart';
+import 'package:bookingapp/src/features/profile/data/repository/user_profile_repository_impl.dart';
+import 'package:bookingapp/src/features/profile/domain/repository/update_info_repository.dart';
+import 'package:bookingapp/src/features/profile/domain/repository/user_info_repository.dart';
+import 'package:bookingapp/src/features/profile/domain/usecases/get_user_info_use_case.dart';
+import 'package:bookingapp/src/features/profile/domain/usecases/update_info_use_case.dart';
+import 'package:bookingapp/src/features/profile/presentation/bloc/user_info/update_user_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/create_booking_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/facilities_remote_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/filter_data_source.dart';
@@ -66,12 +76,15 @@ Future<void> init() async {
         hotelsUseCase: sl(),
         filterUseCase: sl(),
       ));
+  sl.registerFactory<HotelsCubit>(() => HotelsCubit(hotelsUseCase: sl(), filterUseCase: sl(),));
+  sl.registerFactory<AllBookingCubit>(() => AllBookingCubit(getAllBookingsUseCase: sl()));
+  sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(updateUser: sl(), getUserInfo: sl()));
 
   sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
   sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
   sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
   sl.registerLazySingleton<GetAllBookingsUseCase>(() => GetAllBookingsUseCase(sl()));
-
+  sl.registerLazySingleton<GetUserInfoUseCase>(() => GetUserInfoUseCase(repository: sl()));
   // use cases
   sl.registerLazySingleton<GetFacilitiesUseCase>(
       () => GetFacilitiesUseCase(facilitiesRepository: sl()));
@@ -79,6 +92,7 @@ Future<void> init() async {
   sl.registerLazySingleton<CreateBookingUseCase>(() => CreateBookingUseCase(repository: sl()));
   sl.registerLazySingleton<UpdateBookingUseCase>(() => UpdateBookingUseCase(repository: sl()));
   sl.registerLazySingleton<GetFilterUseCase>(() => GetFilterUseCase(filterRepository: sl()));
+  sl.registerLazySingleton<UpdateInfoUseCase>(() => UpdateInfoUseCase(repository: sl()));
   // repositories
   sl.registerLazySingleton<StatusRepository>(() => StatusRepositoryImpl(
         networkInfo: sl(),
@@ -108,6 +122,8 @@ Future<void> init() async {
   sl.registerLazySingleton<FilterRepository>(
       () => FilterRepositoryImpl(networkInfo: sl(), remoteDataSource: sl()));
   sl.registerLazySingleton<BookingRepository>(() => BookingRepositoryImpl(sl()));
+  sl.registerLazySingleton<UpdateInfoRepository>(() => UpdateInfoRepositoryImpl(remoteDataSource: sl(),));
+  sl.registerLazySingleton<UserInfoRepository>(() => UserProfileRepositoryImpl(dataSource: sl(),));
   // data sources
   sl.registerLazySingleton<StatusRemoteDataSource>(
       () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
@@ -129,6 +145,13 @@ Future<void> init() async {
       () => FilterRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<BookingRemoteDataSource>(
       () => BookingRemoteDataSourceImpl(apiConsumer: sl()));
+
+  sl.registerLazySingleton<CreateBookingDataSource>(() => CreateBookingDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UpdateBookingDataSource>(() => UpdateBookingDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<FilterRemoteDataSource>(() => FilterRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<BookingRemoteDataSource>(() => BookingRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UpdateInfoDataSource>(() => UpdateInfoDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<UserInfoDataSource>(() => UserInfoDataSourceImpl(consumer: sl()));
   // remote
 
   /// ===========================================================================================
