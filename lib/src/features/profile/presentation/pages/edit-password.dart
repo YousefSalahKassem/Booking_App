@@ -11,13 +11,10 @@ class EditPasswordPage extends StatefulWidget {
 }
 
 class _EditPasswordPageState extends State<EditPasswordPage> {
-  final oldPasswordController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
   saveChangePassword() {
-    // ignore: avoid_print
-    print(oldPasswordController.text);
     // ignore: avoid_print
     print(passwordController.text);
     // ignore: avoid_print
@@ -30,8 +27,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
@@ -60,11 +55,8 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
               const SizedBox(
                 height: 35,
               ),
-              buildTextField(
-                  "Old Password", "********", true, oldPasswordController),
               buildTextField("Password", "********", true, passwordController),
-              buildTextField("Confirm Password", "********", true,
-                  confirmPasswordController),
+              buildTextField("Confirm Password", "********", true, confirmPasswordController),
               const SizedBox(
                 height: 35,
               ),
@@ -90,25 +82,6 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                         fontSize: 14,
                         letterSpacing: 2.2,
                         color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  OutlinedButton(
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: const Text(
-                      "CANCEL",
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2.2,
-                        color: Colors.black,
                       ),
                     ),
                   ),
@@ -142,15 +115,9 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
                   ),
                 )
               : null,
-          contentPadding: const EdgeInsets.only(bottom: 3),
+          contentPadding: const EdgeInsets.only(left: 15),
           labelText: labelText,
-          floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: placeholder,
-          hintStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
         ),
       ),
     );

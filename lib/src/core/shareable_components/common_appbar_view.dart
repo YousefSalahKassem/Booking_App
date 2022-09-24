@@ -1,3 +1,4 @@
+import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../config/themes/app_themes.dart';
@@ -48,7 +49,7 @@ class CommonAppbarView extends StatelessWidget {
                       child: backWidget ??
                           Icon(
                             iconData,
-                            color: AppTheme.primaryTextColor(ThemeMode.system==ThemeMode.light),
+                            color: AppColors.primary,
                           ),
                     ),
                   ),

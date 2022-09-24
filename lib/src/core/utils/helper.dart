@@ -1,21 +1,19 @@
 import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import '../../config/themes/app_themes.dart';
+import 'package:intl/intl.dart';
+import '../../features/search_explore/domain/entities/room_data.dart';
 import '../shareable_components/custom_dialog.dart';
 
 class Helper {
-  // static String getRoomText(RoomData roomData) {
-  //   return "${roomData.numberRoom} ${AppLocalizations(applicationcontext!).of("room_data")} ${roomData.people} ${AppLocalizations(applicationcontext!).of("people_data")}";
-  // }
-  //
-  // static String getDateText(DateText dateText) {
-  //   LanguageType _languageType = applicationcontext == null
-  //       ? LanguageType.en
-  //       : applicationcontext!.read<ThemeProvider>().languageType;
-  //   return "0${dateText.startDate} ${DateFormat('MMM', _languageType.toString().split(".")[1]).format(DateTime.now())} - 0${dateText.endDate} ${DateFormat('MMM', _languageType.toString().split(".")[1]).format(DateTime.now().add(Duration(days: 2)))}";
-  // }
-  //
+  static String getRoomText(RoomData roomData) {
+    return "${roomData.numberRoom} ${"Room"} ${roomData.people} ${"People"}";
+  }
+
+  static String getDateText(DateText dateText) {
+    return "0${dateText.startDate} ${DateFormat('MMM', ).format(DateTime.now())} - 0${dateText.endDate} ${DateFormat('MMM',).format(DateTime.now().add(const Duration(days: 2)))}";
+  }
+
   // static String getLastSearchDate(DateText dateText) {
   //   LanguageType _languageType = applicationcontext == null
   //       ? LanguageType.en
@@ -23,9 +21,9 @@ class Helper {
   //   return "${dateText.startDate} - ${dateText.endDate} ${DateFormat('MMM', _languageType.toString().split(".")[1]).format(DateTime.now().add(Duration(days: 2)))}";
   // }
   //
-  // static String getPeopleandChildren(RoomData roomData) {
-  //   return "${AppLocalizations(applicationcontext!).of("sleeps")} ${roomData.numberRoom} ${AppLocalizations(applicationcontext!).of("people_data")} + ${roomData.numberRoom} ${AppLocalizations(applicationcontext!).of("children")} ";
-  // }
+  static String getPeopleandChildren(RoomData roomData) {
+    return "${"sleeps"} ${roomData.numberRoom} ${"people"} + ${roomData.numberRoom} ${"children"} ";
+  }
 
   static Widget ratingStar({double rating = 4.5}) {
     return RatingBarIndicator(

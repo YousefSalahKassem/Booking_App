@@ -2,8 +2,10 @@ import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart'
 import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
-import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/filter_screen/filters_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_booking/hotel_home_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookingapp/injection_container.dart' as di;
@@ -15,7 +17,11 @@ class Routes {
   static const String registerRoute = '/register';
   static const String onBoardingRoute = '/onboarding';
   static const String homeExploreRoute = '/homeExplore';
-  static const String profile = '/profile';
+  static const String searchRoute = '/search';
+  static const String hotelHomeScreenRoute = '/hotelHomeScreen';
+  static const String filterScreenRoute = '/filterScreenRoute';
+  static const String hotelDetailsScreenRoute = '/hotelDetailsScreenRoute';
+  static const String roomBookingScreenRoute = '/roomBookingScreenRoute';
 }
 
 class AppRoutes {
@@ -23,7 +29,7 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
-          return const SplashScreen();
+          return const BottomTabScreen();
         }));
       case Routes.loginRoute:
         return MaterialPageRoute(builder: ((context) {
@@ -46,6 +52,18 @@ class AppRoutes {
         case Routes.homeExploreRoute:
         return MaterialPageRoute(builder: ((context) {
           return const BottomTabScreen();
+        }));
+        case Routes.searchRoute:
+        return MaterialPageRoute(builder: ((context) {
+          return const SearchScreen();
+        }));
+        case Routes.hotelHomeScreenRoute:
+        return MaterialPageRoute(builder: ((context) {
+          return const HotelHomeScreen();
+        }));
+        case Routes.filterScreenRoute:
+        return MaterialPageRoute(builder: ((context) {
+          return const FiltersScreen();
         }));
       default:
         return undefinedRoute();

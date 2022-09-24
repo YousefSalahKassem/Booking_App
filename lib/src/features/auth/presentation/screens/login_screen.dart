@@ -8,7 +8,6 @@ import 'package:bookingapp/src/features/auth/presentation/widgets/title_text.dar
 import 'package:bookingapp/src/features/auth/presentation/widgets/clickable_text.dart';
 import 'package:bookingapp/src/features/auth/presentation/widgets/hint_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

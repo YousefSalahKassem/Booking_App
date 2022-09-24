@@ -1,64 +1,25 @@
+import 'package:bookingapp/src/core/utils/media_query_values.dart';
+
 import 'edit-password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class PrfilePage extends StatefulWidget {
-  const PrfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  const ProfilePage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
-  _PrfilePageState createState() => _PrfilePageState();
+  _ProfilePageState createState() => _ProfilePageState();
 }
 
-class _PrfilePageState extends State<PrfilePage> {
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
-      ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: ListView(
           children: [
-            // Row(
-            //   children: [
-            //     Column(
-            //       crossAxisAlignment: CrossAxisAlignment.start,
-            //       children: const [
-            // Text(
-            //   "Amanda",
-            //   style:
-            //       TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
-            // ),
-            //         // const SizedBox(
-            //         //   height: 10,
-            //         // ),
-            // Text(
-            //   "View and Edit profile",
-            //   style: TextStyle(
-            //     fontSize: 15,
-            //     fontWeight: FontWeight.w300,
-            //     color: Colors.grey,
-            //   ),
-            // ),
-            //       ],
-            //     ),
-            //     Container(
-            //       alignment: Alignment.centerRight,
-            //       child: Column(
-            //         children: [
-            // CircleAvatar(
-            //   child: ClipRect(
-            //       child: Image.asset("assets/images/football.png")),
-            // ),
-            //         ],
-            //       ),
-            //     ),
-            //   ],
-            // ),
-
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -77,7 +38,7 @@ class _PrfilePageState extends State<PrfilePage> {
                         "View and Edit profile",
                         style: TextStyle(
                           fontSize: 15,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.w700,
                           color: Colors.grey,
                         ),
                       ),
@@ -91,11 +52,9 @@ class _PrfilePageState extends State<PrfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CircleAvatar(
-                        radius: 30,
-                        child: ClipRect(
-                          child: Image.network("https://toppng.com/uploads/preview/cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png"),
-                        ),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.network("https://toppng.com/uploads/preview/cool-avatar-transparent-image-cool-boy-avatar-11562893383qsirclznyw.png",width: context.height30*3,),
                       ),
                     ],
                   ),
@@ -113,7 +72,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
@@ -123,7 +82,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
@@ -133,7 +92,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
@@ -143,7 +102,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
@@ -153,7 +112,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
@@ -163,7 +122,7 @@ class _PrfilePageState extends State<PrfilePage> {
             ),
             const Divider(
               height: 15,
-              thickness: 2,
+              thickness: .7,
             ),
             buildAccountOptionRow(
               context,
