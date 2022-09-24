@@ -19,7 +19,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  void _register(RegisterModel registerModel) => AuthCubit.get(context).register(registerModel);
+  Future<bool> _register(RegisterModel registerModel) =>
+      AuthCubit.get(context).register(registerModel);
+  void _navigateToHomeScreen() => AuthCubit.get(context).navigateToHomeScreen(context);
+
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -76,12 +79,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     text: 'Sign up',
                     onPressed: () => _register(
                       RegisterModel(
-                        name: _nameController.text.isNotEmpty
-                            ? _nameController.text
-                            : 'Abdullah Mansour',
+                        name: _nameController.text.isNotEmpty ? _nameController.text : 'Um',
                         email: _emailController.text.isNotEmpty
                             ? _emailController.text
-                            : 'abdullah.mansour@gmail.com',
+                            : 'umr@gmail.com',
                         password: _passwordController.text.isNotEmpty
                             ? _passwordController.text
                             : '123456',
@@ -89,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ? _passwordConfirmationController.text
                             : '123456',
                       ),
-                    ),
+                    ).whenComplete(() => _navigateToHomeScreen()),
                   );
                 },
               ),

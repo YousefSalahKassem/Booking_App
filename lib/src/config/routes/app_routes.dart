@@ -2,6 +2,7 @@ import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart'
 import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
+import 'package:bookingapp/src/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:bookingapp/injection_container.dart' as di;
 class Routes {
   static const String initialRoute = '/';
   static const String noRouteFound = 'No Route Found';
+  static const String getStartedRoute = '/getstarted';
   static const String loginRoute = '/login';
   static const String registerRoute = '/register';
   static const String onBoardingRoute = '/onboarding';
@@ -23,8 +25,13 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
-          return const SplashScreen();
+          return BlocProvider(
+            create: ((context) => di.sl<AuthCubit>()),
+            child: const SplashScreen(),
+          );
         }));
+      case Routes.getStartedRoute:
+        return MaterialPageRoute(builder: ((context) => const GetStartedScreen()));
       case Routes.loginRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
