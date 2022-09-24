@@ -8,7 +8,6 @@ import 'package:bookingapp/src/features/auth/presentation/widgets/title_text.dar
 import 'package:bookingapp/src/features/auth/presentation/widgets/clickable_text.dart';
 import 'package:bookingapp/src/features/auth/presentation/widgets/hint_text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -20,17 +19,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  void _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel);
+  Future<bool> _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel, context);
+  void _navigateToHomeScreen() => AuthCubit.get(context).navigateToHomeScreen(context);
+
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,10 +79,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     _logIn(LoginModel(
                       email: _emailController.text.isNotEmpty
                           ? _emailController.text
-                          : 'abdullah.mansour@gmail.com',
+                          : 'umrhsnE2020@gmail.com',
                       password:
                           _passwordController.text.isNotEmpty ? _passwordController.text : '123456',
-                    ));
+                    )).whenComplete(() => _navigateToHomeScreen());
                   },
                 );
               },

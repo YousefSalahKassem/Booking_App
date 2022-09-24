@@ -1,16 +1,15 @@
-
 class BookingUser {
-
-  final int userId;
-  final String name;
-  final String email;
+  final int? userId;
+  final String? name;
+  final String? email;
   final String? emailVerifiedAt;
-  final String apiToken;
-  final String image;
-  final String createdAt;
-  final String updatedAt;
-  final String googleId;
-const BookingUser({
+  final String? apiToken;
+  final String? image;
+  final String? createdAt;
+  final String? updatedAt;
+  final String? googleId;
+
+  const BookingUser({
     required this.userId,
     required this.name,
     required this.email,
@@ -21,7 +20,4 @@ const BookingUser({
     required this.updatedAt,
     required this.googleId,
   });
-
-
 }
-

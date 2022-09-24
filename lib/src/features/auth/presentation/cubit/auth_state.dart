@@ -11,35 +11,35 @@ class AuthInitial extends AuthState {}
 
 class StatusLoading extends AuthState {}
 
-class StatusComplete extends AuthState {
-  final StatusEntity status;
+class StatusSuccess extends AuthState {
+  final BookingUser user;
 
-  const StatusComplete({required this.status});
+  const StatusSuccess({required this.user});
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [user];
 }
 
 class LoginLoading extends AuthState {}
 
-class LoginComplete extends AuthState {
-  final StatusEntity status;
+class LoginSuccess extends AuthState {
+  final BookingUser user;
 
-  const LoginComplete({required this.status});
+  const LoginSuccess({required this.user});
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [user];
 }
 
 class RegisterLoading extends AuthState {}
 
-class RegisterComplete extends AuthState {
-  final StatusEntity status;
+class RegisterSuccess extends AuthState {
+  final BookingUser user;
 
-  const RegisterComplete({required this.status});
+  const RegisterSuccess({required this.user});
 
   @override
-  List<Object> get props => [status];
+  List<Object> get props => [user];
 }
 
 class AuthError extends AuthState {

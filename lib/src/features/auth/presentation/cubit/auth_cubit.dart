@@ -2,70 +2,82 @@ import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/core/usecases/usecase.dart';
 import 'package:bookingapp/src/core/error/failures.dart';
 import 'package:bookingapp/src/core/utils/app_strings.dart';
+import 'package:bookingapp/src/features/auth/data/data_sources/local/status_local_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/models/login_model.dart';
 import 'package:bookingapp/src/features/auth/data/models/register_model.dart';
-import 'package:bookingapp/src/features/auth/domain/entities/status_entity.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/get_status_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/log_in_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/register_usecase.dart';
+import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
+import 'package:bookingapp/src/features/booking/domain/entity/booking_users.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bookingapp/injection_container.dart' as di;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final GetStatusUseCase getStatusUsecase;
+  final StatusLocalDataSource statusLocalDataSource;
   final LogInUseCase logInUseCase;
   final RegisterUseCase registerUseCase;
 
   AuthCubit({
-    required this.getStatusUsecase,
+    required this.statusLocalDataSource,
     required this.logInUseCase,
     required this.registerUseCase,
   }) : super(AuthInitial());
 
   static AuthCubit get(context) => BlocProvider.of<AuthCubit>(context);
-  bool? isLoggedIn;
 
-  Future<void> getLoginStatus() async {
-    emit(StatusLoading());
-    Either<Failure, StatusEntity> response = await getStatusUsecase(NoParams());
-    emit(response.fold(
-      (failure) => AuthError(msg: _mapFailureToMsg(failure)),
-      (status) {
-        var state = StatusComplete(status: status);
-        if (status.type == '1') {
-          isLoggedIn = true;
-        }
-        return state;
-      },
-    ));
+  bool isLoggedIn = false;
+  bool isRegistered = false;
+
+  Future<bool> getLoginData(BuildContext context) async {
+    statusLocalDataSource.getLoginStatus().then((loggedIn) {
+      debugPrint('loggedIn = $loggedIn');
+      if (loggedIn!) {
+        isLoggedIn = loggedIn;
+        navigateToHomeScreen(context);
+      } else {
+        Navigator.pushNamed(context, Routes.getStartedRoute);
+      }
+    });
+    return isLoggedIn;
   }
 
-  Future<void> logIn(LoginModel loginModel) async {
+  Future<bool> logIn(LoginModel loginModel, BuildContext context) async {
     emit(LoginLoading());
-    Either<Failure, StatusEntity> response = await logInUseCase(loginModel);
+    Either<Failure, BookingUser> response = await logInUseCase(loginModel);
     emit(response.fold(
       (failure) => AuthError(msg: _mapFailureToMsg(failure)),
-      (login) {
-        var state = LoginComplete(status: login);
-        if (login.type == '1') {
+      (user) {
+        if (user.apiToken != null) {
           isLoggedIn = true;
         }
-        return state;
+        return LoginSuccess(user: user);
       },
     ));
+    return isLoggedIn;
   }
 
-  Future<void> register(RegisterModel registerModel) async {
+  Future<bool> register(RegisterModel registerModel) async {
     emit(RegisterLoading());
-    Either<Failure, StatusEntity> response = await registerUseCase(registerModel);
-    emit(response.fold(
-      (failure) => AuthError(msg: _mapFailureToMsg(failure)),
-      (register) => RegisterComplete(status: register),
-    ));
+    Either<Failure, BookingUser> userResponse = await registerUseCase(registerModel);
+    emit(
+      userResponse.fold(
+        (failure) => AuthError(msg: _mapFailureToMsg(failure)),
+        (user) {
+          if (user.apiToken != null) {
+            isRegistered = true;
+          }
+          return RegisterSuccess(user: user);
+        },
+      ),
+    );
+    return isRegistered;
   }
 
   String _mapFailureToMsg(Failure failure) {
@@ -79,9 +91,9 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
-  void navigateToTestHome(BuildContext context) {
-    if (isLoggedIn == true) {
-      Navigator.pushNamed(context, Routes.initialRoute);
+  void navigateToHomeScreen(BuildContext context) {
+    if (isLoggedIn == true || isRegistered == true) {
+      Navigator.pushNamed(context, Routes.onBoardingRoute); // TODO: change to home screen
     }
   }
 }
