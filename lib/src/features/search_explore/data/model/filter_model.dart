@@ -16,6 +16,9 @@ FilterModel({
   Map<String, dynamic> toJson() {
     return {
       "name": name,
+      "max_price": maxPrice,
+      "min_price": minPrice,
+      "distance": distance,
     };
   }
 }

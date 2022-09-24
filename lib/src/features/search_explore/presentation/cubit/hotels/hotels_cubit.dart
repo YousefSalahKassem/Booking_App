@@ -12,16 +12,24 @@ import 'hotels_state.dart';
 class HotelsCubit extends Cubit<HotelsState> {
   final GetHotelsUseCase hotelsUseCase;
   final GetFilterUseCase filterUseCase;
+
+
   HotelsCubit({required this.hotelsUseCase , required this.filterUseCase}) : super(HotelsInitial()){
     getHotels();
+    getFilters(FilterModel());
   }
+  static HotelsCubit get(context) => BlocProvider.of<HotelsCubit>(context);
+  final List<HotelsEntity> allhotels = [];
 
   Future<void> getHotels() async {
     emit(HotelsLoading());
     Either <Failure, List<HotelsEntity>> response = await hotelsUseCase(NoParams());
     emit(response.fold(
       (failure) => HotelsError(msg: _mapFailureToMsg(failure)),
-      (hotels) => HotelsComplete(hotels: hotels),
+      (hotels) {
+        allhotels.addAll(hotels);
+        return HotelsComplete(hotels: hotels);
+      },
     ));
   }
 
@@ -30,7 +38,7 @@ class HotelsCubit extends Cubit<HotelsState> {
     Either <Failure, List<HotelsEntity>> response = await filterUseCase(filterModel);
     emit(response.fold(
       (failure) => HotelsError(msg: _mapFailureToMsg(failure)),
-      (hotels) => HotelsComplete(hotels: hotels),
+      (hotels) => HotelsComplete(hotels: hotels.isEmpty ? allhotels : hotels),
     ));
   }
 

@@ -52,6 +52,7 @@ import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_filt
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_hotels_use_case.dart';
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/update_book_use_case.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/create_booking/booking_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/facilities/facilities_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -79,6 +80,7 @@ Future<void> init() async {
       ));
   sl.registerFactory<AllBookingCubit>(() => AllBookingCubit(getAllBookingsUseCase: sl()));
   sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(updateUser: sl(), getUserInfo: sl()));
+  sl.registerLazySingleton<FacilitiesCubit>(() => FacilitiesCubit(getFacilitiesUseCase: sl()));
 
   sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
   sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));

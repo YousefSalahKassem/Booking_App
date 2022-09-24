@@ -1,14 +1,16 @@
+import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/core/shareable_components/bottom_top_move_animation_view.dart';
+import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/hotel_detailes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../config/themes/app_themes.dart';
 import '../../../../../core/shareable_components/common_button.dart';
 import '../../../../../core/shareable_components/common_card.dart';
 import '../../../../../core/shareable_components/common_search_bar.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 import '../../cubit/hotels/hotels_cubit.dart';
 import '../../cubit/hotels/hotels_state.dart';
 import '../../widget/explore/home_list_view_page.dart';
@@ -19,134 +21,136 @@ import '../../widget/explore/home_explore_sliver_view.dart';
 class HomeExploreScreen extends StatefulWidget {
   final AnimationController animationController;
 
-  const HomeExploreScreen({Key? key , required this.animationController}) : super(key: key);
+  const HomeExploreScreen({Key? key, required this.animationController})
+      : super(key: key);
 
   @override
   State<HomeExploreScreen> createState() => _HomeExploreScreenState();
 }
 
-class _HomeExploreScreenState extends State<HomeExploreScreen> with TickerProviderStateMixin {
+class _HomeExploreScreenState extends State<HomeExploreScreen>
+    with TickerProviderStateMixin {
   late ScrollController controller;
   late AnimationController _animationController;
   var sliderImageHeight = 0.0;
+  final myController = TextEditingController();
 
   @override
   void initState() {
-    _animationController =
-        AnimationController(duration: const Duration(milliseconds: 0), vsync: this);
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 0), vsync: this);
     widget.animationController.forward();
     controller = ScrollController(initialScrollOffset: 0.0);
     controller.addListener(() {
-        if (mounted) {
-          if (controller.offset < 0) {
-            // we static set the just below half scrolling values
-            _animationController.animateTo(0.0);
-          } else if (controller.offset > 0.0 &&
-              controller.offset < sliderImageHeight) {
-            // we need around half scrolling values
-            if (controller.offset < ((sliderImageHeight / 1.5))) {
-              _animationController
-                  .animateTo((controller.offset / sliderImageHeight));
-            } else {
-              // we static set the just above half scrolling values "around == 0.64"
-              _animationController
-                  .animateTo((sliderImageHeight / 1.5) / sliderImageHeight);
-            }
+      if (mounted) {
+        if (controller.offset < 0) {
+          // we static set the just below half scrolling values
+          _animationController.animateTo(0.0);
+        } else if (controller.offset > 0.0 &&
+            controller.offset < sliderImageHeight) {
+          // we need around half scrolling values
+          if (controller.offset < ((sliderImageHeight / 1.5))) {
+            _animationController
+                .animateTo((controller.offset / sliderImageHeight));
+          } else {
+            // we static set the just above half scrolling values "around == 0.64"
+            _animationController
+                .animateTo((sliderImageHeight / 1.5) / sliderImageHeight);
           }
         }
-      });
+      }
+    });
     super.initState();
   }
-
 
   @override
   Widget build(BuildContext context) {
     sliderImageHeight = MediaQuery.of(context).size.width * 1.3;
-    return BottomTopMoveAnimationView(animationController: widget.animationController, child: Stack(
-      children: [
-        ListView.builder(
-          controller: controller,
-          itemCount: 4,
-          // padding on top is only for we need spec for sider
-          padding:
-          EdgeInsets.only(top: sliderImageHeight + 32, bottom: 16),
-          scrollDirection: Axis.vertical,
-          itemBuilder: (context, index) {
-            // some list UI
-            var count = 4;
-            var animation = Tween(begin: 0.0, end: 1.0).animate(
-              CurvedAnimation(
-                parent: widget.animationController,
-                curve: Interval((1 / count) * index, 1.0,
-                    curve: Curves.fastOutSlowIn),
-              ),
-            );
-            if (index == 0) {
-              return TitleView(
-                titleTxt:
-                "Popular Destination",
-                subTxt: '',
-                animation: animation,
-                animationController: widget.animationController,
-                click: () {},
-              );
-            } else if (index == 1) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 8),
-                //Popular Destinations animation view
-                child: PopularListView(
-                  animationController: widget.animationController,
-                  callBack: (index) {},
+    return BottomTopMoveAnimationView(
+      animationController: widget.animationController,
+      child: Stack(
+        children: [
+          ListView.builder(
+            controller: controller,
+            itemCount: 4,
+            // padding on top is only for we need spec for sider
+            padding: EdgeInsets.only(top: sliderImageHeight + 32, bottom: 16),
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              // some list UI
+              var count = 4;
+              var animation = Tween(begin: 0.0, end: 1.0).animate(
+                CurvedAnimation(
+                  parent: widget.animationController,
+                  curve: Interval((1 / count) * index, 1.0,
+                      curve: Curves.fastOutSlowIn),
                 ),
               );
-            } else if (index == 2) {
-              return TitleView(
-                titleTxt: 'Best Deals',
-                subTxt: 'View all',
-                animation: animation,
-                isLeftButton: true,
-                animationController: widget.animationController,
-                click: () {},
-              );
-            }
-            else {
-              return getDealListView(index);
-            }
-          },
-        ),
-        // sliderUI with 3 images are moving
-        _sliderUI(),
-
-        // viewHotels Button UI for click event
-        _viewHotelsButton(_animationController),
-
-        //just gradient for see the time and battry Icon on "TopBar"
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 80,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Theme.of(context).backgroundColor.withOpacity(0.4),
-                    Theme.of(context).backgroundColor.withOpacity(0.0),
-                  ],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                )),
+              if (index == 0) {
+                return TitleView(
+                  titleTxt: "Popular Destination",
+                  subTxt: '',
+                  animation: animation,
+                  animationController: widget.animationController,
+                  click: () {},
+                );
+              } else if (index == 1) {
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  //Popular Destinations animation view
+                  child: PopularListView(
+                    animationController: widget.animationController,
+                    callBack: (index) {},
+                  ),
+                );
+              } else if (index == 2) {
+                return TitleView(
+                  titleTxt: 'Best Deals',
+                  subTxt: 'View all',
+                  animation: animation,
+                  isLeftButton: true,
+                  animationController: widget.animationController,
+                  click: () {},
+                );
+              } else {
+                return getDealListView(index);
+              }
+            },
           ),
-        ),
-        //   serachUI on Top  Positioned
-        Positioned(
-          top: MediaQuery.of(context).padding.top,
-          left: 0,
-          right: 0,
-          child: searchUI(),
-        )
-      ],
-    ),);
+          // sliderUI with 3 images are moving
+          _sliderUI(),
+
+          // viewHotels Button UI for click event
+          _viewHotelsButton(_animationController),
+
+          //just gradient for see the time and battry Icon on "TopBar"
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              height: 80,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                colors: [
+                  Theme.of(context).backgroundColor.withOpacity(0.4),
+                  Theme.of(context).backgroundColor.withOpacity(0.0),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )),
+            ),
+          ),
+          //   serachUI on Top  Positioned
+          Positioned(
+            top: MediaQuery.of(context).padding.top,
+            left: 0,
+            right: 0,
+            child: searchUI(),
+          )
+        ],
+      ),
+    );
   }
 
   Widget _viewHotelsButton(AnimationController animationController) {
@@ -172,6 +176,8 @@ class _HomeExploreScreenState extends State<HomeExploreScreen> with TickerProvid
                   child: CommonButton(
                     onTap: () {
                       if (opacity != 0) {
+                        Navigator.pushNamed(
+                            context, Routes.hotelHomeScreenRoute);
                       }
                     },
                     backgroundColor: const Color(0xFF4FBE9F),
@@ -221,8 +227,10 @@ class _HomeExploreScreenState extends State<HomeExploreScreen> with TickerProvid
   }
 
   Widget getDealListView(int index) {
+    BlocProvider.of<HotelsCubit>(context)
+        .getFilters(FilterModel(name: myController.text));
     return BlocBuilder<HotelsCubit, HotelsState>(builder: (context, state) {
-      if(state is HotelsComplete){
+      if (state is HotelsComplete) {
         List<Widget> list = [];
         for (var i in state.hotels) {
           var animation = Tween(begin: 0.0, end: 1.0).animate(
@@ -234,6 +242,12 @@ class _HomeExploreScreenState extends State<HomeExploreScreen> with TickerProvid
           list.add(
             HotelListViewPage(
               callback: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HotelDetailes(
+                              hotelData: i,
+                            )));
               },
               hotelData: i,
               animation: animation,
@@ -257,15 +271,15 @@ class _HomeExploreScreenState extends State<HomeExploreScreen> with TickerProvid
       padding: const EdgeInsets.only(left: 24, right: 24, top: 16),
       child: CommonCard(
         radius: 36,
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.circular(38)),
-          onTap: () {
+        child: CommonSearchBar(
+          textEditingController: myController,
+          iconData: FontAwesomeIcons.magnifyingGlass,
+          onChanged: (String txt) {
+            BlocProvider.of<HotelsCubit>(context)
+                .getFilters(FilterModel(name: txt));
           },
-          child: const CommonSearchBar(
-            iconData: FontAwesomeIcons.magnifyingGlass,
-            enabled: false,
-            text: "Where are you going?",
-          ),
+          enabled: true,
+          text: "Where are you going?",
         ),
       ),
     );

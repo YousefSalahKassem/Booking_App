@@ -1,3 +1,4 @@
+import 'package:bookingapp/src/features/profile/presentation/pages/profile-page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/shareable_components/common_card.dart';
@@ -77,11 +78,9 @@ class _BottomTabScreenState extends State<BottomTabScreen>
           //   );
           // });
         } else if (tabType == BottomBarType.Profile) {
-          // setState(() {
-          //   _indexView = ProfileScreen(
-          //     animationController: _animationController,
-          //   );
-          // });
+          setState(() {
+            _indexView = const ProfilePage();
+          });
         }
       });
     }

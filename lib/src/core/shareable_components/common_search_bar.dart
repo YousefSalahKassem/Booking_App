@@ -9,7 +9,7 @@ class CommonSearchBar extends StatelessWidget {
   final bool enabled, ishsow;
   final double height;
   final IconData? iconData;
-
+  final ValueChanged<String>? onChanged;
   const CommonSearchBar(
       {Key? key,
       this.text,
@@ -17,13 +17,14 @@ class CommonSearchBar extends StatelessWidget {
       this.height = 48,
       this.iconData,
       this.ishsow = true,
+      this.onChanged,
       this.textEditingController})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: Container(
+      child: SizedBox(
         height: height,
         child: Center(
           child: Row(
@@ -33,7 +34,6 @@ class CommonSearchBar extends StatelessWidget {
                       iconData,
                       // FontAwesomeIcons.search,
                       size: 18,
-                      color: Theme.of(context).primaryColor,
                     )
                   : const SizedBox(),
               ishsow == true
@@ -46,7 +46,7 @@ class CommonSearchBar extends StatelessWidget {
                   controller: textEditingController,
                   maxLines: 1,
                   enabled: enabled,
-                  onChanged: (String txt) {},
+                  onChanged: onChanged,
                   cursorColor: Theme.of(context).primaryColor,
                   decoration:  InputDecoration(
                       contentPadding: const EdgeInsets.all(0),
