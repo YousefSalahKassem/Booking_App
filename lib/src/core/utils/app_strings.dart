@@ -11,4 +11,5 @@ class AppStrings {
   static const String unexpectedError = 'Unexpected Error';
 
   static const String cachedLoginStatus = 'CACHED_LOGIN_STATUS';
+  static const String cachedUserData = 'CACHED_USER_DATA';
 }

@@ -2,6 +2,7 @@ import 'package:bookingapp/src/core/api/api_consumer.dart';
 import 'package:bookingapp/src/core/api/app_interceptors.dart';
 import 'package:bookingapp/src/core/api/dio_consumer.dart';
 import 'package:bookingapp/src/core/network/network_info.dart';
+import 'package:bookingapp/src/features/auth/data/data_sources/local/booking_user_local_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/local/status_local_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/remote/login_remote_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/remote/register_remote_data_source.dart';
@@ -58,15 +59,15 @@ import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final sl = GetIt.instance; // service location instance
+final sl = GetIt.instance; // service locator instance
 
 Future<void> init() async {
   /// features
   // cubits
   sl.registerFactory<AuthCubit>(() => AuthCubit(
-        getStatusUsecase: sl(),
         logInUseCase: sl(),
         registerUseCase: sl(),
+        statusLocalDataSource: sl(),
       ));
 
   sl.registerFactory<BookingCubit>(() => BookingCubit(
@@ -103,10 +104,12 @@ Future<void> init() async {
   sl.registerLazySingleton<LoginRepository>(() => LoginRepositoryImpl(
         networkInfo: sl(),
         loginRemoteDataSource: sl(),
+        bookingUserLocalDataSource: sl(),
       ));
   sl.registerLazySingleton<RegisterRepository>(() => RegisterRepositoryImpl(
         networkInfo: sl(),
         registerRemoteDataSource: sl(),
+        bookingUserLocalDataSource: sl(),
       ));
   sl.registerLazySingleton<FacilitiesRepository>(() => FacilitiesRepositoryImpl(
         networkInfo: sl(),
@@ -123,8 +126,12 @@ Future<void> init() async {
   sl.registerLazySingleton<FilterRepository>(
       () => FilterRepositoryImpl(networkInfo: sl(), remoteDataSource: sl()));
   sl.registerLazySingleton<BookingRepository>(() => BookingRepositoryImpl(sl()));
-  sl.registerLazySingleton<UpdateInfoRepository>(() => UpdateInfoRepositoryImpl(remoteDataSource: sl(),));
-  sl.registerLazySingleton<UserInfoRepository>(() => UserProfileRepositoryImpl(dataSource: sl(),));
+  sl.registerLazySingleton<UpdateInfoRepository>(() => UpdateInfoRepositoryImpl(
+        remoteDataSource: sl(),
+      ));
+  sl.registerLazySingleton<UserInfoRepository>(() => UserProfileRepositoryImpl(
+        dataSource: sl(),
+      ));
   // data sources
   sl.registerLazySingleton<StatusRemoteDataSource>(
       () => StatusRemoteDataSourceImpl(apiConsumer: sl()));
@@ -144,8 +151,11 @@ Future<void> init() async {
       () => FilterRemoteDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<BookingRemoteDataSource>(
       () => BookingRemoteDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<BookingUserLocalDataSource>(
+      () => BookingUserLocalDataSourceImpl(sharedPreferences: sl()));
 
-  sl.registerLazySingleton<CreateBookingDataSource>(() => CreateBookingDataSourceImpl(apiConsumer: sl()));
+  sl.registerLazySingleton<CreateBookingDataSource>(
+      () => CreateBookingDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UpdateInfoDataSource>(() => UpdateInfoDataSourceImpl(apiConsumer: sl()));
   sl.registerLazySingleton<UserInfoDataSource>(() => UserInfoDataSourceImpl(consumer: sl()));
   // remote
