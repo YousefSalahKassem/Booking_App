@@ -29,7 +29,7 @@ class StatusLocalDataSourceImpl implements StatusLocalDataSource {
     debugPrint('$runtimeType');
     final json = sharedPreferences.getBool(AppStrings.cachedLoginStatus);
     debugPrint('jsonString = $json');
-    if (json != null) {
+    if (json != false) {
       // final cachedLoginStatus =
       // Future.value(BookingUserModel.fromJson(json.decode(json)).apiToken?.isNotEmpty);
       return json;
