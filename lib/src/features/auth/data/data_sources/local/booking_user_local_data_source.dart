@@ -10,6 +10,10 @@ abstract class BookingUserLocalDataSource {
   Future<BookingUserModel> getUserData();
 
   Future<bool> cacheUserData(BookingUserModel bookingUserModel);
+
+  Future<String?> getApiToken();
+
+  Future<bool> cacheApiToken(BookingUserModel bookingUserModel);
 }
 
 class BookingUserLocalDataSourceImpl implements BookingUserLocalDataSource {
@@ -37,7 +41,7 @@ class BookingUserLocalDataSourceImpl implements BookingUserLocalDataSource {
     debugPrint('===============SharedPreferences==============');
     debugPrint('===============cacheUserData==============');
     debugPrint('$runtimeType');
-    debugPrint('json.encode(status) = ${json.encode(bookingUserModel)}');
+    debugPrint('json.encode(bookingUserModel) = ${json.encode(bookingUserModel)}');
     debugPrint('bookingUserModel.userId = ${bookingUserModel.userId}');
     debugPrint('bookingUserModel.image = ${bookingUserModel.image}');
     debugPrint('bookingUserModel.name = ${bookingUserModel.name}');
@@ -47,5 +51,33 @@ class BookingUserLocalDataSourceImpl implements BookingUserLocalDataSource {
     debugPrint('bookingUserModel.updatedAt = ${bookingUserModel.updatedAt}');
     debugPrint('bookingUserModel.googleId = ${bookingUserModel.googleId}');
     return sharedPreferences.setString(AppStrings.cachedUserData, json.encode(bookingUserModel));
+  }
+
+  @override
+  Future<String?> getApiToken() {
+    debugPrint('===============SharedPreferences==============');
+    debugPrint('===============getUserData==============');
+    debugPrint('$runtimeType');
+    final jsonString = sharedPreferences.getString(AppStrings.cachedApiToken);
+    debugPrint('jsonString = $jsonString');
+    if (jsonString != null) {
+      final cachedApiToken =
+          Future.value(BookingUserModel.fromJson(json.decode(jsonString)).apiToken);
+      return cachedApiToken;
+    } else {
+      throw CacheException();
+    }
+  }
+
+  @override
+  Future<bool> cacheApiToken(BookingUserModel bookingUserModel) {
+    debugPrint('===============SharedPreferences==============');
+    debugPrint('===============cacheUserData==============');
+    debugPrint('$runtimeType');
+    debugPrint(
+        'json.encode(bookingUserModel.apiToken) = ${json.encode(bookingUserModel.apiToken)}');
+    debugPrint('bookingUserModel.apiToken = ${bookingUserModel.apiToken}');
+    return sharedPreferences.setString(
+        AppStrings.cachedApiToken, json.encode(bookingUserModel.apiToken));
   }
 }

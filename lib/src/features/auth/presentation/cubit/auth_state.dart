@@ -12,12 +12,12 @@ class AuthInitial extends AuthState {}
 class StatusLoading extends AuthState {}
 
 class StatusSuccess extends AuthState {
-  final BookingUser user;
+  final bool isLoggedIn;
 
-  const StatusSuccess({required this.user});
+  const StatusSuccess({required this.isLoggedIn});
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [isLoggedIn];
 }
 
 class LoginLoading extends AuthState {}

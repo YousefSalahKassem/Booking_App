@@ -32,7 +32,8 @@ class GetStartedScreen extends StatelessWidget {
                     const Spacer(),
                     MyButton(
                       text: 'Get started',
-                      onPressed: () => Navigator.pushNamed(context, Routes.onBoardingRoute),
+                      onPressed: () =>
+                          Navigator.pushReplacementNamed(context, Routes.onBoardingRoute),
                     ),
                     const SizedBox(height: 15),
                     const AccountCheckTextWidget(),

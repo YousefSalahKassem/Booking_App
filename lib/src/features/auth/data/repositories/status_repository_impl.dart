@@ -3,9 +3,7 @@ import 'package:bookingapp/src/core/error/failures.dart';
 import 'package:bookingapp/src/core/network/network_info.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/local/status_local_data_source.dart';
 import 'package:bookingapp/src/features/auth/data/data_sources/remote/status_remote_data_source.dart';
-import 'package:bookingapp/src/features/auth/domain/entities/status_entity.dart';
 import 'package:bookingapp/src/features/auth/domain/repositories/status_repository.dart';
-import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -21,15 +19,47 @@ class StatusRepositoryImpl implements StatusRepository {
   });
 
   @override
-  Future<Either<Failure, BookingUserModel>> getStatus() async {
+  Future<Either<Failure, bool>> getLoginStatus() async {
+    /**
+     * isLoggedIn == false if apiToken == null
+     *
+     * if (isLoggedIn != false) // we have an apiToken
+     *    try
+     *      get isLoggedIn data from cache
+     *    catch
+     *      cache failure
+     * else
+     *    if (internet is connected)
+     *       try
+     *          get isLoggedIn data from api
+     *       catch
+     *          server failure
+     */
+    bool isLoggedIn = false;
+    debugPrint('bool isLoggedIn = $isLoggedIn');
     try {
-      final response = await statusRemoteDataSource.getLoginStatus();
-      debugPrint('$runtimeType');
-      debugPrint('response = $response');
-      statusLocalDataSource.cacheStatus(response);
-      return Right(response);
-    } on ServerException {
-      return Left(ServerFailure());
+      isLoggedIn = await statusLocalDataSource.getLoginStatus();
+      debugPrint('await statusLocalDataSource.getLoginStatus() = $isLoggedIn');
+      return Right(isLoggedIn);
+    } on CacheException {
+      return Left(CacheFailure());
+    } finally {
+      debugPrint('isLoggedIn = $isLoggedIn');
+      if (isLoggedIn == false) {
+        debugPrint('await networkInfo.isConnected = ${await networkInfo.isConnected}');
+        if (await networkInfo.isConnected) {
+          try {
+            isLoggedIn = await statusRemoteDataSource.getLoginStatus();
+            debugPrint('statusRemoteDataSource.getLoginStatus() = $isLoggedIn');
+            statusLocalDataSource.cacheStatus();
+            return Right(isLoggedIn);
+          } on ServerException {
+            return Left(ServerFailure());
+          }
+        } else {
+          throw const NoInternetConnectionException();
+        }
+      }
     }
   }
 }

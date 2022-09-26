@@ -33,7 +33,7 @@ class AppRoutes {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
-            create: ((context) => di.sl<AuthCubit>()),
+            create: ((context) => di.sl<AuthCubit>()..getLoginStatus()),
             child: const SplashScreen(),
           );
         }));
@@ -57,19 +57,19 @@ class AppRoutes {
         return MaterialPageRoute(builder: ((context) {
           return const OnBoardingScreen();
         }));
-        case Routes.homeExploreRoute:
+      case Routes.homeExploreRoute:
         return MaterialPageRoute(builder: ((context) {
           return const BottomTabScreen();
         }));
-        case Routes.searchRoute:
+      case Routes.searchRoute:
         return MaterialPageRoute(builder: ((context) {
           return const SearchScreen();
         }));
-        case Routes.hotelHomeScreenRoute:
+      case Routes.hotelHomeScreenRoute:
         return MaterialPageRoute(builder: ((context) {
           return const HotelHomeScreen();
         }));
-        case Routes.filterScreenRoute:
+      case Routes.filterScreenRoute:
         return MaterialPageRoute(builder: ((context) {
           return const FiltersScreen();
         }));
