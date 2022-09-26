@@ -1,3 +1,4 @@
+import 'package:bookingapp/src/features/booking/presentation/screens/all_my_booking_screen.dart';
 import 'package:bookingapp/src/features/profile/presentation/pages/profile-page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -71,12 +72,13 @@ class _BottomTabScreenState extends State<BottomTabScreen>
               animationController: _animationController,
             );
           });
-        } else if (tabType == BottomBarType.Trips) {
-          // setState(() {
-          //   _indexView = MyTripsScreen(
-          //     animationController: _animationController,
-          //   );
-          // });
+        } else if (tabType == BottomBarType.MyBooking) {
+          setState(() {
+            _indexView = AllMyBooking(
+              // TODO change uncomment
+             // animationController: _animationController,
+            );
+          });
         } else if (tabType == BottomBarType.Profile) {
           setState(() {
             _indexView = const ProfilePage();
@@ -103,10 +105,10 @@ class _BottomTabScreenState extends State<BottomTabScreen>
               ),
               TabButtonUI(
                 icon: FontAwesomeIcons.heart,
-                isSelected: tabType == BottomBarType.Trips,
-                text: "trips",
+                isSelected: tabType == BottomBarType.MyBooking,
+                text: "My Booking",
                 onTap: () {
-                  tabClick(BottomBarType.Trips);
+                  tabClick(BottomBarType.MyBooking);
                 },
               ),
               TabButtonUI(
@@ -128,4 +130,4 @@ class _BottomTabScreenState extends State<BottomTabScreen>
   }
 }
 
-enum BottomBarType { Explore, Trips, Profile }
+enum BottomBarType { Explore, MyBooking, Profile }

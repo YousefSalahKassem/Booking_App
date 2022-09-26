@@ -38,11 +38,12 @@ class AuthCubit extends Cubit<AuthState> {
   Future<bool> getLoginData(BuildContext context) async {
     statusLocalDataSource.getLoginStatus().then((loggedIn) {
       debugPrint('loggedIn = $loggedIn');
-      if (loggedIn!) {
-        isLoggedIn = loggedIn;
+      if (loggedIn==true) {
+
+      //  isLoggedIn = loggedIn!;
         navigateToHomeScreen(context);
       } else {
-        Navigator.pushNamed(context, Routes.getStartedRoute);
+        Navigator.pushNamed(context, Routes.homeExploreRoute);
       }
     });
     return isLoggedIn;

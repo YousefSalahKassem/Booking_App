@@ -1,7 +1,6 @@
 import 'package:bookingapp/src/features/booking/data/model/booking_hotel_model.dart';
 import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
 import 'package:bookingapp/src/features/booking/domain/entity/booking.dart';
-import 'package:bookingapp/src/features/search_explore/data/model/hotels_model.dart';
 
 class BookingModel extends Booking {
   BookingModel({
