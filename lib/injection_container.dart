@@ -13,7 +13,7 @@ import 'package:bookingapp/src/features/auth/data/repositories/status_repository
 import 'package:bookingapp/src/features/auth/domain/repositories/login_repository.dart';
 import 'package:bookingapp/src/features/auth/domain/repositories/register_repository.dart';
 import 'package:bookingapp/src/features/auth/domain/repositories/status_repository.dart';
-import 'package:bookingapp/src/features/auth/domain/use_cases/get_status_usecase.dart';
+import 'package:bookingapp/src/features/auth/domain/use_cases/get_login_status_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/log_in_usecase.dart';
 import 'package:bookingapp/src/features/auth/domain/use_cases/register_usecase.dart';
 import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart';
@@ -67,7 +67,7 @@ Future<void> init() async {
   sl.registerFactory<AuthCubit>(() => AuthCubit(
         logInUseCase: sl(),
         registerUseCase: sl(),
-        statusLocalDataSource: sl(),
+        getLoginStatusUseCase: sl(),
       ));
 
   sl.registerFactory<BookingCubit>(() => BookingCubit(
@@ -82,7 +82,8 @@ Future<void> init() async {
   sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(updateUser: sl(), getUserInfo: sl()));
   sl.registerLazySingleton<FacilitiesCubit>(() => FacilitiesCubit(getFacilitiesUseCase: sl()));
 
-  sl.registerLazySingleton<GetStatusUseCase>(() => GetStatusUseCase(statusRepository: sl()));
+  sl.registerLazySingleton<GetLoginStatusUseCase>(
+      () => GetLoginStatusUseCase(loginStatusRepository: sl()));
   sl.registerLazySingleton<LogInUseCase>(() => LogInUseCase(loginRepository: sl()));
   sl.registerLazySingleton<RegisterUseCase>(() => RegisterUseCase(registerRepository: sl()));
   sl.registerLazySingleton<GetAllBookingsUseCase>(() => GetAllBookingsUseCase(sl()));

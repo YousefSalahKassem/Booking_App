@@ -72,12 +72,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           MyButton(
             text: 'Log in',
-            onPressed: () => Navigator.pushNamed(context, Routes.loginRoute),
+            onPressed: () => Navigator.pushReplacementNamed(context, Routes.loginRoute),
           ),
           const SizedBox(height: 15),
           MyButton(
             text: 'Create account',
-            onPressed: () => Navigator.pushNamed(context, Routes.registerRoute),
+            onPressed: () => Navigator.pushReplacementNamed(context, Routes.registerRoute),
             backgroundColor:
                 AppStyles.isLightMode(context) ? Colors.white : AppColors.textFieldDark,
           ),

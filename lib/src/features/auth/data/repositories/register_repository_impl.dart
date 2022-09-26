@@ -26,6 +26,7 @@ class RegisterRepositoryImpl implements RegisterRepository {
       final response = await registerRemoteDataSource.register(registerModel);
       debugPrint('$runtimeType');
       debugPrint('response = $response');
+      bookingUserLocalDataSource.cacheApiToken(response);
       bookingUserLocalDataSource.cacheUserData(response);
       return Right(response);
     } on ServerException {

@@ -1,17 +1,17 @@
 part of 'booking_cubit.dart';
 
-abstract class AllBookingStatus extends Equatable {
-  const AllBookingStatus();
+abstract class AllBookingState extends Equatable {
+  const AllBookingState();
 
   @override
   List<Object> get props => [];
 }
 
-class AllBookingStatusInitial extends AllBookingStatus {}
+class AllBookingStatusInitial extends AllBookingState {}
 
-class AllBookingStatusLoading extends AllBookingStatus {}
+class AllBookingStatusLoading extends AllBookingState {}
 
-class AllBookingStatusComplete extends AllBookingStatus {
+class AllBookingStatusComplete extends AllBookingState {
   final List<Booking> upcomingBookings;
   final List<Booking> cancelledBookings;
   final List<Booking> completedBookings;
@@ -26,7 +26,7 @@ class AllBookingStatusComplete extends AllBookingStatus {
   List<Object> get props => [upcomingBookings, cancelledBookings, completedBookings];
 }
 
-class AllBookingStatusError extends AllBookingStatus {
+class AllBookingStatusError extends AllBookingState {
   final String msg;
 
   const AllBookingStatusError({required this.msg});

@@ -4,6 +4,10 @@ import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_scr
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/get_started_screen.dart';
 import 'package:bookingapp/src/features/profile/presentation/pages/edit_profile.dart';
+import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
+import 'package:bookingapp/src/features/booking/presentation/components/map_and_list_view.dart';
+import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
+import 'package:bookingapp/src/features/booking/presentation/screens/all_my_booking_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/filter_screen/filters_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_booking/hotel_home_screen.dart';
@@ -25,6 +29,9 @@ class Routes {
   static const String filterScreenRoute = '/filterScreenRoute';
   static const String hotelDetailsScreenRoute = '/hotelDetailsScreenRoute';
   static const String roomBookingScreenRoute = '/roomBookingScreenRoute';
+  static const String bookingScreenRoute = '/bookingScreenRoute';
+  static const String allMyBookingScreenRoute = '/allMyBookingScreenRoute';
+  static const String mapScreenRoute = '/mapScreenRoute';
 }
 
 class AppRoutes {
@@ -32,10 +39,14 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
-          return const BottomTabScreen();
+          return BlocProvider(
+            create: ((context) => di.sl<AuthCubit>()..getLoginStatus()),
+            child: const SplashScreen(),
+          );
         }));
       case Routes.getStartedRoute:
-        return MaterialPageRoute(builder: ((context) => const GetStartedScreen()));
+        return MaterialPageRoute(
+            builder: ((context) => const GetStartedScreen()));
       case Routes.loginRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
@@ -54,19 +65,31 @@ class AppRoutes {
         return MaterialPageRoute(builder: ((context) {
           return const OnBoardingScreen();
         }));
-        case Routes.homeExploreRoute:
+      case Routes.homeExploreRoute:
         return MaterialPageRoute(builder: ((context) {
           return const BottomTabScreen();
         }));
-        case Routes.searchRoute:
+      case Routes.searchRoute:
         return MaterialPageRoute(builder: ((context) {
           return const SearchScreen();
         }));
-        case Routes.hotelHomeScreenRoute:
+
+      // case Routes.mapScreenRoute:
+      //   return MaterialPageRoute(builder: ((context) {
+      //     return const ();
+      //   }));
+      case Routes.allMyBookingScreenRoute:
+        return MaterialPageRoute(builder: ((context) {
+          return BlocProvider(
+            create: ((context) => di.sl<AllBookingCubit>()),
+            child: const AllMyBooking(),
+          );
+        }));
+      case Routes.hotelHomeScreenRoute:
         return MaterialPageRoute(builder: ((context) {
           return const HotelHomeScreen();
         }));
-        case Routes.filterScreenRoute:
+      case Routes.filterScreenRoute:
         return MaterialPageRoute(builder: ((context) {
           return const FiltersScreen();
         }));
@@ -76,5 +99,6 @@ class AppRoutes {
   }
 
   static Route<dynamic> undefinedRoute() => MaterialPageRoute(
-      builder: (context) => const Scaffold(body: Center(child: Text(Routes.noRouteFound))));
+      builder: (context) =>
+          const Scaffold(body: Center(child: Text(Routes.noRouteFound))));
 }

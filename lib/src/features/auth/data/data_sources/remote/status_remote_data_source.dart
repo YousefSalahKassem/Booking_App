@@ -4,7 +4,7 @@ import 'package:bookingapp/src/features/auth/data/models/status_model.dart';
 import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
 
 abstract class StatusRemoteDataSource {
-  Future<BookingUserModel> getLoginStatus();
+  Future<bool> getLoginStatus();
 }
 
 class StatusRemoteDataSourceImpl implements StatusRemoteDataSource {
@@ -13,8 +13,8 @@ class StatusRemoteDataSourceImpl implements StatusRemoteDataSource {
   StatusRemoteDataSourceImpl({required this.apiConsumer});
 
   @override
-  Future<BookingUserModel> getLoginStatus() async {
+  Future<bool> getLoginStatus() async {
     final response = await apiConsumer.post(Endpoints.login);
-    return BookingUserModel.fromJson(response);
+    return BookingUserModel.fromJson(response).apiToken != null;
   }
 }

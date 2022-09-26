@@ -26,6 +26,7 @@ class LoginRepositoryImpl implements LoginRepository {
       final response = await loginRemoteDataSource.logIn(loginModel);
       debugPrint('$runtimeType');
       debugPrint('response = $response');
+      bookingUserLocalDataSource.cacheApiToken(response);
       bookingUserLocalDataSource.cacheUserData(response);
       return Right(response);
     } on ServerException {
