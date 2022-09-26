@@ -1,3 +1,4 @@
+import 'package:bookingapp/src/features/booking/presentation/components/map_and_list_view.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_state.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/room_booking_screen.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import '../../../../../core/shareable_components/common_search_bar.dart';
 import '../../../../../core/shareable_components/remove_focuse.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../data/model/filter_model.dart';
+import '../../../domain/entities/hotel_list_data.dart';
 import '../../cubit/hotels/hotels_cubit.dart';
 import '../../widget/hotel_booking/filter_bar_UI.dart';
 import '../../widget/hotel_booking/time_date_view.dart';
@@ -24,6 +26,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
   late AnimationController animationController;
   late AnimationController _animationController;
+  var hotelList = HotelListData.hotelList;
   ScrollController scrollController = ScrollController();
   int room = 1;
   int ad = 2;
@@ -33,12 +36,13 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   final searchBarHieght = 158.0;
   final filterBarHieght = 52.0;
+
   @override
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
-    _animationController =
-        AnimationController(duration: const Duration(milliseconds: 0), vsync: this);
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 0), vsync: this);
     scrollController.addListener(() {
       if (scrollController.offset <= 0) {
         _animationController.animateTo(0.0);
@@ -78,87 +82,94 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
               children: <Widget>[
                 _getAppBarUI(),
                 _isShowMap
-                    ? const SizedBox()
-                // MapAndListView(
-                //   hotelList: hotelList,
-                //   searchBarUI: _getSearchBarUI(),
-                // )
+                    ? MapAndListView(
+                        hotelList: hotelList,
+                        searchBarUI: _getSearchBarUI(),
+                      )
+                    // MapAndListView(
+                    //   hotelList: hotelList,
+                    //   searchBarUI: _getSearchBarUI(),
+                    // )
                     : Expanded(
-                  child: Stack(
-                    children: <Widget>[
-                      BlocBuilder<HotelsCubit,HotelsState>(builder: (context,state){
-                        if(state is HotelsComplete){
-                          final hotelList = state.hotels;
-                          return ListView.builder(
-                            controller: scrollController,
-                            itemCount: state.hotels.length,
-                            padding: const EdgeInsets.only(
-                              top: 8 + 158 + 52.0,
-                            ),
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) {
-                              var count = hotelList.length > 10
-                                  ? 10
-                                  : hotelList.length;
-                              var animation = Tween(begin: 0.0, end: 1.0)
-                                  .animate(CurvedAnimation(
-                                  parent: animationController,
-                                  curve: Interval(
-                                      (1 / count) * index, 1.0,
-                                      curve: Curves.fastOutSlowIn)));
-                              animationController.forward();
-                              return HotelListView(
-                                callback: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RoomBookingScreen(
-                                        hotelName: hotelList[index].name,
-                                      ),
-                                    ),
-                                  );
-                                },
-                                hotelData: hotelList[index],
-                                animation: animation,
-                                animationController: animationController,
+                        child: Stack(
+                          children: <Widget>[
+                            BlocBuilder<HotelsCubit, HotelsState>(
+                                builder: (context, state) {
+                              if (state is HotelsComplete) {
+                                final hotelList = state.hotels;
+                                return ListView.builder(
+                                  controller: scrollController,
+                                  itemCount: state.hotels.length,
+                                  padding: const EdgeInsets.only(
+                                    top: 8 + 158 + 52.0,
+                                  ),
+                                  scrollDirection: Axis.vertical,
+                                  itemBuilder: (context, index) {
+                                    var count = hotelList.length > 10
+                                        ? 10
+                                        : hotelList.length;
+                                    var animation = Tween(begin: 0.0, end: 1.0)
+                                        .animate(CurvedAnimation(
+                                            parent: animationController,
+                                            curve: Interval(
+                                                (1 / count) * index, 1.0,
+                                                curve: Curves.fastOutSlowIn)));
+                                    animationController.forward();
+                                    return HotelListView(
+                                      callback: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                RoomBookingScreen(
+                                              hotelName: hotelList[index].name,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      hotelData: hotelList[index],
+                                      animation: animation,
+                                      animationController: animationController,
+                                    );
+                                  },
+                                );
+                              }
+                              return const Center(
+                                child: CircularProgressIndicator(),
                               );
-                            },
-                          );
-                        }
-                        return const Center(child: CircularProgressIndicator(),);
-                      }),
-                      AnimatedBuilder(
-                        animation: _animationController,
-                        builder: (BuildContext context, Widget? child) {
-                          return Positioned(
-                            top: -searchBarHieght *
-                                (_animationController.value),
-                            left: 0,
-                            right: 0,
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  color: Theme.of(context)
-                                      .scaffoldBackgroundColor,
+                            }),
+                            AnimatedBuilder(
+                              animation: _animationController,
+                              builder: (BuildContext context, Widget? child) {
+                                return Positioned(
+                                  top: -searchBarHieght *
+                                      (_animationController.value),
+                                  left: 0,
+                                  right: 0,
                                   child: Column(
                                     children: <Widget>[
-                                      //hotel search view
-                                      _getSearchBarUI(),
-                                      // time date and number of rooms view
-                                      const TimeDateView(),
+                                      Container(
+                                        color: Theme.of(context)
+                                            .scaffoldBackgroundColor,
+                                        child: Column(
+                                          children: <Widget>[
+                                            //hotel search view
+                                            _getSearchBarUI(),
+                                            // time date and number of rooms view
+                                            const TimeDateView(),
+                                          ],
+                                        ),
+                                      ),
+                                      //hotel price & facilitate  & distance
+                                      const FilterBarUI(),
                                     ],
                                   ),
-                                ),
-                                //hotel price & facilitate  & distance
-                                const FilterBarUI(),
-                              ],
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                )
+                          ],
+                        ),
+                      )
               ],
             ),
           ),
@@ -175,15 +186,16 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
           Expanded(
             child: Padding(
               padding:
-              const EdgeInsets.only(right: 8, top: 8, bottom: 8, left: 8),
+                  const EdgeInsets.only(right: 8, top: 8, bottom: 8, left: 8),
               child: CommonCard(
                 radius: 36,
-                child:  CommonSearchBar(
+                child: CommonSearchBar(
                   enabled: true,
                   ishsow: false,
                   text: "London...",
                   onChanged: (String txt) {
-                    BlocProvider.of<HotelsCubit>(context).getFilters(FilterModel(name: txt));
+                    BlocProvider.of<HotelsCubit>(context)
+                        .getFilters(FilterModel(name: txt));
                   },
                 ),
               ),
@@ -199,8 +211,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 },
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
-                  child: Icon(FontAwesomeIcons.magnifyingGlass,
-                      size: 20),
+                  child: Icon(FontAwesomeIcons.magnifyingGlass, size: 20),
                 ),
               ),
             ),
