@@ -3,6 +3,7 @@ import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/config/themes/app_themes.dart';
 import 'package:bookingapp/src/core/utils/app_strings.dart';
 import 'package:bookingapp/src/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:bookingapp/src/features/profile/presentation/bloc/user_info/update_user_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/facilities/facilities_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class BookingApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<AuthCubit>()),
         BlocProvider(create: (context) => di.sl<HotelsCubit>()),
         BlocProvider(create: (context) => di.sl<FacilitiesCubit>()),
+        BlocProvider(create: (context) => di.sl<UpdateUserCubit>())
         // TODO: add a LocaleCubit provider
       ],
       // TODO: surround MaterialApp with LocaleCubit builder

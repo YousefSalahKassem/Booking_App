@@ -3,7 +3,7 @@ import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.d
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/get_started_screen.dart';
-import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
+import 'package:bookingapp/src/features/profile/presentation/pages/edit_profile.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/filter_screen/filters_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_booking/hotel_home_screen.dart';
@@ -32,10 +32,7 @@ class AppRoutes {
     switch (routeSettings.name) {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
-          return BlocProvider(
-            create: ((context) => di.sl<AuthCubit>()),
-            child: const SplashScreen(),
-          );
+          return const BottomTabScreen();
         }));
       case Routes.getStartedRoute:
         return MaterialPageRoute(builder: ((context) => const GetStartedScreen()));

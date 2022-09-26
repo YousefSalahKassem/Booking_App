@@ -1,3 +1,4 @@
+import 'package:bookingapp/src/core/utils/media_query_values.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/shareable_components/common_card.dart';
@@ -22,7 +23,7 @@ class RatingView extends StatelessWidget {
             Row(
               children: <Widget>[
                 SizedBox(
-                  width: 60,
+                  width: context.width30 * 5,
                   child: Text(
                     (hotelData.rating * 2).toStringAsFixed(1),
                     textAlign: TextAlign.left,

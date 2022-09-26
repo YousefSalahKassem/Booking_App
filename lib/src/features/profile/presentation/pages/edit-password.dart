@@ -60,33 +60,27 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
               const SizedBox(
                 height: 35,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      elevation: 2,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    onPressed: () {
-                      // do the magic
-                      saveChangePassword();
-                    },
-                    child: const Text(
-                      "SAVE",
-                      style: TextStyle(
-                        fontSize: 14,
-                        letterSpacing: 2.2,
-                        color: Colors.white,
-                      ),
-                    ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  elevation: 2,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                ],
-              )
+                ),
+                onPressed: () {
+                  saveChangePassword();
+                },
+                child: const Text(
+                  "SAVE",
+                  style: TextStyle(
+                    fontSize: 14,
+                    letterSpacing: 2.2,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

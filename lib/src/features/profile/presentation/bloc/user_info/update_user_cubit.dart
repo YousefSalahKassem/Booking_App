@@ -1,4 +1,5 @@
 import 'package:bookingapp/src/features/profile/data/model/update_info_model.dart';
+import 'package:bookingapp/src/features/profile/domain/entity/update_info_entity.dart';
 import 'package:bookingapp/src/features/profile/domain/usecases/update_info_use_case.dart';
 import 'package:bookingapp/src/features/profile/presentation/bloc/user_info/update_user_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,10 @@ import '../../../domain/usecases/get_user_info_use_case.dart';
 class UpdateUserCubit extends Cubit<UpdateUserState> {
   final UpdateInfoUseCase updateUser;
   final GetUserInfoUseCase getUserInfo;
-  UpdateUserCubit({required this.updateUser, required this.getUserInfo}) : super(UpdateUserInitial());
-
+  UpdateUserCubit({required this.updateUser, required this.getUserInfo}) : super(UpdateUserInitial()){
+    userProfile();
+  }
+  final userInfo = UpdateInfoEntity(name: '', email: '');
   Future<void> updateInfo(UpdateInfoModel updateInfoEntity) async {
     emit(UpdateUserLoading());
     final result = await updateUser(updateInfoEntity);
