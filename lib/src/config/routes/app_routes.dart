@@ -39,7 +39,7 @@ class AppRoutes {
       case Routes.initialRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
-            create: ((context) => di.sl<AuthCubit>()),
+            create: ((context) => di.sl<AuthCubit>()..getLoginStatus()),
             child: const SplashScreen(),
           );
         }));
@@ -72,6 +72,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: ((context) {
           return const SearchScreen();
         }));
+
       // case Routes.mapScreenRoute:
       //   return MaterialPageRoute(builder: ((context) {
       //     return const ();

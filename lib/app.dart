@@ -8,6 +8,7 @@ import 'package:bookingapp/src/features/search_explore/presentation/cubit/facili
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 BuildContext? applicationcontext;
 
 class BookingApp extends StatelessWidget {
