@@ -11,7 +11,7 @@ class GetAllBookingsUseCase implements UseCase<List<Booking>, String> {
   GetAllBookingsUseCase(this.bookingRepository);
 
   @override
-  Future<Either<Failure, List<Booking>>> call(String params) async {
+  Future<Either<Failure, List<Booking>>> call(params) async {
     return bookingRepository.getAllBookings(params);
   }
 }
