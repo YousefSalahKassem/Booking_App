@@ -3,6 +3,7 @@ import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.d
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/get_started_screen.dart';
+import 'package:bookingapp/src/features/profile/presentation/pages/edit_profile.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
 import 'package:bookingapp/src/features/booking/presentation/components/map_and_list_view.dart';
 import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
