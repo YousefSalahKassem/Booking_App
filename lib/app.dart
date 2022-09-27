@@ -22,7 +22,7 @@ class BookingApp extends StatelessWidget {
         BlocProvider(create: (context) => di.sl<AuthCubit>()),
         BlocProvider(create: (context) => di.sl<HotelsCubit>()),
         BlocProvider(create: (context) => di.sl<FacilitiesCubit>()),
-        BlocProvider(create: (context) => di.sl<UpdateUserCubit>())
+        BlocProvider(create: (context) => di.sl<UpdateUserCubit>()),
         BlocProvider(create: (context)=> di.sl<AllBookingCubit>()),
         // TODO: add a LocaleCubit provider
       ],

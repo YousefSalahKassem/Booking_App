@@ -30,6 +30,7 @@ class AllBookingCubit extends Cubit<AllBookingState> {
             bookings.where((element) => element.type == 'completed').toList(),
       ),
     ));
+
   }
 
   String _mapFailureToMsg(Failure failure) {
@@ -41,3 +42,5 @@ class AllBookingCubit extends Cubit<AllBookingState> {
     }
   }
 }
+
+
