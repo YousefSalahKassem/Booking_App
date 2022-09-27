@@ -28,6 +28,7 @@ dependencies:
   provider: ^6.0.3
   geolocator: ^9.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -44,6 +45,11 @@ flutter:
       fonts:
         - asset: assets/fonts/Peter-regular.otf
         - asset: assets/fonts/Peter-black.otf
+          weight: 700
+    - family: Laila
+      fonts:
+        - asset: assets/fonts/laila-Medium.ttf
+        - asset: assets/fonts/laila-Regular.ttf
           weight: 700
 
     - family: Work_Sans

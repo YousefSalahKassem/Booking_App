@@ -4,6 +4,8 @@ import 'package:bookingapp/src/features/booking/domain/entity/booking.dart';
 import 'package:bookingapp/src/features/booking/domain/repository/booking_repository_abs.dart';
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/error/exceptions.dart';
+
 class BookingRepositoryImpl extends BookingRepository {
 
   final BookingRemoteDataSource bookingRemoteDataSource;
@@ -16,8 +18,7 @@ class BookingRepositoryImpl extends BookingRepository {
     final result = await bookingRemoteDataSource.getAllBookings(type);
     try {
       return Right(result);
-    } catch (e) {
-      print(e.toString());
+    } on ServerException {
       return Left(ServerFailure());
     }
   }

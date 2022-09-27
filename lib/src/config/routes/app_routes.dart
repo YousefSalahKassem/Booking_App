@@ -3,9 +3,7 @@ import 'package:bookingapp/src/features/auth/presentation/screens/login_screen.d
 import 'package:bookingapp/src/features/auth/presentation/screens/onboarding_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/register_screen.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/get_started_screen.dart';
-import 'package:bookingapp/src/features/profile/presentation/pages/edit_profile.dart';
 import 'package:bookingapp/src/features/auth/presentation/screens/splash_screen.dart';
-import 'package:bookingapp/src/features/booking/presentation/components/map_and_list_view.dart';
 import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
 import 'package:bookingapp/src/features/booking/presentation/screens/all_my_booking_screen.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/bottom_tap/bottom_tab_screen.dart';
@@ -82,7 +80,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
             create: ((context) => di.sl<AllBookingCubit>()),
-            child: const AllMyBooking(),
+            child: const AllMyBooking( ),
           );
         }));
       case Routes.hotelHomeScreenRoute:
