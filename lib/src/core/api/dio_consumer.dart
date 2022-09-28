@@ -26,7 +26,9 @@ class DioConsumer implements ApiConsumer {
       ..responseType = ResponseType.plain
       ..followRedirects = false
       ..headers = {
-        "token": 'DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u'
+        "token": //'DnkaEA2eU1DNZmKIpx5I7u6ptaKeEGAA1nq4bFkClgBsYsWLyTMNsJD7O06u'
+        // The New One Created By Me Today 28/09/22
+        'y4z66PxH1rTcP6DsLflYXG2TX3Fa3CTizSvvhKHKJTgCW7Bgu72e0gheiVKz'
       }
       ..validateStatus = (status) => status! < StatusCode.internalServerError;
     client.interceptors.add(di.sl<AppInterceptors>());
