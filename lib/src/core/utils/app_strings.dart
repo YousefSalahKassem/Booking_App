@@ -13,4 +13,5 @@ class AppStrings {
   static const String cachedLoginStatus = 'CACHED_LOGIN_STATUS';
   static const String cachedApiToken = 'CACHED_API_TOKEN';
   static const String cachedUserData = 'CACHED_USER_DATA';
+  static const String cachedProfileImage = 'CACHED_PROFILE_IMAGE';
 }

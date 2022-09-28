@@ -30,6 +30,8 @@ dependencies:
   geocoding: ^2.0.5
   loading_animation_widget: ^1.2.0+3
   flutter_fadein: ^2.0.0
+  cached_network_image: ^3.2.2
+  image_picker: ^0.8.5+3
 
 
 dev_dependencies:
@@ -53,8 +55,8 @@ flutter:
           weight: 700
     - family: Laila
       fonts:
-        - asset: assets/fonts/laila-Medium.ttf
-        - asset: assets/fonts/laila-Regular.ttf
+        - asset: assets/fonts/Laila-Medium.ttf
+        - asset: assets/fonts/Laila-Regular.ttf
           weight: 700
 
     - family: Work_Sans

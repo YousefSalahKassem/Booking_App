@@ -23,26 +23,15 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
   }
 
   bool showPassword = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.green,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      appBar: AppBar(),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
         child: GestureDetector(
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
+          onTap: () => FocusScope.of(context).unfocus(),
           child: ListView(
             children: [
               const Text(
@@ -88,8 +77,8 @@ class _EditPasswordPageState extends State<EditPasswordPage> {
     );
   }
 
-  Widget buildTextField(String labelText, String placeholder,
-      bool isPasswordTextField, TextEditingController controller) {
+  Widget buildTextField(String labelText, String placeholder, bool isPasswordTextField,
+      TextEditingController controller) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 35.0),
       child: TextField(
