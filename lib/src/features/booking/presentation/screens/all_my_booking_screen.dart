@@ -36,13 +36,8 @@ class _AllMyBookingState extends State<AllMyBooking> {
   Widget build(BuildContext context) {
     return BlocConsumer<AllBookingCubit, AllBookingState>(
       listener: (context, state) {
-        if (state is AllBookingStatusLoading) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Loading...'),
-            ),
-          );
-        }
+
+        // TODO: implement listener
       },
       builder: (context, state) {
         return BlocBuilder<AllBookingCubit, AllBookingState>(
