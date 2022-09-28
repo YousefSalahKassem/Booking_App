@@ -49,9 +49,10 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                     ),
                     mapType: MapType.normal,
                     onCameraMove: (CameraPosition position) {
-                      if (_mapController != null)
+                      if (_mapController != null) {
                         _googleMapProvider
                             .updateGoogleMapController(_mapController!);
+                      }
                     },
                     mapToolbarEnabled: false,
                     compassEnabled: false,
