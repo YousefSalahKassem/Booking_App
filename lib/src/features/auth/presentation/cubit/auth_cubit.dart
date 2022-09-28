@@ -48,7 +48,7 @@ class AuthCubit extends Cubit<AuthState> {
     return isLoggedIn;
   }
 
-  Future<bool> logIn(LoginModel loginModel, BuildContext context) async {
+  Future<bool> logIn(LoginModel loginModel) async {
     emit(LoginLoading());
     Either<Failure, BookingUser> response = await logInUseCase(loginModel);
     emit(response.fold(

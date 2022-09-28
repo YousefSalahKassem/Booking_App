@@ -69,4 +69,5 @@ class ImageAssets {
   static const String room_12 = '$imgPath/room_12.jpg';
   static const String birghtness = '$imgPath/birghtness.png';
   static const String parth = '$imgPath/parth.png';
+  static const String noPic = '$imgPath/noPic.jpg';
 }

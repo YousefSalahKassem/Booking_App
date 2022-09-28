@@ -19,7 +19,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  Future<bool> _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel, context);
+  Future<bool> _logIn(LoginModel loginModel) => AuthCubit.get(context).logIn(loginModel);
   void _navigateToHomeScreen() => AuthCubit.get(context).navigateToHomeScreen(context);
 
   final _formKey = GlobalKey<FormState>();
