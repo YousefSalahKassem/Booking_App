@@ -64,7 +64,7 @@ class _EditUserScreenState extends State<EditUserScreen> {
                                         ? CachedNetworkImage(
                                             width: context.height30 * 4,
                                             imageUrl: state is UpdateUserSuccess
-                                                ? state.updateInfoEntity.image!
+                                                ? state.user.image!
                                                 : "https://www.baytekent.com/wp-content/uploads/2016/12/facebook-default-no-profile-pic1.jpg",
                                             placeholder: (context, url) =>
                                                 Image.asset(ImageAssets.noPic),

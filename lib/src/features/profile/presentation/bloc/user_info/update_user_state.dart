@@ -14,12 +14,12 @@ class UpdateUserInitial extends UpdateUserState {}
 class UpdateUserLoading extends UpdateUserState {}
 
 class UpdateUserSuccess extends UpdateUserState {
-  final BookingUser updateInfoEntity;
+  final BookingUser user;
 
-  const UpdateUserSuccess({required this.updateInfoEntity});
+  const UpdateUserSuccess({required this.user});
 
   @override
-  List<Object> get props => [updateInfoEntity];
+  List<Object> get props => [user];
 }
 
 class UpdateUserFailure extends UpdateUserState {

@@ -47,8 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                EditUserScreen(updateInfoEntity: state.updateInfoEntity)));
+                            builder: (context) => EditUserScreen(updateInfoEntity: state.user)));
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -60,7 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              state.updateInfoEntity.name!,
+                              state.user.name!,
                               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                             ),
                             const Text(
@@ -83,18 +82,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
-                              child: prefs.getString(AppStrings.cachedProfileImage) == null
-                                  ? CachedNetworkImage(
-                                      width: context.height30 * 3,
-                                      imageUrl: state.updateInfoEntity.image!,
-                                      placeholder: (context, url) => Image.asset(ImageAssets.noPic),
-                                      errorWidget: (context, url, error) =>
-                                          Image.asset(ImageAssets.noPic),
-                                    )
-                                  : Image.file(
-                                      File(prefs.getString(AppStrings.cachedProfileImage)!),
-                                      width: context.height30 * 3,
-                                    ),
+                              child: Image.file(
+                                File(prefs.getString(AppStrings.cachedProfileImage)!),
+                                width: context.height30 * 3,
+                              ),
                             ),
                           ],
                         ),

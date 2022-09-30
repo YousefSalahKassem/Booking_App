@@ -79,7 +79,8 @@ Future<void> init() async {
         filterUseCase: sl(),
       ));
   sl.registerFactory<AllBookingCubit>(() => AllBookingCubit(getAllBookingsUseCase: sl()));
-  sl.registerFactory<UpdateUserCubit>(() => UpdateUserCubit(updateUser: sl(), getUserInfo: sl()));
+  sl.registerFactory<UpdateUserCubit>(
+      () => UpdateUserCubit(updateUserUseCase: sl(), getUserInfoUseCase: sl()));
   sl.registerLazySingleton<FacilitiesCubit>(() => FacilitiesCubit(getFacilitiesUseCase: sl()));
 
   sl.registerLazySingleton<GetLoginStatusUseCase>(
