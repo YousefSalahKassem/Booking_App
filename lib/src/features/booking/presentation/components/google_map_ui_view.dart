@@ -44,8 +44,8 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                   Container(),
                   GoogleMap(
                     initialCameraPosition: const CameraPosition(
-                      target: LatLng(51.507896, -0.128006),
-                      zoom: 13,
+                      target: LatLng(27.049302, 33.900214),
+                      zoom: 11,
                     ),
                     mapType: MapType.normal,
                     onCameraMove: (CameraPosition position) {
@@ -55,8 +55,8 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                       }
                     },
                     mapToolbarEnabled: false,
-                    compassEnabled: false,
-                    myLocationButtonEnabled: false,
+                    compassEnabled: true,
+                    myLocationButtonEnabled: true,
                     rotateGesturesEnabled: false,
                     tiltGesturesEnabled: false,
                     myLocationEnabled: true,
@@ -90,7 +90,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                                           Radius.circular(24.0)),
                                       boxShadow: <BoxShadow>[
                                         BoxShadow(
-                                          color: Colors.grey,
+                                          color: Colors.blue,
                                           blurRadius: 16,
                                           offset: Offset(4, 4),
                                         ),
