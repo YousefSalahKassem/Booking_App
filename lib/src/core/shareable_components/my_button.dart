@@ -10,7 +10,7 @@ class MyButton extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final void Function() onPressed;
+  final void Function()? onPressed;
   final Color? backgroundColor;
   final IconData? icon;
 
@@ -19,7 +19,9 @@ class MyButton extends StatelessWidget {
     return ElevatedButton(
       style: backgroundColor != null
           ? ButtonStyle(backgroundColor: MaterialStateProperty.all(backgroundColor))
-          : const ButtonStyle(),
+          : onPressed != null
+              ? const ButtonStyle()
+              : ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.grey)),
       onPressed: onPressed,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
