@@ -70,4 +70,7 @@ class ImageAssets {
   static const String birghtness = '$imgPath/birghtness.png';
   static const String parth = '$imgPath/parth.png';
   static const String noPic = '$imgPath/noPic.jpg';
+  static const String france = '$imgPath/france.jpg';
+  static const String germany = '$imgPath/germany.jpg';
+  static const String italy = '$imgPath/italy.jpg';
 }

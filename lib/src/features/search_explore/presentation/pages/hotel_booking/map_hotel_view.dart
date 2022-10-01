@@ -1,15 +1,12 @@
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_entity.dart';
 import 'package:flutter/material.dart';
-
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import '../../../../../core/shareable_components/common_card.dart';
 import '../../../../../core/utils/helper.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class MapHotelListView extends StatelessWidget {
   final VoidCallback callback;
-  final HotelListData hotelData;
+  final HotelsEntity hotelData;
 
   const MapHotelListView(
       {Key? key, required this.hotelData, required this.callback})
@@ -31,8 +28,8 @@ class MapHotelListView extends StatelessWidget {
                   children: <Widget>[
                     AspectRatio(
                       aspectRatio: 0.90,
-                      child: Image.asset(
-                        hotelData.imagePath,
+                      child: Image.network(
+                        "http://api.mahmoudtaha.com/images/${hotelData.images[0].image}",
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -44,22 +41,23 @@ class MapHotelListView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              hotelData.titleTxt,
+                              hotelData.name,
                               maxLines: 2,
                               textAlign: TextAlign.left,
                               style:
-                              TextStyles(context).getBoldStyle().copyWith(
-                                fontSize: 16,
-                              ),
+                                  TextStyles(context).getBoldStyle().copyWith(
+                                        fontSize: 16,
+                                      ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
-                              hotelData.subTxt,
+                              hotelData.address,
+                              maxLines: 1,
                               style: TextStyles(context)
                                   .getDescriptionStyle()
                                   .copyWith(
-                                fontSize: 14,
-                              ),
+                                    fontSize: 14,
+                                  ),
                             ),
                             const Expanded(
                               child: SizedBox(),
@@ -68,46 +66,9 @@ class MapHotelListView extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: <Widget>[
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.center,
-                                      children: <Widget>[
-                                        Icon(
-                                          FontAwesomeIcons.locationDot,
-                                          size: 12,
-                                          color:
-                                          Theme.of(context).primaryColor,
-                                        ),
-                                        Text(
-                                          " ${hotelData.dist.toStringAsFixed(1)}",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyles(context)
-                                              .getDescriptionStyle()
-                                              .copyWith(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                        Text(
-                                          "km to city",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyles(context)
-                                              .getDescriptionStyle()
-                                              .copyWith(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 4),
-                                      child: Helper.ratingStar(),
-                                    ),
-                                  ],
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 4),
+                                  child: Helper.ratingStar(),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 8),
@@ -116,21 +77,21 @@ class MapHotelListView extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: <Widget>[
                                       Text(
-                                        "\$${hotelData.perNight}",
+                                        "\$${hotelData.price}",
                                         textAlign: TextAlign.left,
                                         style: TextStyles(context)
                                             .getBoldStyle()
                                             .copyWith(
-                                          fontSize: 22,
-                                        ),
+                                              fontSize: 22,
+                                            ),
                                       ),
                                       Text(
                                         "Per night",
                                         style: TextStyles(context)
                                             .getDescriptionStyle()
                                             .copyWith(
-                                          fontSize: 14,
-                                        ),
+                                              fontSize: 14,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -148,7 +109,7 @@ class MapHotelListView extends StatelessWidget {
                   child: InkWell(
                     highlightColor: Colors.transparent,
                     splashColor:
-                    Theme.of(context).primaryColor.withOpacity(0.1),
+                        Theme.of(context).primaryColor.withOpacity(0.1),
                     onTap: () {
                       callback();
                     },
