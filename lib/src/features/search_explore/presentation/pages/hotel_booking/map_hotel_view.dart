@@ -8,8 +8,7 @@ class MapHotelListView extends StatelessWidget {
   final VoidCallback callback;
   final HotelsEntity hotelData;
 
-  const MapHotelListView(
-      {Key? key, required this.hotelData, required this.callback})
+  const MapHotelListView({Key? key, required this.hotelData, required this.callback})
       : super(key: key);
 
   @override
@@ -42,20 +41,17 @@ class MapHotelListView extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               hotelData.name,
-                              maxLines: 2,
+                              maxLines: 1,
                               textAlign: TextAlign.left,
-                              style:
-                                  TextStyles(context).getBoldStyle().copyWith(
-                                        fontSize: 16,
-                                      ),
+                              style: TextStyles(context).getBoldStyle().copyWith(
+                                    fontSize: 16,
+                                  ),
                               overflow: TextOverflow.ellipsis,
                             ),
                             Text(
                               hotelData.address,
                               maxLines: 1,
-                              style: TextStyles(context)
-                                  .getDescriptionStyle()
-                                  .copyWith(
+                              style: TextStyles(context).getDescriptionStyle().copyWith(
                                     fontSize: 14,
                                   ),
                             ),
@@ -79,17 +75,13 @@ class MapHotelListView extends StatelessWidget {
                                       Text(
                                         "\$${hotelData.price}",
                                         textAlign: TextAlign.left,
-                                        style: TextStyles(context)
-                                            .getBoldStyle()
-                                            .copyWith(
+                                        style: TextStyles(context).getBoldStyle().copyWith(
                                               fontSize: 22,
                                             ),
                                       ),
                                       Text(
                                         "Per night",
-                                        style: TextStyles(context)
-                                            .getDescriptionStyle()
-                                            .copyWith(
+                                        style: TextStyles(context).getDescriptionStyle().copyWith(
                                               fontSize: 14,
                                             ),
                                       ),
@@ -108,8 +100,7 @@ class MapHotelListView extends StatelessWidget {
                   color: Colors.transparent,
                   child: InkWell(
                     highlightColor: Colors.transparent,
-                    splashColor:
-                        Theme.of(context).primaryColor.withOpacity(0.1),
+                    splashColor: Theme.of(context).primaryColor.withOpacity(0.1),
                     onTap: () {
                       callback();
                     },

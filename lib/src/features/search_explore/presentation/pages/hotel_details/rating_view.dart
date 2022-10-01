@@ -22,15 +22,17 @@ class RatingView extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                SizedBox(
-                  width: context.width30 * 5,
-                  child: Text(
-                    (hotelData.rating * 2).toStringAsFixed(1),
-                    textAlign: TextAlign.left,
-                    style: TextStyles(context).getBoldStyle().copyWith(
-                          fontSize: 38,
-                          color: AppColors.primary,
-                        ),
+                Expanded(
+                  child: SizedBox(
+                    width: context.width30 * 5,
+                    child: Text(
+                      (hotelData.rating * 2).toStringAsFixed(1),
+                      textAlign: TextAlign.left,
+                      style: TextStyles(context).getBoldStyle().copyWith(
+                            fontSize: 38,
+                            color: AppColors.primary,
+                          ),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -46,9 +48,7 @@ class RatingView extends StatelessWidget {
                           style: TextStyles(context).getRegularStyle().copyWith(
                                 // fontWeight: FontWeight.w500,
                                 fontSize: 14,
-                                color: Theme.of(context)
-                                    .disabledColor
-                                    .withOpacity(0.8),
+                                color: Theme.of(context).disabledColor.withOpacity(0.8),
                               ),
                         ),
                       ],
@@ -84,22 +84,24 @@ class RatingView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        SizedBox(
-          width: 60,
-          child: Text(
-            text,
-            textAlign: TextAlign.left,
-            style: TextStyles(context).getRegularStyle().copyWith(
-                  // fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  color: Theme.of(context).disabledColor.withOpacity(0.8),
-                ),
+        Expanded(
+          flex: 2,
+          child: SizedBox(
+            width: 60,
+            child: Text(
+              text,
+              textAlign: TextAlign.left,
+              style: TextStyles(context).getRegularStyle().copyWith(
+                    // fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    color: Theme.of(context).disabledColor.withOpacity(0.8),
+                  ),
+            ),
           ),
         ),
-        const SizedBox(
-          width: 8,
-        ),
+        Spacer(),
         Expanded(
+          flex: 7,
           child: Row(
             children: <Widget>[
               Expanded(
