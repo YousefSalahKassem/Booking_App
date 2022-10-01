@@ -71,8 +71,8 @@ class HotelListView extends StatelessWidget {
                         children: <Widget>[
                           AspectRatio(
                             aspectRatio: 2,
-                            child: Image.asset(
-                              HotelListData.hotelList[0].imagePath,
+                            child: Image.network(
+                              "http://api.mahmoudtaha.com/images/${hotelData.images[0].image}",
                               fit: BoxFit.cover,
                             ),
                           ),

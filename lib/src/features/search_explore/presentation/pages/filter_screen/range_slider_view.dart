@@ -74,7 +74,7 @@ class _RangeSliderViewState extends State<RangeSliderView> {
               ),
           child: RangeSlider(
             values: _values,
-            min: 100.0,
+            min: 10.0,
             max: 5000.0,
             activeColor:  AppColors.primary,
             inactiveColor: Colors.grey.withOpacity(0.4),

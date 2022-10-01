@@ -49,7 +49,6 @@ class BookingUserLocalDataSourceImpl implements BookingUserLocalDataSource {
     debugPrint('bookingUserModel.apiToken = ${bookingUserModel.apiToken}');
     debugPrint('bookingUserModel.createdAt = ${bookingUserModel.createdAt}');
     debugPrint('bookingUserModel.updatedAt = ${bookingUserModel.updatedAt}');
-    debugPrint('bookingUserModel.googleId = ${bookingUserModel.googleId}');
     return sharedPreferences.setString(AppStrings.cachedUserData, json.encode(bookingUserModel));
   }
 

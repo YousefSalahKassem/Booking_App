@@ -1,12 +1,16 @@
 import 'dart:ui';
 import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:bookingapp/src/core/utils/asset_manager.dart';
+import 'package:bookingapp/src/core/utils/media_query_values.dart';
+import 'package:bookingapp/src/features/search_explore/data/model/create_book_model.dart';
 import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_entity.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/create_booking/booking_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/review_data_view.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../config/themes/app_themes.dart';
 import '../../../../../core/shareable_components/common_button.dart';
 import '../../../../../core/shareable_components/common_card.dart';
 import '../../../../../core/utils/helper.dart';
@@ -206,8 +210,8 @@ class _HotelDetailesState extends State<HotelDetailes>
                     buttonText: "Book Now",
                     backgroundColor: AppColors.primary,
                     onTap: () {
-                      // NavigationServices(context)
-                      //     .gotoRoomBookingScreen(widget.hotelData.titleTxt);
+                      BlocProvider.of<BookingCubit>(context).createBooking(CreateBookingModel(hotelId: widget.hotelData.id.toString()));
+                      Navigator.pop(context);
                     },
                   ),
                 ),
@@ -220,7 +224,7 @@ class _HotelDetailesState extends State<HotelDetailes>
           ),
 
           // backgrouund image and Hotel name and thier details and more details animation view
-          _backgraoundImageUI(HotelListData.hotelList[0]),
+          _backgraoundImageUI(widget.hotelData),
 
           // Arrow back Ui
           Padding(
@@ -336,7 +340,7 @@ class _HotelDetailesState extends State<HotelDetailes>
     );
   }
 
-  Widget _backgraoundImageUI(HotelListData hotelData) {
+  Widget _backgraoundImageUI(HotelsEntity hotelData) {
     return Positioned(
       top: 0,
       left: 0,
@@ -363,8 +367,8 @@ class _HotelDetailesState extends State<HotelDetailes>
                         top: 0,
                         child: SizedBox(
                           width: MediaQuery.of(context).size.width,
-                          child: Image.asset(
-                            hotelData.imagePath,
+                          child: CachedNetworkImage(
+                            imageUrl: "http://api.mahmoudtaha.com/images/${hotelData.images[0].image}",
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -410,6 +414,8 @@ class _HotelDetailesState extends State<HotelDetailes>
                                           buttonText: "Book Now",
                                           backgroundColor: AppColors.primary,
                                           onTap: () {
+                                            BlocProvider.of<BookingCubit>(context).createBooking(CreateBookingModel(hotelId: hotelData.id.toString()));
+                                            Navigator.pop(context);
                                             // NavigationServices(context)
                                             //     .gotoRoomBookingScreen(
                                             //         widget.hotelData.titleTxt);
@@ -538,14 +544,17 @@ class _HotelDetailesState extends State<HotelDetailes>
                   const SizedBox(
                     width: 4,
                   ),
-                  Text(
-                    widget.hotelData.address,
-                    style: TextStyles(context).getRegularStyle().copyWith(
-                          fontSize: 14,
-                          color: isInList
-                              ? Theme.of(context).disabledColor.withOpacity(0.5)
-                              : Colors.white,
-                        ),
+                  SizedBox(
+                    width: context.width30*12,
+                    child: Text(
+                      widget.hotelData.address,
+                      style: TextStyles(context).getRegularStyle().copyWith(
+                        fontSize: 14,
+                        color: isInList
+                            ? Theme.of(context).disabledColor.withOpacity(0.5)
+                            : Colors.white,
+                      ),
+                    ),
                   ),
                 ],
               ),

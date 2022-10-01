@@ -16,7 +16,7 @@ class GoogleMapUIView extends StatefulWidget {
 
 class _GoogleMapUIViewState extends State<GoogleMapUIView> {
   GoogleMapController? _mapController;
-  GoogleMapProvider _googleMapProvider = GoogleMapProvider();
+  final GoogleMapProvider _googleMapProvider = GoogleMapProvider();
 
   @override
   void initState() {
@@ -39,6 +39,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
         return ChangeNotifierProvider(
             create: (context) => _googleMapProvider,
             builder: (context, provider) {
+              print(context.watch<GoogleMapProvider>().hotelList.length);
               return Stack(
                 children: [
                   Container(),
@@ -74,7 +75,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                   for (var item in context.watch<GoogleMapProvider>().hotelList)
                     item.screenMapPin != null
                         ? AnimatedPositioned(
-                            duration: Duration(milliseconds: 1),
+                            duration: const Duration(milliseconds: 1),
                             top: item.screenMapPin!.dy - 48,
                             left: item.screenMapPin!.dx - 40,
                             child: SizedBox(

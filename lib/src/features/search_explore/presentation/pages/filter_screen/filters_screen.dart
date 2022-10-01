@@ -289,11 +289,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       onTap: () {
                         setState(() {
                           date.isSelected = !date.isSelected;
-                        });
+                          });
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 8.0, top: 8, bottom: 8, right: 0),
+                        padding: const EdgeInsets.only(top: 20, bottom: 8),
                         child: Row(
                           children: <Widget>[
                             Icon(
