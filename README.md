@@ -2,6 +2,7 @@
 ## Phase 3 Algoriza Internship
 ## Hotel booking application for ALGORIZA Internship  
 ## Build with Clean Architecture and Bloc as a state management
+## Unit Testing
 
 # Getting Started
 
