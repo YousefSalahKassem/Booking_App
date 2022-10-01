@@ -14,21 +14,11 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Animation<double> _animation;
-
+class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _startTimer();
-    _fadeInOutAnimation();
-  }
-
-  @override
-  void dispose() {
-    _animationController.dispose();
-    super.dispose();
+    _navigateUser();
   }
 
   @override
@@ -36,30 +26,9 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
     AppStyles.setSystemOverlay(context);
 
     return Scaffold(
-      body: Center(
-        child: FadeTransition(
-          opacity: _animation,
-          child: _buildSplashImage(),
-        ),
-      ),
+      body: Center(child: Image.asset(ImageAssets.icon, height: 100)),
     );
   }
-
-  Widget _buildSplashImage() {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(100),
-      child: Container(color: Colors.white, child: Image.asset(ImageAssets.icon, height: 80)),
-    );
-  }
-
-  void _fadeInOutAnimation() {
-    _animationController =
-        AnimationController(vsync: this, duration: const Duration(milliseconds: 500));
-    _animation = Tween<double>(begin: 1.0, end: 0.2).animate(_animationController);
-    Animations.continuousReversibleAnimation(_animationController, _animation);
-  }
-
-  void _startTimer() => Timer(const Duration(seconds: 3), () => _navigateUser());
 
   Future<void> _navigateUser() async {
     bool isLoggedIn = await AuthCubit.get(context).getLoginStatus();

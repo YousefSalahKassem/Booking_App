@@ -9,27 +9,28 @@ import '../../../../../core/usecases/usecase.dart';
 import '../../../domain/usecases/get_user_info_use_case.dart';
 
 class UpdateUserCubit extends Cubit<UpdateUserState> {
-  final UpdateInfoUseCase updateUser;
-  final GetUserInfoUseCase getUserInfo;
-  UpdateUserCubit({required this.updateUser, required this.getUserInfo}) : super(UpdateUserInitial()){
+  final UpdateInfoUseCase updateUserUseCase;
+  final GetUserInfoUseCase getUserInfoUseCase;
+  UpdateUserCubit({required this.updateUserUseCase, required this.getUserInfoUseCase})
+      : super(UpdateUserInitial()) {
     userProfile();
   }
   final userInfo = UpdateInfoEntity(name: '', email: '');
   Future<void> updateInfo(UpdateInfoModel updateInfoEntity) async {
     emit(UpdateUserLoading());
-    final result = await updateUser(updateInfoEntity);
+    final result = await updateUserUseCase(updateInfoEntity);
     result.fold(
       (failure) => emit(UpdateUserFailure(message: _mapFailureToMessage(failure))),
-      (success) => emit(UpdateUserSuccess(updateInfoEntity: success)),
+      (user) => emit(UpdateUserSuccess(user: user)),
     );
   }
 
   Future<void> userProfile() async {
     emit(UpdateUserLoading());
-    final result = await getUserInfo.call(NoParams());
+    final result = await getUserInfoUseCase.call(NoParams());
     result.fold(
       (failure) => emit(UpdateUserFailure(message: _mapFailureToMessage(failure))),
-      (success) => emit(UpdateUserSuccess(updateInfoEntity: success)),
+      (user) => emit(UpdateUserSuccess(user: user)),
     );
   }
 

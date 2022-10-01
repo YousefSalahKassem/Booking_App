@@ -1,3 +1,5 @@
+import 'package:bookingapp/src/core/services/form_validation/validation_helper.dart';
+import 'package:bookingapp/src/core/utils/app_strings.dart';
 import 'package:bookingapp/src/features/auth/presentation/widgets/hint_text.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,8 @@ class MyTextFormField extends StatelessWidget {
     required this.controller,
     required this.inputAction,
     required this.inputType,
+    this.validationItem,
+    this.validateForm,
   }) : super(key: key);
 
   final String labelText;
@@ -20,6 +24,8 @@ class MyTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final TextInputAction inputAction;
   final TextInputType inputType;
+  final ValidationItem? validationItem;
+  void Function(String? value)? validateForm;
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +38,14 @@ class MyTextFormField extends StatelessWidget {
         ),
         const SizedBox(height: 5),
         TextFormField(
+          style: const TextStyle(fontFamily: AppStrings.fontFamily, fontWeight: FontWeight.normal),
           focusNode: focusNode,
           controller: controller,
           textInputAction: inputAction,
           keyboardType: inputType,
           obscureText: obscureText,
-          decoration: InputDecoration(hintText: hintText),
+          decoration: InputDecoration(hintText: hintText, errorText: validationItem?.error),
+          onChanged: (String? value) => validateForm!(value),
         ),
       ],
     );

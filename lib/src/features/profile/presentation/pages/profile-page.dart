@@ -29,8 +29,11 @@ class _ProfilePageState extends State<ProfilePage> {
               if (state is UpdateUserSuccess){
                 print (state.updateInfoEntity.toString());
                 return GestureDetector(
-                  onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> EditUserScreen(updateInfoEntity: state.updateInfoEntity,)));
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditUserScreen(updateInfoEntity: state.user)));
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -42,9 +45,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Text(
-                              state.updateInfoEntity.name!,
-                              style: const TextStyle(
-                                  fontSize: 25, fontWeight: FontWeight.w500),
+                              state.user.name!,
+                              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                             ),
                             const Text(
                               "View and Edit profile",
@@ -66,7 +68,10 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(50),
-                              child: Image.network(state.updateInfoEntity.image!,width: context.height30*3,),
+                              child: Image.file(
+                                File(prefs.getString(AppStrings.cachedProfileImage)!),
+                                width: context.height30 * 3,
+                              ),
                             ),
                           ],
                         ),
