@@ -10,7 +10,6 @@ class BookingUserModel extends BookingUser {
     required super.image,
     required super.createdAt,
     required super.updatedAt,
-    required super.googleId,
   });
 
   factory BookingUserModel.fromJson(Map<String, dynamic>? json) {
@@ -22,8 +21,7 @@ class BookingUserModel extends BookingUser {
       apiToken: json?['api_token'],
       image: json?['image'],
       createdAt: json?['created_at'],
-      updatedAt: json?['updated_at'],
-      googleId: json?['google_id'],
+      updatedAt: json?['updated_at']
     );
   }
 
@@ -36,6 +34,5 @@ class BookingUserModel extends BookingUser {
         "image": image,
         "created_at": createdAt,
         "updated_at": updatedAt,
-        "google_id": googleId,
       };
 }

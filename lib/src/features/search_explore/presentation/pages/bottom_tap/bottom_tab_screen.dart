@@ -74,7 +74,7 @@ class _BottomTabScreenState extends State<BottomTabScreen>
           });
         } else if (tabType == BottomBarType.MyBooking) {
           setState(() {
-            _indexView = AllMyBooking(
+            _indexView = const AllMyBooking(
               // TODO change uncomment
              // animationController: _animationController,
             );

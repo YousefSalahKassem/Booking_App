@@ -1,7 +1,6 @@
 import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/core/shareable_components/bottom_top_move_animation_view.dart';
 import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
-import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/hotel_detailes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +13,6 @@ import '../../../../../core/utils/text_styles.dart';
 import '../../cubit/hotels/hotels_cubit.dart';
 import '../../cubit/hotels/hotels_state.dart';
 import '../../widget/explore/home_list_view_page.dart';
-import '../../widget/explore/popular_list_view.dart';
 import '../../widget/explore/title_view.dart';
 import '../../widget/explore/home_explore_sliver_view.dart';
 
@@ -72,49 +70,32 @@ class _HomeExploreScreenState extends State<HomeExploreScreen>
         children: [
           ListView.builder(
             controller: controller,
-            itemCount: 4,
-            // padding on top is only for we need spec for sider
+            itemCount: 1,
             padding: EdgeInsets.only(top: sliderImageHeight + 32, bottom: 16),
             scrollDirection: Axis.vertical,
             itemBuilder: (context, index) {
               // some list UI
-              var count = 4;
               var animation = Tween(begin: 0.0, end: 1.0).animate(
                 CurvedAnimation(
                   parent: widget.animationController,
-                  curve: Interval((1 / count) * index, 1.0,
+                  curve: Interval((1 / 1) * index, 1.0,
                       curve: Curves.fastOutSlowIn),
                 ),
               );
-              if (index == 0) {
-                return TitleView(
-                  titleTxt: "Popular Destination",
-                  subTxt: '',
-                  animation: animation,
-                  animationController: widget.animationController,
-                  click: () {},
-                );
-              } else if (index == 1) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  //Popular Destinations animation view
-                  child: PopularListView(
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleView(
+                    titleTxt: 'Best Deals',
+                    subTxt: 'View all',
+                    animation: animation,
+                    isLeftButton: true,
                     animationController: widget.animationController,
-                    callBack: (index) {},
+                    click: () {},
                   ),
-                );
-              } else if (index == 2) {
-                return TitleView(
-                  titleTxt: 'Best Deals',
-                  subTxt: 'View all',
-                  animation: animation,
-                  isLeftButton: true,
-                  animationController: widget.animationController,
-                  click: () {},
-                );
-              } else {
-                return getDealListView(index);
-              }
+                  getDealListView(index)
+                ],
+              );
             },
           ),
           // sliderUI with 3 images are moving

@@ -36,7 +36,7 @@ class _HotelRoomeListState extends State<HotelRoomeList> {
             child: CommonCard(
               radius: 8,
               child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                borderRadius: const BorderRadius.all(Radius.circular(8.0)),
                 child: AspectRatio(
                   aspectRatio: 1,
                   child: Image.asset(

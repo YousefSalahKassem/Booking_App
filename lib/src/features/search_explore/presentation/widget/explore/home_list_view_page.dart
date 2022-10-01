@@ -1,5 +1,6 @@
 import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_entity.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 import 'package:flutter/material.dart';
 import '../../../../../core/shareable_components/common_card.dart';
@@ -42,8 +43,8 @@ class HotelListViewPage extends StatelessWidget {
                     children: <Widget>[
                       AspectRatio(
                         aspectRatio: 0.90,
-                        child: Image.asset(
-                          HotelListData.hotelList[0].imagePath,
+                        child: CachedNetworkImage(
+                          imageUrl: "http://api.mahmoudtaha.com/images/${hotelData.images[0].image}",
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -70,6 +71,7 @@ class HotelListViewPage extends StatelessWidget {
                               ),
                               Text(
                                 hotelData.address,
+                                maxLines: 2,
                                 style: TextStyles(context)
                                     .getDescriptionStyle()
                                     .copyWith(
