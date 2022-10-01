@@ -54,7 +54,7 @@ class AppConstants {
   static bool passContainsOneNum(String? value) => RegExp(AppStrings.twoNumRegExp).hasMatch(value!);
   static bool passContainsOneSpChar(String? value) =>
       RegExp(AppStrings.twoSpCharRegExp).hasMatch(value!);
-  static bool passMatchesLength(String? value) => value!.length >= 8;
+  static bool passMatchesLength(String? value) => value!.length >= 6;
 
   // password confirmation
   static bool passesAreIdentical(String? value, String? password) => value! == password!;

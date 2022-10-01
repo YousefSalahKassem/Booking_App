@@ -50,7 +50,7 @@ class AppStrings {
   static const String twoLowercaseMsg = '*must contain at least 2 lowercase letters';
   static const String twoNumMsg = '*must contain at least 2 number digits';
   static const String twoSpCharMsg = "*must contain at least 2 special characters";
-  static const String passwordMatchesLengthMsg = '*must contain at least 8 characters';
+  static const String passwordMatchesLengthMsg = '*must contain at least 6 characters';
 
   // password confirmation
   static const String passwordsNotIdenticalMsg = "*passwords aren't identical";
