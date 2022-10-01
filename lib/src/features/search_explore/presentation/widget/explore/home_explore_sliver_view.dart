@@ -10,8 +10,7 @@ class HomeExploreSliderView extends StatefulWidget {
   final double opValue;
   final VoidCallback click;
 
-  const HomeExploreSliderView(
-      {Key? key, this.opValue = 0.0, required this.click})
+  const HomeExploreSliderView({Key? key, this.opValue = 0.0, required this.click})
       : super(key: key);
   @override
   _HomeExploreSliderViewState createState() => _HomeExploreSliderViewState();
@@ -45,22 +44,17 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
     sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
       if (mounted) {
         if (currentShowIndex == 0) {
-          pageController.animateTo(MediaQuery
-              .of(context)
-              .size
-              .width,
+          pageController.animateTo(MediaQuery.of(context).size.width,
               duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
         } else if (currentShowIndex == 1) {
-          pageController.animateTo(MediaQuery
-              .of(context)
-              .size
-              .width * 2,
+          pageController.animateTo(MediaQuery.of(context).size.width * 2,
               duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
         } else if (currentShowIndex == 2) {
           pageController.animateTo(0,
               duration: const Duration(seconds: 1), curve: Curves.fastOutSlowIn);
         }
-      }});
+      }
+    });
     super.initState();
   }
 
@@ -105,7 +99,7 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
                 controller: pageController, // PageController
                 count: 3,
                 effect: WormEffect(
-                    activeDotColor:const Color(0xFF4FBE9F),
+                    activeDotColor: const Color(0xFF4FBE9F),
                     dotColor: Theme.of(context).dividerColor,
                     dotHeight: 10.0,
                     dotWidth: 10.0,
@@ -122,8 +116,7 @@ class PagePopup extends StatelessWidget {
   final PageViewData imageData;
   final double opValue;
 
-  const PagePopup({Key? key, required this.imageData, this.opValue = 0.0})
-      : super(key: key);
+  const PagePopup({Key? key, required this.imageData, this.opValue = 0.0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +133,7 @@ class PagePopup extends StatelessWidget {
         Positioned(
           bottom: 80,
           left: 24,
-          right: 2  4,
+          right: 24,
           child: Opacity(
             opacity: opValue,
             child: Column(
@@ -150,9 +143,7 @@ class PagePopup extends StatelessWidget {
                 Text(
                   imageData.titleText,
                   textAlign: TextAlign.left,
-                  style: TextStyles(context)
-                      .getTitleStyle()
-                      .copyWith(color: AppTheme.whiteColor),
+                  style: TextStyles(context).getTitleStyle().copyWith(color: AppTheme.whiteColor),
                 ),
                 const SizedBox(
                   height: 8,
@@ -161,9 +152,7 @@ class PagePopup extends StatelessWidget {
                   imageData.subText,
                   textAlign: TextAlign.left,
                   style: TextStyles(context).getRegularStyle().copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: AppTheme.whiteColor),
+                      fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.whiteColor),
                 ),
                 const SizedBox(
                   height: 16,
