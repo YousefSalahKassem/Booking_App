@@ -192,7 +192,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 child: CommonSearchBar(
                   enabled: true,
                   ishsow: false,
-                  text: "London...",
+                  text: "Hurghada...",
                   onChanged: (String txt) {
                     BlocProvider.of<HotelsCubit>(context)
                         .getFilters(FilterModel(name: txt));
