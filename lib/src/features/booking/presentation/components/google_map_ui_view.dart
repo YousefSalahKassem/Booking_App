@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
-import '../../../../config/themes/app_themes.dart';
 import '../../../search_explore/domain/entities/hotel_list_data.dart';
 import '../google_map_provider.dart';
 
@@ -46,9 +44,9 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                   GoogleMap(
                     initialCameraPosition: const CameraPosition(
                       target: LatLng(27.049302, 33.900214),
-                      zoom: 11,
+                      zoom: 10,
                     ),
-                    mapType: MapType.normal,
+                    mapType: MapType.hybrid,
                     onCameraMove: (CameraPosition position) {
                       if (_mapController != null) {
                         _googleMapProvider
@@ -86,13 +84,13 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                                 children: <Widget>[
                                   Container(
                                     decoration: const BoxDecoration(
-                                      color:Colors.grey,
+                                      color:Colors.blueAccent,
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(24.0)),
                                       boxShadow: <BoxShadow>[
                                         BoxShadow(
                                           color: Colors.blue,
-                                          blurRadius: 16,
+                                          blurRadius: 10,
                                           offset: Offset(4, 4),
                                         ),
                                       ],
