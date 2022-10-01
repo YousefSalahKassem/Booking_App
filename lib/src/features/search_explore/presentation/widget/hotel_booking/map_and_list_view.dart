@@ -1,7 +1,10 @@
 import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/time_date_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../domain/entities/hotel_list_data.dart';
+import '../../cubit/hotels/hotels_cubit.dart';
+import '../../cubit/hotels/hotels_state.dart';
 import '../../pages/hotel_booking/map_hotel_view.dart';
 
 class MapAndListView extends StatelessWidget {
@@ -56,22 +59,25 @@ class MapAndListView extends StatelessWidget {
                       child: SizedBox(
                         height: 156,
                         // color: Colors.green,
-                        child: ListView.builder(
-                          itemCount: hotelList.length,
-                          padding:
-                              const EdgeInsets.only(top: 8, bottom: 8, right: 16),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return MapHotelListView(
-                              callback: () {
-                                // NavigationServices(context)
-                                //     .gotoRoomBookingScreen(
-                                //         hotelList[index].titleTxt);
+                        child: BlocBuilder<HotelsCubit,HotelsState>(builder: (context,state){
+                          if (state is HotelsComplete) {
+                            return ListView.builder(
+                              itemCount: state.hotels.length,
+                              padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return MapHotelListView(
+                                  callback: () {
+                                  },
+                                  hotelData: state.hotels[index],
+                                );
                               },
-                              hotelData: hotelList[index],
                             );
-                          },
-                        ),
+                          }
+                          else {
+                            return const SizedBox();
+                          }
+                        }),
                       ),
                     ),
                   ],

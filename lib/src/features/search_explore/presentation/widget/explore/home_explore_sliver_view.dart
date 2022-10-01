@@ -28,18 +28,18 @@ class _HomeExploreSliderViewState extends State<HomeExploreSliderView> {
   void initState() {
     pageViewModelData.add(PageViewData(
       titleText: 'cape Town',
-      subText: 'five_star',
-      assetsImage: ImageAssets.explore_2,
+      subText: 'five star',
+      assetsImage: ImageAssets.france,
     ));
     pageViewModelData.add(PageViewData(
-      titleText: 'find_best_deals',
-      subText: 'five_star',
-      assetsImage: ImageAssets.explore_1,
+      titleText: 'find best deals',
+      subText: 'five star',
+      assetsImage: ImageAssets.germany,
     ));
     pageViewModelData.add(PageViewData(
-      titleText: 'find_best_deals',
-      subText: 'five_star',
-      assetsImage: ImageAssets.explore_3,
+      titleText: 'find best deals',
+      subText: 'five star',
+      assetsImage: ImageAssets.italy,
     ));
 
     sliderTimer = Timer.periodic(const Duration(seconds: 4), (timer) {
@@ -140,7 +140,7 @@ class PagePopup extends StatelessWidget {
         Positioned(
           bottom: 80,
           left: 24,
-          right: 24,
+          right: 2  4,
           child: Opacity(
             opacity: opValue,
             child: Column(
@@ -162,7 +162,7 @@ class PagePopup extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyles(context).getRegularStyle().copyWith(
                       fontSize: 18,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                       color: AppTheme.whiteColor),
                 ),
                 const SizedBox(
