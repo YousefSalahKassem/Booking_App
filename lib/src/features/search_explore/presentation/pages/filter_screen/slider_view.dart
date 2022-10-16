@@ -1,14 +1,13 @@
+import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/app_colors.dart';
-
 class SliderView extends StatefulWidget {
-  final Function(double) onChnagedistValue;
+  final Function(double) onChangeDistValue;
   final double distValue;
 
-  const SliderView(
-      {Key? key, required this.onChnagedistValue, required this.distValue})
+  const SliderView({Key? key, required this.onChangeDistValue, required this.distValue})
       : super(key: key);
+
   @override
   _SliderViewState createState() => _SliderViewState();
 }
@@ -66,7 +65,7 @@ class _SliderViewState extends State<SliderView> {
               distValue = value;
             });
             try {
-              widget.onChnagedistValue(distValue);
+              widget.onChangeDistValue(distValue);
             } catch (e) {
               debugPrint(e.toString());
             }

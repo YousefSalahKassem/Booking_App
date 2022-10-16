@@ -1,5 +1,4 @@
 import 'package:bookingapp/src/features/booking/domain/entity/booking_users.dart';
-import 'package:bookingapp/src/features/profile/domain/entity/update_info_entity.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class UpdateUserState extends Equatable {

@@ -50,19 +50,19 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     /// validation Provider
-    final _validationProvider = Provider.of<ValidationHelper>(context);
+    final validationProvider = Provider.of<ValidationHelper>(context);
 
     /// getting validation items
-    final email = _validationProvider.email;
-    final pass = _validationProvider.pass;
+    final email = validationProvider.email;
+    final pass = validationProvider.pass;
 
     /// validation methods from Provider
-    void validateEmailForm(String? value) => _validationProvider.validateEmailForm(value);
-    void validatePassForm(String? value) => _validationProvider.validateLoginPassForm(value);
+    void validateEmailForm(String? value) => validationProvider.validateEmailForm(value);
+    void validatePassForm(String? value) => validationProvider.validateLoginPassForm(value);
 
-    bool _btnEnabled = _validationProvider.enableLoginButton;
+    bool btnEnabled = validationProvider.enableLoginButton;
 
-    MyTextFormField _buildEmailField() {
+    MyTextFormField buildEmailField() {
       return MyTextFormField(
         focusNode: _emailFocus,
         labelText: 'Your email',
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
 
-    MyTextFormField _buildPasswordField() {
+    MyTextFormField buildPasswordField() {
       return MyTextFormField(
         focusNode: _passFocus,
         obscureText: true,
@@ -89,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
 
-    Expanded _buildTwitterButton() {
+    Expanded buildTwitterButton() {
       return Expanded(
         child: MyButton(
           text: 'Twitter',
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
       );
     }
 
-    Expanded _buildFacebookButton() {
+    Expanded buildFacebookButton() {
       return Expanded(
         child: MyButton(
           text: 'Facebook',
@@ -124,9 +124,9 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 30),
               Row(
                 children: [
-                  _buildFacebookButton(),
+                  buildFacebookButton(),
                   const SizedBox(width: 15),
-                  _buildTwitterButton(),
+                  buildTwitterButton(),
                 ],
               ),
               const SizedBox(height: 15),
@@ -135,8 +135,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    _buildEmailField(),
-                    _buildPasswordField(),
+                    buildEmailField(),
+                    buildPasswordField(),
                   ],
                 ),
               ),
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 builder: (context, state) {
                   return MyButton(
                     text: 'Log in',
-                    onPressed: !_btnEnabled
+                    onPressed: !btnEnabled
                         ? null
                         : () {
                             _logIn(LoginModel(

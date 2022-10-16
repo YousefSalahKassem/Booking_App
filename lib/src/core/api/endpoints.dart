@@ -12,5 +12,4 @@ class Endpoints {
   static const String searchHotels = '$baseUrl/search-hotels';
   static const String updateInfo = '$baseUrl/auth/update-info';
   static const String userInfo = '$baseUrl/auth/profile-info';
-
 }

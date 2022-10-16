@@ -1,14 +1,12 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/utils/helper.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_fadein/flutter_fadein.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import '../../../../core/shareable_components/common_card.dart';
-import '../../../../core/utils/helper.dart';
-import '../../../../core/utils/text_styles.dart';
-import '../../../search_explore/domain/entities/hotel_list_data.dart';
-
 
 class CancelledBooking extends StatefulWidget {
   const CancelledBooking({Key? key}) : super(key: key);
@@ -18,7 +16,6 @@ class CancelledBooking extends StatefulWidget {
 }
 
 class _CancelledBookingState extends State<CancelledBooking> {
-
   ScrollController scrollController = ScrollController();
 
   @override
@@ -27,6 +24,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AllBookingCubit, AllBookingState>(
@@ -49,7 +47,6 @@ class _CancelledBookingState extends State<CancelledBooking> {
                               aspectRatio: 2,
                               child: Image.asset(
                                 HotelListData.hotelList[index].imagePath,
-
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -63,8 +60,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
                                         left: 16, top: 8, bottom: 8, right: 8),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Text(
                                           state.cancelledBookings[index].hotel.name,
@@ -75,8 +71,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
                                         ),
                                         Text(
                                           state.cancelledBookings[index].hotel.address,
-                                          style: TextStyles(context)
-                                              .getDescriptionStyle(),
+                                          style: TextStyles(context).getDescriptionStyle(),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 4),
@@ -85,13 +80,11 @@ class _CancelledBookingState extends State<CancelledBooking> {
                                               Helper.ratingStar(),
                                               Text(
                                                 " ${HotelListData.hotelList[index].reviews}",
-                                                style: TextStyles(context)
-                                                    .getDescriptionStyle(),
+                                                style: TextStyles(context).getDescriptionStyle(),
                                               ),
                                               Text(
                                                 "reviews",
-                                                style: TextStyles(context)
-                                                    .getDescriptionStyle(),
+                                                style: TextStyles(context).getDescriptionStyle(),
                                               ),
                                             ],
                                           ),
@@ -101,8 +94,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 16, top: 8, left: 16),
+                                  padding: const EdgeInsets.only(right: 16, top: 8, left: 16),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -116,8 +108,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
                                       ),
                                       Text(
                                         "/per night",
-                                        style: TextStyles(context)
-                                            .getDescriptionStyle(),
+                                        style: TextStyles(context).getDescriptionStyle(),
                                       ),
                                     ],
                                   ),
@@ -135,14 +126,11 @@ class _CancelledBookingState extends State<CancelledBooking> {
                             color: Colors.transparent,
                             child: InkWell(
                                 highlightColor: Colors.transparent,
-                                splashColor:
-                                Theme.of(context).primaryColor.withOpacity(0.1),
+                                splashColor: Theme.of(context).primaryColor.withOpacity(0.1),
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(16.0),
                                 ),
-                                onTap: () { }
-
-                            ),
+                                onTap: () {}),
                           ),
                         ),
                         Positioned(
@@ -150,8 +138,7 @@ class _CancelledBookingState extends State<CancelledBooking> {
                           right: 8,
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme.of(context).backgroundColor,
-                                shape: BoxShape.circle),
+                                color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
@@ -174,15 +161,18 @@ class _CancelledBookingState extends State<CancelledBooking> {
                     ),
                   ),
                 );
-
               },
               itemCount: state.cancelledBookings.length,
             ),
           );
-        }else{
-          return Center(child: LoadingAnimationWidget.staggeredDotsWave(color: Colors.blueGrey, size: 50,),);
+        } else {
+          return Center(
+            child: LoadingAnimationWidget.staggeredDotsWave(
+              color: Colors.blueGrey,
+              size: 50,
+            ),
+          );
         }
-
       },
     );
   }

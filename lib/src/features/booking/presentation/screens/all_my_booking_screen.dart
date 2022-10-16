@@ -1,7 +1,7 @@
 import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
 import 'package:bookingapp/src/features/booking/presentation/screens/cancelled_booking.dart';
 import 'package:bookingapp/src/features/booking/presentation/screens/completed_booking.dart';
-import 'package:bookingapp/src/features/booking/presentation/screens/ubcomming_booking.dart';
+import 'package:bookingapp/src/features/booking/presentation/screens/upcoming_booking.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +19,6 @@ class _AllMyBookingState extends State<AllMyBooking> {
     "Upcoming",
     "Completed",
     "Cancelled",
-
   ];
 
   /// List of body icon
@@ -27,16 +26,13 @@ class _AllMyBookingState extends State<AllMyBooking> {
     const UpcomingBooking(),
     const CompletedBooking(),
     const CancelledBooking()
-
   ];
   int current = 0;
-
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AllBookingCubit, AllBookingState>(
       listener: (context, state) {
-
         // TODO: implement listener
       },
       builder: (context, state) {
@@ -64,7 +60,6 @@ class _AllMyBookingState extends State<AllMyBooking> {
                 margin: const EdgeInsets.all(5),
                 child: Column(
                   children: [
-
                     /// CUSTOM TABBAR
                     SizedBox(
                       width: double.infinity,
@@ -88,15 +83,12 @@ class _AllMyBookingState extends State<AllMyBooking> {
                                     width: 115,
                                     height: 45,
                                     decoration: BoxDecoration(
-                                      color: current == index
-                                          ? Colors.black54
-                                          : Colors.white30,
+                                      color: current == index ? Colors.black54 : Colors.white30,
                                       borderRadius: current == index
                                           ? BorderRadius.circular(20)
                                           : BorderRadius.circular(15),
                                       border: current == index
-                                          ? Border.all(
-                                          color: Colors.grey, width: 2)
+                                          ? Border.all(color: Colors.grey, width: 2)
                                           : null,
                                     ),
                                     child: Center(
@@ -106,9 +98,7 @@ class _AllMyBookingState extends State<AllMyBooking> {
                                             fontWeight: current == index
                                                 ? FontWeight.bold
                                                 : FontWeight.w500,
-                                            color: current == index
-                                                ? Colors.white
-                                                : Colors.grey),
+                                            color: current == index ? Colors.white : Colors.grey),
                                       ),
                                     ),
                                   ),
@@ -119,8 +109,7 @@ class _AllMyBookingState extends State<AllMyBooking> {
                                       width: 5,
                                       height: 5,
                                       decoration: const BoxDecoration(
-                                          color: Colors.deepPurpleAccent,
-                                          shape: BoxShape.circle),
+                                          color: Colors.deepPurpleAccent, shape: BoxShape.circle),
                                     ))
                               ],
                             );

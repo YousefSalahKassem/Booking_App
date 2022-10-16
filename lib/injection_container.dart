@@ -29,7 +29,7 @@ import 'package:bookingapp/src/features/profile/data/repository/user_profile_rep
 import 'package:bookingapp/src/features/profile/domain/repository/update_info_repository.dart';
 import 'package:bookingapp/src/features/profile/domain/repository/user_info_repository.dart';
 import 'package:bookingapp/src/features/profile/domain/usecases/get_user_info_use_case.dart';
-import 'package:bookingapp/src/features/profile/domain/usecases/update_info_use_case.dart';
+import 'package:bookingapp/src/features/profile/domain/usecases/update_user_info_use_case.dart';
 import 'package:bookingapp/src/features/profile/presentation/bloc/user_info/update_user_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/create_booking_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/facilities_remote_data_source.dart';
@@ -96,7 +96,7 @@ Future<void> init() async {
   sl.registerLazySingleton<CreateBookingUseCase>(() => CreateBookingUseCase(repository: sl()));
   sl.registerLazySingleton<UpdateBookingUseCase>(() => UpdateBookingUseCase(repository: sl()));
   sl.registerLazySingleton<GetFilterUseCase>(() => GetFilterUseCase(filterRepository: sl()));
-  sl.registerLazySingleton<UpdateInfoUseCase>(() => UpdateInfoUseCase(repository: sl()));
+  sl.registerLazySingleton<UpdateUserInfoUseCase>(() => UpdateUserInfoUseCase(repository: sl()));
   // repositories
   sl.registerLazySingleton<StatusRepository>(() => StatusRepositoryImpl(
         networkInfo: sl(),

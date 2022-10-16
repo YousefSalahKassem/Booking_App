@@ -36,7 +36,7 @@ class SettingsListData {
     SettingsListData(
       titleTxt: 'invite_friend',
       isSelected: false,
-      iconData: FontAwesomeIcons.userFriends,
+      iconData: FontAwesomeIcons.userGroup,
     ),
     SettingsListData(
       titleTxt: 'credit_coupons',
@@ -46,7 +46,7 @@ class SettingsListData {
     SettingsListData(
       titleTxt: 'help_center',
       isSelected: false,
-      iconData: FontAwesomeIcons.infoCircle,
+      iconData: FontAwesomeIcons.circleInfo,
     ),
     SettingsListData(
       titleTxt: 'payment_text',
@@ -56,7 +56,7 @@ class SettingsListData {
     SettingsListData(
       titleTxt: 'setting_text',
       isSelected: false,
-      iconData: FontAwesomeIcons.cog,
+      iconData: FontAwesomeIcons.gear,
     )
   ];
   static List<SettingsListData> settingsList = [
@@ -88,7 +88,7 @@ class SettingsListData {
     SettingsListData(
       titleTxt: 'Country',
       isSelected: false,
-      iconData: FontAwesomeIcons.userFriends,
+      iconData: FontAwesomeIcons.userGroup,
     ),
     SettingsListData(
       titleTxt: 'Currency',

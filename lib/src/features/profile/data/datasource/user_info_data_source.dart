@@ -1,11 +1,6 @@
 import 'package:bookingapp/src/core/api/api_consumer.dart';
 import 'package:bookingapp/src/core/api/endpoints.dart';
 import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
-import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../../../injection_container.dart';
-import '../../../../core/utils/app_strings.dart';
 
 abstract class UserInfoDataSource {
   Future<BookingUserModel> getUserInfo();

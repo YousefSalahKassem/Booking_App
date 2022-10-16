@@ -1,21 +1,23 @@
+import 'package:bookingapp/src/core/error/failures.dart';
+import 'package:bookingapp/src/core/usecases/usecase.dart';
 import 'package:bookingapp/src/features/profile/data/model/update_info_model.dart';
 import 'package:bookingapp/src/features/profile/domain/entity/update_info_entity.dart';
-import 'package:bookingapp/src/features/profile/domain/usecases/update_info_use_case.dart';
+import 'package:bookingapp/src/features/profile/domain/usecases/get_user_info_use_case.dart';
+import 'package:bookingapp/src/features/profile/domain/usecases/update_user_info_use_case.dart';
 import 'package:bookingapp/src/features/profile/presentation/bloc/user_info/update_user_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/error/failures.dart';
-import '../../../../../core/usecases/usecase.dart';
-import '../../../domain/usecases/get_user_info_use_case.dart';
-
 class UpdateUserCubit extends Cubit<UpdateUserState> {
-  final UpdateInfoUseCase updateUserUseCase;
+  final UpdateUserInfoUseCase updateUserUseCase;
   final GetUserInfoUseCase getUserInfoUseCase;
+
   UpdateUserCubit({required this.updateUserUseCase, required this.getUserInfoUseCase})
       : super(UpdateUserInitial()) {
     userProfile();
   }
+
   final userInfo = UpdateInfoEntity(name: '', email: '');
+
   Future<void> updateInfo(UpdateInfoModel updateInfoEntity) async {
     emit(UpdateUserLoading());
     final result = await updateUserUseCase(updateInfoEntity);

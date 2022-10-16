@@ -1,15 +1,16 @@
+import 'package:bookingapp/src/features/booking/presentation/google_map_provider.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-import '../../../search_explore/domain/entities/hotel_list_data.dart';
-import '../google_map_provider.dart';
 
 class GoogleMapUIView extends StatefulWidget {
   final List<HotelListData> hotelList;
+
   const GoogleMapUIView({Key? key, required this.hotelList}) : super(key: key);
 
   @override
-  _GoogleMapUIViewState createState() => _GoogleMapUIViewState();
+  State<GoogleMapUIView> createState() => _GoogleMapUIViewState();
 }
 
 class _GoogleMapUIViewState extends State<GoogleMapUIView> {
@@ -32,12 +33,12 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        _googleMapProvider.updateScreenVisibleArea(
-            Size(constraints.maxWidth, constraints.maxHeight));
+        _googleMapProvider
+            .updateScreenVisibleArea(Size(constraints.maxWidth, constraints.maxHeight));
         return ChangeNotifierProvider(
             create: (context) => _googleMapProvider,
             builder: (context, provider) {
-              print(context.watch<GoogleMapProvider>().hotelList.length);
+              debugPrint("${context.watch<GoogleMapProvider>().hotelList.length}");
               return Stack(
                 children: [
                   Container(),
@@ -49,8 +50,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                     mapType: MapType.hybrid,
                     onCameraMove: (CameraPosition position) {
                       if (_mapController != null) {
-                        _googleMapProvider
-                            .updateGoogleMapController(_mapController!);
+                        _googleMapProvider.updateGoogleMapController(_mapController!);
                       }
                     },
                     mapToolbarEnabled: false,
@@ -84,9 +84,8 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                                 children: <Widget>[
                                   Container(
                                     decoration: const BoxDecoration(
-                                      color:Colors.blueAccent,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(24.0)),
+                                      color: Colors.blueAccent,
+                                      borderRadius: BorderRadius.all(Radius.circular(24.0)),
                                       boxShadow: <BoxShadow>[
                                         BoxShadow(
                                           color: Colors.blue,
@@ -113,10 +112,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 8,
-                                              right: 8,
-                                              top: 4,
-                                              bottom: 4),
+                                              left: 8, right: 8, top: 4, bottom: 4),
                                           child: Text(
                                             "\$${item.perNight}",
                                             style: const TextStyle(
@@ -149,7 +145,7 @@ class _GoogleMapUIViewState extends State<GoogleMapUIView> {
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                 ],
               );
             });

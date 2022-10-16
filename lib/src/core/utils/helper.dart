@@ -2,6 +2,7 @@ import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:intl/intl.dart';
+
 import '../../features/search_explore/domain/entities/room_data.dart';
 import '../shareable_components/custom_dialog.dart';
 
@@ -11,17 +12,17 @@ class Helper {
   }
 
   static String getDateText(DateText dateText) {
-    return "0${dateText.startDate} ${DateFormat('MMM', ).format(DateTime.now())} - 0${dateText.endDate} ${DateFormat('MMM',).format(DateTime.now().add(const Duration(days: 2)))}";
+    return "0${dateText.startDate} ${DateFormat('MMM').format(DateTime.now())} - 0${dateText.endDate} ${DateFormat('MMM').format(DateTime.now().add(const Duration(days: 2)))}";
   }
 
   // static String getLastSearchDate(DateText dateText) {
-  //   LanguageType _languageType = applicationcontext == null
+  //   LanguageType _languageType = applicationContext == null
   //       ? LanguageType.en
-  //       : applicationcontext!.read<ThemeProvider>().languageType;
+  //       : applicationContext!.read<ThemeProvider>().languageType;
   //   return "${dateText.startDate} - ${dateText.endDate} ${DateFormat('MMM', _languageType.toString().split(".")[1]).format(DateTime.now().add(Duration(days: 2)))}";
   // }
   //
-  static String getPeopleandChildren(RoomData roomData) {
+  static String getPeopleAndChildren(RoomData roomData) {
     return "${"sleeps"} ${roomData.numberRoom} ${"people"} + ${roomData.numberRoom} ${"children"} ";
   }
 
@@ -39,8 +40,7 @@ class Helper {
     );
   }
 
-  Future<bool> showCommonPopup(
-      String title, String descriptionText, BuildContext context,
+  Future<bool> showCommonPopup(String title, String descriptionText, BuildContext context,
       {bool isYesOrNoPopup = false, bool barrierDismissible = true}) async {
     bool isOkClick = false;
     return await showDialog(

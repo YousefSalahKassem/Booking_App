@@ -1,10 +1,10 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
 import 'package:bookingapp/src/features/booking/presentation/screens/all_my_booking_screen.dart';
-import 'package:bookingapp/src/features/profile/presentation/pages/profile-page.dart';
+import 'package:bookingapp/src/features/profile/presentation/pages/profile_page.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/explore/home_explore_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/bottom_tap_ui/tab_button_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../widget/bottom_tap_ui/tab_button_ui.dart';
-import '../explore/home_explore_screen.dart';
 
 class BottomTabScreen extends StatefulWidget {
   const BottomTabScreen({Key? key}) : super(key: key);
@@ -13,12 +13,11 @@ class BottomTabScreen extends StatefulWidget {
   _BottomTabScreenState createState() => _BottomTabScreenState();
 }
 
-class _BottomTabScreenState extends State<BottomTabScreen>
-    with TickerProviderStateMixin {
+class _BottomTabScreenState extends State<BottomTabScreen> with TickerProviderStateMixin {
   late AnimationController _animationController;
   bool _isFirstTime = true;
   Widget _indexView = Container();
-  BottomBarType bottomBarType = BottomBarType.Explore;
+  BottomBarType bottomBarType = BottomBarType.explore;
 
   @override
   void initState() {
@@ -48,16 +47,15 @@ class _BottomTabScreenState extends State<BottomTabScreen>
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       bottomNavigationBar: SizedBox(
-          height: 60 + MediaQuery.of(context).padding.bottom,
-          child: getBottomBarUI(bottomBarType)),
+          height: 60 + MediaQuery.of(context).padding.bottom, child: getBottomBarUI(bottomBarType)),
       body: _isFirstTime
           ? const Center(
-        child: CircularProgressIndicator(
-          strokeWidth: 2,
-        ),
-      )
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+              ),
+            )
           : _indexView,
     );
   }
@@ -66,20 +64,20 @@ class _BottomTabScreenState extends State<BottomTabScreen>
     if (tabType != bottomBarType) {
       bottomBarType = tabType;
       _animationController.reverse().then((f) {
-        if (tabType == BottomBarType.Explore) {
+        if (tabType == BottomBarType.explore) {
           setState(() {
             _indexView = HomeExploreScreen(
               animationController: _animationController,
             );
           });
-        } else if (tabType == BottomBarType.MyBooking) {
+        } else if (tabType == BottomBarType.myBooking) {
           setState(() {
             _indexView = const AllMyBooking(
-              // TODO change uncomment
-             // animationController: _animationController,
-            );
+                // TODO change uncomment
+                // animationController: _animationController,
+                );
           });
-        } else if (tabType == BottomBarType.Profile) {
+        } else if (tabType == BottomBarType.profile) {
           setState(() {
             _indexView = const ProfilePage();
           });
@@ -97,26 +95,26 @@ class _BottomTabScreenState extends State<BottomTabScreen>
             children: <Widget>[
               TabButtonUI(
                 icon: Icons.search,
-                isSelected: tabType == BottomBarType.Explore,
+                isSelected: tabType == BottomBarType.explore,
                 text: "explore",
                 onTap: () {
-                  tabClick(BottomBarType.Explore);
+                  tabClick(BottomBarType.explore);
                 },
               ),
               TabButtonUI(
                 icon: FontAwesomeIcons.heart,
-                isSelected: tabType == BottomBarType.MyBooking,
+                isSelected: tabType == BottomBarType.myBooking,
                 text: "My Booking",
                 onTap: () {
-                  tabClick(BottomBarType.MyBooking);
+                  tabClick(BottomBarType.myBooking);
                 },
               ),
               TabButtonUI(
                 icon: FontAwesomeIcons.user,
-                isSelected: tabType == BottomBarType.Profile,
+                isSelected: tabType == BottomBarType.profile,
                 text: "profile",
                 onTap: () {
-                  tabClick(BottomBarType.Profile);
+                  tabClick(BottomBarType.profile);
                 },
               ),
             ],
@@ -130,4 +128,4 @@ class _BottomTabScreenState extends State<BottomTabScreen>
   }
 }
 
-enum BottomBarType { Explore, MyBooking, Profile }
+enum BottomBarType { explore, myBooking, profile }

@@ -1,22 +1,16 @@
-import 'package:bookingapp/src/features/booking/presentation/screens/completed_booking.dart';
-import 'package:bookingapp/src/features/search_explore/presentation/cubit/create_booking/booking_cubit.dart';
-import 'package:bookingapp/src/features/search_explore/presentation/cubit/create_booking/booking_status.dart';
+import 'package:bookingapp/src/features/booking/presentation/components/google_map_ui_view.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
-import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_state.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_booking/map_hotel_view.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/time_date_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../search_explore/domain/entities/hotel_list_data.dart';
-import '../../../search_explore/presentation/pages/hotel_booking/map_hotel_view.dart';
-import '../../../search_explore/presentation/widget/hotel_booking/time_date_view.dart';
-import 'google_map_ui_view.dart';
 
 class MapAndListView extends StatelessWidget {
   final List<HotelListData> hotelList;
   final Widget searchBarUI;
 
-  const MapAndListView(
-      {Key? key, required this.hotelList, required this.searchBarUI})
+  const MapAndListView({Key? key, required this.hotelList, required this.searchBarUI})
       : super(key: key);
 
   @override
@@ -31,24 +25,16 @@ class MapAndListView extends StatelessWidget {
               Expanded(
                 child: Stack(
                   children: <Widget>[
-                    GoogleMapUIView(
-                      hotelList: hotelList,
-                    ),
+                    GoogleMapUIView(hotelList: hotelList),
                     IgnorePointer(
                       child: Container(
                         height: 80,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
                             colors: [
-                              Theme.of(context)
-                                  .scaffoldBackgroundColor
-                                  .withOpacity(1.0),
-                              Theme.of(context)
-                                  .scaffoldBackgroundColor
-                                  .withOpacity(0.4),
-                              Theme.of(context)
-                                  .scaffoldBackgroundColor
-                                  .withOpacity(0.0),
+                              Theme.of(context).scaffoldBackgroundColor.withOpacity(1.0),
+                              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.4),
+                              Theme.of(context).scaffoldBackgroundColor.withOpacity(0.0),
                             ],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
@@ -63,22 +49,20 @@ class MapAndListView extends StatelessWidget {
                       child: SizedBox(
                         height: 156,
                         // color: Colors.green,
-                        child: BlocBuilder<HotelsCubit,HotelsState>(builder: (context,state){
+                        child: BlocBuilder<HotelsCubit, HotelsState>(builder: (context, state) {
                           if (state is HotelsComplete) {
                             return ListView.builder(
-                            itemCount: state.hotels.length,
-                            padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16),
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, index) {
-                              return MapHotelListView(
-                                callback: () {
-                                },
-                                hotelData: state.hotels[index],
-                              );
-                            },
-                          );
-                          }
-                          else {
+                              itemCount: state.hotels.length,
+                              padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return MapHotelListView(
+                                  callback: () {},
+                                  hotelData: state.hotels[index],
+                                );
+                              },
+                            );
+                          } else {
                             return const SizedBox();
                           }
                         }),

@@ -31,8 +31,10 @@ class BookingListView extends StatelessWidget {
         animation: animation,
         animationController: animationController,
         child: Padding(
-          padding:
-              const EdgeInsets.only(left: 24, right: 24,),
+          padding: const EdgeInsets.only(
+            left: 24,
+            right: 24,
+          ),
           child: Column(
             children: <Widget>[
               isShowDate
@@ -43,18 +45,13 @@ class BookingListView extends StatelessWidget {
                         children: [
                           Text(
                             '${Helper.getDateText(HotelListData.hotelList[0].date!)}, ',
-                            style: TextStyles(context)
-                                .getRegularStyle()
-                                .copyWith(fontSize: 14),
+                            style: TextStyles(context).getRegularStyle().copyWith(fontSize: 14),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 2.0),
                             child: Text(
-                              Helper.getRoomText(
-                                  HotelListData.hotelList[0].roomData!),
-                              style: TextStyles(context)
-                                  .getRegularStyle()
-                                  .copyWith(fontSize: 14),
+                              Helper.getRoomText(HotelListData.hotelList[0].roomData!),
+                              style: TextStyles(context).getRegularStyle().copyWith(fontSize: 14),
                             ),
                           ),
                         ],
@@ -82,12 +79,11 @@ class BookingListView extends StatelessWidget {
                             children: <Widget>[
                               Expanded(
                                 child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 16, top: 8, bottom: 8, right: 8),
+                                  padding:
+                                      const EdgeInsets.only(left: 16, top: 8, bottom: 8, right: 8),
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
                                         bookingData.hotel.name,
@@ -98,8 +94,7 @@ class BookingListView extends StatelessWidget {
                                       ),
                                       Text(
                                         bookingData.hotel.address,
-                                        style: TextStyles(context)
-                                            .getDescriptionStyle(),
+                                        style: TextStyles(context).getDescriptionStyle(),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(top: 4),
@@ -108,13 +103,11 @@ class BookingListView extends StatelessWidget {
                                             Helper.ratingStar(),
                                             Text(
                                               " ${HotelListData.hotelList[0].reviews}",
-                                              style: TextStyles(context)
-                                                  .getDescriptionStyle(),
+                                              style: TextStyles(context).getDescriptionStyle(),
                                             ),
                                             Text(
                                               "reviews",
-                                              style: TextStyles(context)
-                                                  .getDescriptionStyle(),
+                                              style: TextStyles(context).getDescriptionStyle(),
                                             ),
                                           ],
                                         ),
@@ -124,8 +117,7 @@ class BookingListView extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    right: 16, top: 8, left: 16),
+                                padding: const EdgeInsets.only(right: 16, top: 8, left: 16),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -133,14 +125,12 @@ class BookingListView extends StatelessWidget {
                                     Text(
                                       "\$${bookingData.hotel.price}",
                                       textAlign: TextAlign.left,
-                                      style: TextStyles(context)
-                                          .getBoldStyle()
-                                          .copyWith(fontSize: 22),
+                                      style:
+                                          TextStyles(context).getBoldStyle().copyWith(fontSize: 22),
                                     ),
                                     Text(
                                       "/per night",
-                                      style: TextStyles(context)
-                                          .getDescriptionStyle(),
+                                      style: TextStyles(context).getDescriptionStyle(),
                                     ),
                                   ],
                                 ),
@@ -158,8 +148,7 @@ class BookingListView extends StatelessWidget {
                           color: Colors.transparent,
                           child: InkWell(
                             highlightColor: Colors.transparent,
-                            splashColor:
-                                Theme.of(context).primaryColor.withOpacity(0.1),
+                            splashColor: Theme.of(context).primaryColor.withOpacity(0.1),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(16.0),
                             ),
@@ -178,8 +167,7 @@ class BookingListView extends StatelessWidget {
                         right: 8,
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Theme.of(context).backgroundColor,
-                              shape: BoxShape.circle),
+                              color: Theme.of(context).backgroundColor, shape: BoxShape.circle),
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(

@@ -1,18 +1,17 @@
+import 'package:bookingapp/src/core/shareable_components/common_button.dart';
+import 'package:bookingapp/src/core/utils/app_colors.dart';
+import 'package:bookingapp/src/core/utils/helper.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../core/shareable_components/common_button.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/helper.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
-
-class RoomeBookView extends StatefulWidget {
+class RoomBookView extends StatefulWidget {
   final HotelListData roomData;
   final AnimationController animationController;
   final Animation<double> animation;
 
-  const RoomeBookView(
+  const RoomBookView(
       {Key? key,
       required this.roomData,
       required this.animationController,
@@ -20,10 +19,10 @@ class RoomeBookView extends StatefulWidget {
       : super(key: key);
 
   @override
-  _RoomeBookViewState createState() => _RoomeBookViewState();
+  _RoomBookViewState createState() => _RoomBookViewState();
 }
 
-class _RoomeBookViewState extends State<RoomeBookView> {
+class _RoomBookViewState extends State<RoomBookView> {
   var pageController = PageController(initialPage: 0);
 
   @override
@@ -34,9 +33,8 @@ class _RoomeBookViewState extends State<RoomeBookView> {
       builder: (BuildContext context, Widget? child) {
         return FadeTransition(
           opacity: widget.animation,
-          child:  Transform(
-            transform: Matrix4.translationValues(
-                0.0, 40 * (1.0 - widget.animation.value), 0.0),
+          child: Transform(
+            transform: Matrix4.translationValues(0.0, 40 * (1.0 - widget.animation.value), 0.0),
             child: Column(
               children: <Widget>[
                 Stack(
@@ -74,8 +72,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(
-                      left: 16, right: 16, bottom: 16, top: 16),
+                  padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 16),
                   child: Column(
                     children: <Widget>[
                       Row(
@@ -85,9 +82,7 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                             widget.roomData.titleTxt,
                             maxLines: 2,
                             textAlign: TextAlign.left,
-                            style: TextStyles(context)
-                                .getBoldStyle()
-                                .copyWith(fontSize: 24),
+                            style: TextStyles(context).getBoldStyle().copyWith(fontSize: 24),
                             overflow: TextOverflow.ellipsis,
                           ),
                           const Expanded(child: SizedBox()),
@@ -114,17 +109,13 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                           Text(
                             "\$${widget.roomData.perNight}",
                             textAlign: TextAlign.left,
-                            style: TextStyles(context)
-                                .getBoldStyle()
-                                .copyWith(fontSize: 22),
+                            style: TextStyles(context).getBoldStyle().copyWith(fontSize: 22),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(bottom: 0),
                             child: Text(
                               "/per night",
-                              style: TextStyles(context)
-                                  .getRegularStyle()
-                                  .copyWith(fontSize: 14),
+                              style: TextStyles(context).getRegularStyle().copyWith(fontSize: 14),
                             ),
                           ),
                         ],
@@ -134,15 +125,13 @@ class _RoomeBookViewState extends State<RoomeBookView> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            Helper.getPeopleandChildren(
-                                widget.roomData.roomData!),
+                            Helper.getPeopleAndChildren(widget.roomData.roomData!),
                             // "${widget.roomData.dateTxt}",
                             textAlign: TextAlign.left,
                             style: TextStyles(context).getDescriptionStyle(),
                           ),
                           InkWell(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4.0)),
+                            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                             onTap: () {},
                             child: Padding(
                               padding: const EdgeInsets.only(left: 8, right: 4),

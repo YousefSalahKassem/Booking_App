@@ -29,9 +29,7 @@ class _AllMyBookingState extends State<AllMyBooking> {
           // return List.Builder(list: list);
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Container(
-                child: Text(state.upcomingBookings[index].hotel.name),
-              );
+              return Text(state.upcomingBookings[index].hotel.name);
             },
             itemCount: state.upcomingBookings.length,
           );

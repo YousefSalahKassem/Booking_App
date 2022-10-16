@@ -1,19 +1,18 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/shareable_components/common_search_bar.dart';
+import 'package:bookingapp/src/core/shareable_components/remove_focus.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:bookingapp/src/features/booking/presentation/components/map_and_list_view.dart';
-import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_state.dart';
+import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/room_booking_screen.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/myTrips/hotel_list_view.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/filter_bar_ui.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/time_date_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/shareable_components/common_search_bar.dart';
-import '../../../../../core/shareable_components/remove_focuse.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../data/model/filter_model.dart';
-import '../../../domain/entities/hotel_list_data.dart';
-import '../../cubit/hotels/hotels_cubit.dart';
-import '../../widget/hotel_booking/filter_bar_UI.dart';
-import '../../widget/hotel_booking/time_date_view.dart';
-import '../myTrips/hotel_list_view.dart';
 
 class HotelHomeScreen extends StatefulWidget {
   const HotelHomeScreen({super.key});
@@ -22,8 +21,7 @@ class HotelHomeScreen extends StatefulWidget {
   _HotelHomeScreenState createState() => _HotelHomeScreenState();
 }
 
-class _HotelHomeScreenState extends State<HotelHomeScreen>
-    with TickerProviderStateMixin {
+class _HotelHomeScreenState extends State<HotelHomeScreen> with TickerProviderStateMixin {
   late AnimationController animationController;
   late AnimationController _animationController;
   var hotelList = HotelListData.hotelList;
@@ -34,23 +32,21 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   DateTime endDate = DateTime.now().add(const Duration(days: 5));
   bool _isShowMap = false;
 
-  final searchBarHieght = 158.0;
-  final filterBarHieght = 52.0;
+  final searchBarHeight = 158.0;
+  final filterBarHeight = 52.0;
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 1000), vsync: this);
-    _animationController = AnimationController(
-        duration: const Duration(milliseconds: 0), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(milliseconds: 1000), vsync: this);
+    _animationController =
+        AnimationController(duration: const Duration(milliseconds: 0), vsync: this);
     scrollController.addListener(() {
       if (scrollController.offset <= 0) {
         _animationController.animateTo(0.0);
-      } else if (scrollController.offset > 0.0 &&
-          scrollController.offset < searchBarHieght) {
-        // we need around searchBarHieght scrolling values in 0.0 to 1.0
-        _animationController
-            .animateTo((scrollController.offset / searchBarHieght));
+      } else if (scrollController.offset > 0.0 && scrollController.offset < searchBarHeight) {
+        // we need around searchBarHeight scrolling values in 0.0 to 1.0
+        _animationController.animateTo((scrollController.offset / searchBarHeight));
       } else {
         _animationController.animateTo(1.0);
       }
@@ -74,7 +70,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     return Scaffold(
       body: Stack(
         children: <Widget>[
-          RemoveFocuse(
+          RemoveFocus(
             onClick: () {
               FocusScope.of(context).requestFocus(FocusNode());
             },
@@ -93,8 +89,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     : Expanded(
                         child: Stack(
                           children: <Widget>[
-                            BlocBuilder<HotelsCubit, HotelsState>(
-                                builder: (context, state) {
+                            BlocBuilder<HotelsCubit, HotelsState>(builder: (context, state) {
                               if (state is HotelsComplete) {
                                 final hotelList = state.hotels;
                                 return ListView.builder(
@@ -105,14 +100,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                   ),
                                   scrollDirection: Axis.vertical,
                                   itemBuilder: (context, index) {
-                                    var count = hotelList.length > 10
-                                        ? 10
-                                        : hotelList.length;
-                                    var animation = Tween(begin: 0.0, end: 1.0)
-                                        .animate(CurvedAnimation(
+                                    var count = hotelList.length > 10 ? 10 : hotelList.length;
+                                    var animation = Tween(begin: 0.0, end: 1.0).animate(
+                                        CurvedAnimation(
                                             parent: animationController,
-                                            curve: Interval(
-                                                (1 / count) * index, 1.0,
+                                            curve: Interval((1 / count) * index, 1.0,
                                                 curve: Curves.fastOutSlowIn)));
                                     animationController.forward();
                                     return HotelListView(
@@ -120,8 +112,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) =>
-                                                RoomBookingScreen(
+                                            builder: (context) => RoomBookingScreen(
                                               hotelName: hotelList[index].name,
                                             ),
                                           ),
@@ -142,15 +133,13 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               animation: _animationController,
                               builder: (BuildContext context, Widget? child) {
                                 return Positioned(
-                                  top: -searchBarHieght *
-                                      (_animationController.value),
+                                  top: -searchBarHeight * (_animationController.value),
                                   left: 0,
                                   right: 0,
                                   child: Column(
                                     children: <Widget>[
                                       Container(
-                                        color: Theme.of(context)
-                                            .scaffoldBackgroundColor,
+                                        color: Theme.of(context).scaffoldBackgroundColor,
                                         child: Column(
                                           children: <Widget>[
                                             //hotel search view
@@ -185,8 +174,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding:
-                  const EdgeInsets.only(right: 8, top: 8, bottom: 8, left: 8),
+              padding: const EdgeInsets.only(right: 8, top: 8, bottom: 8, left: 8),
               child: CommonCard(
                 radius: 36,
                 child: CommonSearchBar(
@@ -194,8 +182,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   ishsow: false,
                   text: "Hurghada...",
                   onChanged: (String txt) {
-                    BlocProvider.of<HotelsCubit>(context)
-                        .getFilters(FilterModel(name: txt));
+                    BlocProvider.of<HotelsCubit>(context).getFilters(FilterModel(name: txt));
                   },
                 ),
               ),
@@ -223,8 +210,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   Widget _getAppBarUI() {
     return Padding(
-      padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top, left: 8, right: 8),
+      padding: EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 8, right: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.end,
@@ -290,9 +276,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                     },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Icon(_isShowMap
-                          ? Icons.sort
-                          : FontAwesomeIcons.mapLocationDot),
+                      child: Icon(_isShowMap ? Icons.sort : FontAwesomeIcons.mapLocationDot),
                     ),
                   ),
                 ),

@@ -1,16 +1,17 @@
+import 'package:bookingapp/src/core/error/failures.dart';
+import 'package:bookingapp/src/core/usecases/usecase.dart';
 import 'package:bookingapp/src/features/search_explore/domain/entities/facilities_entity.dart';
 import 'package:bookingapp/src/features/search_explore/domain/use_cases/get_facilities_use_case.dart';
 import 'package:dartz/dartz.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/error/failures.dart';
-import '../../../../../core/usecases/usecase.dart';
-import 'facilities_state.dart';
+part 'facilities_state.dart';
 
 class FacilitiesCubit extends Cubit<FacilitiesState> {
   final GetFacilitiesUseCase getFacilitiesUseCase;
 
-  FacilitiesCubit({required this.getFacilitiesUseCase}) : super(FacilitiesInitial()){
+  FacilitiesCubit({required this.getFacilitiesUseCase}) : super(FacilitiesInitial()) {
     getFacilities();
   }
 

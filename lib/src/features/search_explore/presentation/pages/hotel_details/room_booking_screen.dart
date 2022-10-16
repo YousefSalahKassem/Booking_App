@@ -1,26 +1,25 @@
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/room_book_view.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class RoomBookingScreen extends StatefulWidget {
   final String hotelName;
 
-  const RoomBookingScreen({Key? key, required this.hotelName})
-      : super(key: key);
+  const RoomBookingScreen({Key? key, required this.hotelName}) : super(key: key);
+
   @override
   _RoomBookingScreenState createState() => _RoomBookingScreenState();
 }
 
-class _RoomBookingScreenState extends State<RoomBookingScreen>
-    with TickerProviderStateMixin {
+class _RoomBookingScreenState extends State<RoomBookingScreen> with TickerProviderStateMixin {
   List<HotelListData> romeList = HotelListData.romeList;
   late AnimationController animationController;
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -42,14 +41,12 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
               itemCount: romeList.length,
               itemBuilder: (context, index) {
                 var count = romeList.length > 10 ? 10 : romeList.length;
-                var animation = Tween(begin: 0.0, end: 1.0).animate(
-                    CurvedAnimation(
-                        parent: animationController,
-                        curve: Interval((1 / count) * index, 1.0,
-                            curve: Curves.fastOutSlowIn)));
+                var animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+                    parent: animationController,
+                    curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
                 animationController.forward();
                 //room book view and room data
-                return RoomeBookView(
+                return RoomBookView(
                   roomData: romeList[index],
                   animation: animation,
                   animationController: animationController,
@@ -64,11 +61,8 @@ class _RoomBookingScreenState extends State<RoomBookingScreen>
 
   Widget getAppBarUI() {
     return Padding(
-      padding: EdgeInsets.only(
-          top: MediaQuery.of(context).padding.top,
-          left: 16,
-          right: 16,
-          bottom: 16),
+      padding:
+          EdgeInsets.only(top: MediaQuery.of(context).padding.top, left: 16, right: 16, bottom: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: <Widget>[

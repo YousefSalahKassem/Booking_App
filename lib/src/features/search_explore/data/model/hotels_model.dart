@@ -3,7 +3,7 @@ import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_en
 
 import 'facilities_model.dart';
 
-class HotelsModel extends HotelsEntity{
+class HotelsModel extends HotelsEntity {
   HotelsModel({
     required super.id,
     required super.name,
@@ -26,7 +26,8 @@ class HotelsModel extends HotelsEntity{
       latitude: json["latitude"],
       longitude: json["longitude"],
       images: List<HotelImages>.from(json["hotel_images"].map((x) => HotelImages.fromJson(x))),
-      facilities: List<HotelFacilityModel>.from(json[filterFacilities].map((x) => HotelFacilityModel.fromJson(x))),
+      facilities: List<HotelFacilityModel>.from(
+          json[filterFacilities].map((x) => HotelFacilityModel.fromJson(x))),
     );
   }
 }

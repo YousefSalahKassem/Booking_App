@@ -1,12 +1,10 @@
+import 'package:bookingapp/src/core/utils/helper.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/room_data.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/calendar_pop_up_view.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/room_pop_up_view.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../../core/utils/helper.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/room_data.dart';
-import 'calendar_pop_up_view.dart';
-
 
 class TimeDateView extends StatefulWidget {
   const TimeDateView({super.key});
@@ -27,9 +25,13 @@ class _TimeDateViewState extends State<TimeDateView> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          _getDateRoomUi("choose date",
-              "${DateFormat("dd, MMM", ).format(startDate)} - ${DateFormat("dd, MMM", ).format(endDate)}",
-              () {
+          _getDateRoomUi(
+              "choose date",
+              "${DateFormat(
+                "dd, MMM",
+              ).format(startDate)} - ${DateFormat(
+                "dd, MMM",
+              ).format(endDate)}", () {
             _showDemoDialog(context);
           }),
           Container(
@@ -37,8 +39,7 @@ class _TimeDateViewState extends State<TimeDateView> {
             height: 42,
             color: Colors.grey.withOpacity(0.8),
           ),
-          _getDateRoomUi("number of rooms",
-              Helper.getRoomText(_roomData), () {
+          _getDateRoomUi("number of rooms", Helper.getRoomText(_roomData), () {
             _showPopUp();
           }),
         ],
@@ -58,8 +59,7 @@ class _TimeDateViewState extends State<TimeDateView> {
               ),
               onTap: onTap,
               child: Padding(
-                padding:
-                    const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
+                padding: const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,9 +67,7 @@ class _TimeDateViewState extends State<TimeDateView> {
                     Text(
                       title,
                       // "Choose date",
-                      style: TextStyles(context)
-                          .getDescriptionStyle()
-                          .copyWith(fontSize: 16),
+                      style: TextStyles(context).getDescriptionStyle().copyWith(fontSize: 16),
                     ),
                     const SizedBox(
                       height: 8,
@@ -92,12 +90,11 @@ class _TimeDateViewState extends State<TimeDateView> {
   void _showDemoDialog(BuildContext context) {
     showDialog(
       context: context,
-      //custome calendar view
+      //custom calendar view
       builder: (BuildContext context) => CalendarPopupView(
         barrierDismissible: true,
         minimumDate: DateTime.now(),
-        maximumDate: DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
+        maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
         initialEndDate: endDate,
         initialStartDate: startDate,
         onApplyClick: (DateTime startData, DateTime endData) {
@@ -117,7 +114,7 @@ class _TimeDateViewState extends State<TimeDateView> {
       builder: (BuildContext context) => RoomPopupView(
         roomData: _roomData,
         barrierDismissible: true,
-        onChnage: (data) {
+        onChange: (data) {
           setState(() {
             _roomData = data;
           });

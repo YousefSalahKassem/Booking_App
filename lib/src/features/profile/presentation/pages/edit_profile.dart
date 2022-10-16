@@ -1,5 +1,6 @@
-import 'dart:io';
 import 'dart:async';
+import 'dart:io';
+
 import 'package:bookingapp/injection_container.dart' as di;
 import 'package:bookingapp/src/core/utils/app_strings.dart';
 import 'package:bookingapp/src/core/utils/asset_manager.dart';

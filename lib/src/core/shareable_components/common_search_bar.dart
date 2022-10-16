@@ -1,7 +1,6 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../../config/themes/app_themes.dart';
-import '../utils/text_styles.dart';
 
 class CommonSearchBar extends StatelessWidget {
   final String? text;
@@ -10,6 +9,7 @@ class CommonSearchBar extends StatelessWidget {
   final double height;
   final IconData? iconData;
   final ValueChanged<String>? onChanged;
+
   const CommonSearchBar(
       {Key? key,
       this.text,
@@ -20,6 +20,7 @@ class CommonSearchBar extends StatelessWidget {
       this.onChanged,
       this.textEditingController})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,16 +49,14 @@ class CommonSearchBar extends StatelessWidget {
                   enabled: enabled,
                   onChanged: onChanged,
                   cursorColor: Theme.of(context).primaryColor,
-                  decoration:  InputDecoration(
+                  decoration: InputDecoration(
                       contentPadding: const EdgeInsets.all(0),
                       errorText: null,
                       border: InputBorder.none,
                       hintText: text,
-                      hintStyle: TextStyles(context)
-                          .getDescriptionStyle()
-                          .copyWith(
-                              color: AppTheme.secondaryTextColor(ThemeMode.system==ThemeMode.light),
-                              fontSize: 18)),
+                      hintStyle: TextStyles(context).getDescriptionStyle().copyWith(
+                          color: AppTheme.secondaryTextColor(ThemeMode.system == ThemeMode.light),
+                          fontSize: 18)),
                 ),
               ),
             ],

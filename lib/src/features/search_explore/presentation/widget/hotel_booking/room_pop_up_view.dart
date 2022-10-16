@@ -1,33 +1,33 @@
+import 'package:bookingapp/src/core/shareable_components/common_button.dart';
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/room_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shareable_components/common_button.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/room_data.dart';
-
 class RoomPopupView extends StatefulWidget {
-  final Function(RoomData) onChnage;
+  final Function(RoomData) onChange;
   final bool barrierDismissible;
   final RoomData roomData;
 
   const RoomPopupView({
     Key? key,
     required this.barrierDismissible,
-    required this.onChnage,
+    required this.onChange,
     required this.roomData,
   }) : super(key: key);
+
   @override
   _RoomPopupViewState createState() => _RoomPopupViewState();
 }
 
-class _RoomPopupViewState extends State<RoomPopupView>
-    with TickerProviderStateMixin {
+class _RoomPopupViewState extends State<RoomPopupView> with TickerProviderStateMixin {
   PopupTextType popupTextType = PopupTextType.no;
   late AnimationController animationController;
 
   DateTime? startDate;
   DateTime? endDate;
   RoomData? _roomData;
+
   @override
   void initState() {
     animationController =
@@ -79,20 +79,16 @@ class _RoomPopupViewState extends State<RoomPopupView>
                         const Divider(
                           height: 1,
                         ),
-                        getRowView("room number",
-                            _roomData!.numberRoom, PopupTextType.no),
-                        getRowView("people",
-                            _roomData!.people, PopupTextType.ad),
+                        getRowView("room number", _roomData!.numberRoom, PopupTextType.no),
+                        getRowView("people", _roomData!.people, PopupTextType.ad),
                         // getRowView("Children", " (0-17)", ch, PopupTextType.ch),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16, right: 16, bottom: 16, top: 24),
+                          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 24),
                           child: CommonButton(
-                            buttonText:
-                                "Apply",
+                            buttonText: "Apply",
                             onTap: () {
                               try {
-                                widget.onChnage(
+                                widget.onChange(
                                   _roomData!,
                                 );
                                 Navigator.pop(context);
@@ -141,9 +137,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                                   Text(
                                     txt,
                                     textAlign: TextAlign.left,
-                                    style: TextStyles(context)
-                                        .getBoldStyle()
-                                        .copyWith(
+                                    style: TextStyles(context).getBoldStyle().copyWith(
                                           fontSize: 16,
                                         ),
                                   ),
@@ -159,8 +153,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                                 setState(() {
                                   if (popupTextType == PopupTextType.no) {
                                     _roomData!.numberRoom += 1;
-                                  } else if (popupTextType ==
-                                      PopupTextType.ad) {
+                                  } else if (popupTextType == PopupTextType.ad) {
                                     _roomData!.people += 1;
                                   }
                                 });
@@ -177,9 +170,7 @@ class _RoomPopupViewState extends State<RoomPopupView>
                           ),
                           Text(
                             "  $count  ",
-                            style: TextStyles(context)
-                                .getRegularStyle()
-                                .copyWith(),
+                            style: TextStyles(context).getRegularStyle().copyWith(),
                           ),
                           Material(
                             color: Colors.transparent,

@@ -1,11 +1,4 @@
-import 'dart:convert';
-
-import 'package:bookingapp/src/core/error/exceptions.dart';
 import 'package:bookingapp/src/core/utils/app_strings.dart';
-import 'package:bookingapp/src/features/auth/data/models/login_model.dart';
-import 'package:bookingapp/src/features/auth/data/models/status_model.dart';
-import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
-import 'package:bookingapp/src/features/booking/domain/entity/booking_users.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

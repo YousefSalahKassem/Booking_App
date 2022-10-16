@@ -1,7 +1,6 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../../config/themes/app_themes.dart';
-import '../utils/text_styles.dart';
 
 class CommonTextFieldView extends StatelessWidget {
   final String? titleText;
@@ -35,8 +34,7 @@ class CommonTextFieldView extends StatelessWidget {
         children: [
           if (isAllowTopTitleView && titleText != '')
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
               child: Text(
                 titleText ?? "",
                 style: TextStyles(context).getDescriptionStyle(),
@@ -68,8 +66,7 @@ class CommonTextFieldView extends StatelessWidget {
                       errorText: null,
                       border: InputBorder.none,
                       hintText: hintText,
-                      hintStyle:
-                          TextStyle(color: Theme.of(context).disabledColor),
+                      hintStyle: TextStyle(color: Theme.of(context).disabledColor),
                     ),
                     keyboardType: keyboardType,
                   ),
@@ -79,12 +76,11 @@ class CommonTextFieldView extends StatelessWidget {
           ),
           if (errorText != null && errorText != '')
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
               child: Text(
                 errorText ?? "",
                 style: TextStyles(context).getDescriptionStyle().copyWith(
-                      color: AppTheme.redErrorColor(ThemeMode.system==ThemeMode.light),
+                      color: AppTheme.redErrorColor(ThemeMode.system == ThemeMode.light),
                     ),
               ),
             )

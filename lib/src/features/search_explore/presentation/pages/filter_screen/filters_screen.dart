@@ -1,15 +1,14 @@
+import 'package:bookingapp/src/core/shareable_components/common_appbar_view.dart';
+import 'package:bookingapp/src/core/shareable_components/common_button.dart';
+import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/popular_filter_list.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/facilities/facilities_cubit.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/filter_screen/range_slider_view.dart';
 import 'package:bookingapp/src/features/search_explore/presentation/pages/filter_screen/slider_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/shareable_components/common_appbar_view.dart';
-import '../../../../../core/shareable_components/common_button.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../domain/entities/popular_filter_list.dart';
-import 'range_slider_view.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key});
@@ -19,10 +18,8 @@ class FiltersScreen extends StatefulWidget {
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
-  List<PopularFilterListData> popularFilterListData =
-      PopularFilterListData.popularFList;
-  List<PopularFilterListData> accomodationListData =
-      PopularFilterListData.accomodationList;
+  List<PopularFilterListData> popularFilterListData = PopularFilterListData.popularFList;
+  List<PopularFilterListData> accommodationListData = PopularFilterListData.accommodationList;
 
   RangeValues _values = const RangeValues(1000, 2000);
   double distValue = 50.0;
@@ -35,7 +32,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          CommonAppbarView(
+          CommonAppBarView(
             iconData: Icons.close,
             onBackClick: () {
               Navigator.pop(context);
@@ -75,19 +72,16 @@ class _FiltersScreenState extends State<FiltersScreen> {
           ),
           Padding(
             padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: 16 + MediaQuery.of(context).padding.bottom,
-                top: 8),
+                left: 16, right: 16, bottom: 16 + MediaQuery.of(context).padding.bottom, top: 8),
             child: CommonButton(
                 backgroundColor: AppColors.primary,
                 buttonText: "Apply",
                 onTap: () {
                   Navigator.pop(context);
                   HotelsCubit.get(context).getFilters(FilterModel(
-                      minPrice: _values.start.toString(),
-                      maxPrice: _values.end.toString(),
-                      distance: distValue.toString(),
+                    minPrice: _values.start.toString(),
+                    maxPrice: _values.end.toString(),
+                    distance: distValue.toString(),
                   ));
                 }),
           )
@@ -102,8 +96,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
             "type of accommodation",
             textAlign: TextAlign.left,
@@ -116,7 +109,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         Padding(
           padding: const EdgeInsets.only(right: 16, left: 16),
           child: Column(
-            children: getAccomodationListUI(),
+            children: getAccommodationListUI(),
           ),
         ),
         const SizedBox(
@@ -126,10 +119,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
     );
   }
 
-  List<Widget> getAccomodationListUI() {
+  List<Widget> getAccommodationListUI() {
     List<Widget> noList = [];
-    for (var i = 0; i < accomodationListData.length; i++) {
-      final date = accomodationListData[i];
+    for (var i = 0; i < accommodationListData.length; i++) {
+      final date = accommodationListData[i];
       noList.add(
         Material(
           color: Colors.transparent,
@@ -146,14 +139,12 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 children: <Widget>[
                   Expanded(
                     child: Text(
-                     date.titleTxt,
+                      date.titleTxt,
                       // style: TextStyle(color: Colors.white),
                     ),
                   ),
                   CupertinoSwitch(
-                    activeColor: date.isSelected
-                        ? AppColors.primary
-                      : Colors.grey.withOpacity(0.6),
+                    activeColor: date.isSelected ? AppColors.primary : Colors.grey.withOpacity(0.6),
                     onChanged: (value) {
                       setState(() {
                         checkAppPosition(i);
@@ -178,33 +169,32 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   void checkAppPosition(int index) {
     if (index == 0) {
-      if (accomodationListData[0].isSelected) {
-        for (var d in accomodationListData) {
+      if (accommodationListData[0].isSelected) {
+        for (var d in accommodationListData) {
           d.isSelected = false;
         }
       } else {
-        for (var d in accomodationListData) {
+        for (var d in accommodationListData) {
           d.isSelected = true;
         }
       }
     } else {
-      accomodationListData[index].isSelected =
-          !accomodationListData[index].isSelected;
+      accommodationListData[index].isSelected = !accommodationListData[index].isSelected;
 
       var count = 0;
-      for (var i = 0; i < accomodationListData.length; i++) {
+      for (var i = 0; i < accommodationListData.length; i++) {
         if (i != 0) {
-          var data = accomodationListData[i];
+          var data = accommodationListData[i];
           if (data.isSelected) {
             count += 1;
           }
         }
       }
 
-      if (count == accomodationListData.length - 1) {
-        accomodationListData[0].isSelected = true;
+      if (count == accommodationListData.length - 1) {
+        accommodationListData[0].isSelected = true;
       } else {
-        accomodationListData[0].isSelected = false;
+        accommodationListData[0].isSelected = false;
       }
     }
   }
@@ -215,8 +205,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
             "Distance from city",
             textAlign: TextAlign.left,
@@ -228,7 +217,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         ),
         SliderView(
           distValue: distValue,
-          onChnagedistValue: (value) {
+          onChangeDistValue: (value) {
             distValue = value;
           },
         ),
@@ -245,8 +234,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Padding(
-          padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 8),
           child: Text(
             "Popular Filter",
             textAlign: TextAlign.left,
@@ -271,13 +259,13 @@ class _FiltersScreenState extends State<FiltersScreen> {
 
   List<Widget> getPList() {
     List<Widget> noList = [];
-    var cout = 0;
+    var count = 0;
     const columCount = 4;
     for (var i = 0; i < FacilitiesCubit.get(context).facilitiesList.length / columCount; i++) {
       List<Widget> listUI = [];
       for (var i = 0; i < columCount; i++) {
         try {
-          final date = popularFilterListData[cout];
+          final date = popularFilterListData[count];
           listUI.add(
             Expanded(
               child: Row(
@@ -289,19 +277,17 @@ class _FiltersScreenState extends State<FiltersScreen> {
                       onTap: () {
                         setState(() {
                           date.isSelected = !date.isSelected;
-                          });
+                        });
                       },
                       child: Padding(
                         padding: const EdgeInsets.only(top: 20, bottom: 8),
                         child: Row(
                           children: <Widget>[
                             Icon(
-                              date.isSelected
-                                  ? Icons.check_box
-                                  : Icons.check_box_outline_blank,
+                              date.isSelected ? Icons.check_box : Icons.check_box_outline_blank,
                               color: date.isSelected
                                   ? AppColors.primary
-                            : Colors.grey.withOpacity(0.6),
+                                  : Colors.grey.withOpacity(0.6),
                             ),
                             const SizedBox(
                               width: 4,
@@ -321,7 +307,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               ),
             ),
           );
-          cout += 1;
+          count += 1;
         } catch (e) {
           debugPrint(e.toString());
         }
@@ -354,7 +340,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
         ),
         RangeSliderView(
           values: _values,
-          onChnageRangeValues: (values) {
+          onChangeRangeValues: (values) {
             _values = values;
           },
         ),

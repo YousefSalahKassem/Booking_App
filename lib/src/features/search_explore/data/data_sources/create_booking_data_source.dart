@@ -1,8 +1,7 @@
+import 'package:bookingapp/src/core/api/api_consumer.dart';
 import 'package:bookingapp/src/core/api/endpoints.dart';
 import 'package:bookingapp/src/features/auth/data/models/status_model.dart';
 import 'package:bookingapp/src/features/search_explore/data/model/create_book_model.dart';
-
-import '../../../../core/api/api_consumer.dart';
 
 abstract class CreateBookingDataSource {
   Future<StatusModel> createBooking(CreateBookingModel bookingModel);

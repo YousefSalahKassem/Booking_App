@@ -1,9 +1,8 @@
-import 'package:equatable/equatable.dart';
-
-import '../../../domain/entities/hotels_entity.dart';
+part of 'hotels_cubit.dart';
 
 abstract class HotelsState extends Equatable {
   const HotelsState();
+
   @override
   List<Object> get props => [];
 }
@@ -29,4 +28,3 @@ class HotelsError extends HotelsState {
   @override
   List<Object> get props => [msg];
 }
-

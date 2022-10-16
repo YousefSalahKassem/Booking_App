@@ -1,5 +1,4 @@
-import 'package:bookingapp/src/features/search_explore/domain/entities/facilities_entity.dart';
-import 'package:equatable/equatable.dart';
+part of 'facilities_cubit.dart';
 
 abstract class FacilitiesState extends Equatable {
   const FacilitiesState();

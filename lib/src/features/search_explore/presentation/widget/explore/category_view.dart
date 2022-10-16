@@ -1,8 +1,7 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../config/themes/app_themes.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class CategoryView extends StatelessWidget {
   final VoidCallback callback;
@@ -12,11 +11,12 @@ class CategoryView extends StatelessWidget {
 
   const CategoryView(
       {Key? key,
-        required this.popularList,
-        required this.animationController,
-        required this.animation,
-        required this.callback})
+      required this.popularList,
+      required this.animationController,
+      required this.animation,
+      required this.callback})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
@@ -25,8 +25,7 @@ class CategoryView extends StatelessWidget {
         return FadeTransition(
           opacity: animation,
           child: Transform(
-            transform: Matrix4.translationValues(
-                100 * (1.0 - animation.value), 0.0, 0.0),
+            transform: Matrix4.translationValues(100 * (1.0 - animation.value), 0.0, 0.0),
             child: child,
           ),
         );
@@ -36,12 +35,10 @@ class CategoryView extends StatelessWidget {
           callback();
         },
         child: Padding(
-          padding:
-          const EdgeInsets.only(left: 16, bottom: 24, top: 16, right: 8),
+          padding: const EdgeInsets.only(left: 16, bottom: 24, top: 16, right: 8),
           child: Card(
             elevation: 8,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16.0)),
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16.0)),
             child: Stack(
               children: <Widget>[
                 AspectRatio(
@@ -64,23 +61,23 @@ class CategoryView extends StatelessWidget {
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
                               colors: [
-                                AppTheme.secondaryTextColor(ThemeMode.system==ThemeMode.light).withOpacity(0.4),
-                                AppTheme.secondaryTextColor(ThemeMode.system==ThemeMode.light).withOpacity(0.0),
+                                AppTheme.secondaryTextColor(ThemeMode.system == ThemeMode.light)
+                                    .withOpacity(0.4),
+                                AppTheme.secondaryTextColor(ThemeMode.system == ThemeMode.light)
+                                    .withOpacity(0.0),
                               ],
                               begin: Alignment.topCenter,
                               end: Alignment.bottomCenter,
                             ),
                           ),
                           child: Padding(
-                            padding: const EdgeInsets.only(
-                                left: 8, bottom: 32, top: 8, right: 8),
+                            padding: const EdgeInsets.only(left: 8, bottom: 32, top: 8, right: 8),
                             child: Text(
                               popularList.titleTxt,
-                              style:
-                              TextStyles(context).getBoldStyle().copyWith(
-                                fontSize: 24,
-                                color: AppTheme.whiteColor,
-                              ),
+                              style: TextStyles(context).getBoldStyle().copyWith(
+                                    fontSize: 24,
+                                    color: AppTheme.whiteColor,
+                                  ),
                             ),
                           ),
                         ),

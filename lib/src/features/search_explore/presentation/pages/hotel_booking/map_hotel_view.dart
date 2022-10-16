@@ -1,8 +1,8 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/utils/helper.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_entity.dart';
 import 'package:flutter/material.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/utils/helper.dart';
-import '../../../../../core/utils/text_styles.dart';
 
 class MapHotelListView extends StatelessWidget {
   final VoidCallback callback;

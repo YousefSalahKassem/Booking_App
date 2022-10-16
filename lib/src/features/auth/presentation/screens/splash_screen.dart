@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:bookingapp/src/config/animations/animations.dart';
 import 'package:bookingapp/src/config/routes/app_routes.dart';
 import 'package:bookingapp/src/config/themes/app_styles.dart';
 import 'package:bookingapp/src/core/utils/asset_manager.dart';

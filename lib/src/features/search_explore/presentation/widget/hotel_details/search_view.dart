@@ -1,10 +1,9 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/shareable_components/list_cell_animation_view.dart';
+import 'package:bookingapp/src/core/utils/helper.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/shareable_components/list_cell_animation_view.dart';
-import '../../../../../core/utils/helper.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class SearchView extends StatelessWidget {
   final HotelListData hotelInfo;
@@ -13,9 +12,9 @@ class SearchView extends StatelessWidget {
 
   const SearchView(
       {Key? key,
-        required this.hotelInfo,
-        required this.animationController,
-        required this.animation})
+      required this.hotelInfo,
+      required this.animationController,
+      required this.animation})
       : super(key: key);
 
   @override
@@ -54,14 +53,11 @@ class SearchView extends StatelessWidget {
                           Text(
                             Helper.getRoomText(hotelInfo.roomData!),
                             // Helper.getRoomText(hotelInfo.roomData!),
-                            style:
-                            TextStyles(context).getRegularStyle().copyWith(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 12,
-                              color: Theme.of(context)
-                                  .disabledColor
-                                  .withOpacity(0.6),
-                            ),
+                            style: TextStyles(context).getRegularStyle().copyWith(
+                                  fontWeight: FontWeight.w100,
+                                  fontSize: 12,
+                                  color: Theme.of(context).disabledColor.withOpacity(0.6),
+                                ),
                           ),
                         ],
                       ),

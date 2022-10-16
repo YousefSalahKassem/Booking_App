@@ -1,11 +1,10 @@
+import 'package:bookingapp/src/core/shareable_components/common_button.dart';
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/shareable_components/remove_focus.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_booking/custom_calendar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
-import '../../../../../core/shareable_components/common_button.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/shareable_components/remove_focuse.dart';
-import '../../../../../core/utils/text_styles.dart';
-import 'custom_calendar.dart';
 
 class CalendarPopupView extends StatefulWidget {
   final DateTime minimumDate;
@@ -26,12 +25,12 @@ class CalendarPopupView extends StatefulWidget {
     required this.minimumDate,
     required this.maximumDate,
   }) : super(key: key);
+
   @override
   _CalendarPopupViewState createState() => _CalendarPopupViewState();
 }
 
-class _CalendarPopupViewState extends State<CalendarPopupView>
-    with TickerProviderStateMixin {
+class _CalendarPopupViewState extends State<CalendarPopupView> with TickerProviderStateMixin {
   late AnimationController animationController;
   DateTime? startDate;
   DateTime? endDate;
@@ -62,7 +61,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
           return AnimatedOpacity(
             duration: const Duration(milliseconds: 100),
             opacity: animationController.value,
-            child: RemoveFocuse(
+            child: RemoveFocus(
               onClick: () {
                 if (widget.barrierDismissible) Navigator.pop(context);
               },
@@ -82,9 +81,8 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                               "from",
                               startDate != null
                                   ? DateFormat(
-                                          "EEE, dd MMM",
-                                          )
-                                      .format(startDate!)
+                                      "EEE, dd MMM",
+                                    ).format(startDate!)
                                   : "--/-- ",
                             ),
                             Container(
@@ -96,9 +94,8 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                               "to",
                               endDate != null
                                   ? DateFormat(
-                                          "EEE, dd MMM",
-                                          )
-                                      .format(endDate!)
+                                      "EEE, dd MMM",
+                                    ).format(endDate!)
                                   : "--/-- ",
                             ),
                           ],
@@ -111,8 +108,7 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                           maximumDate: widget.maximumDate,
                           initialEndDate: widget.initialEndDate,
                           initialStartDate: widget.initialStartDate,
-                          startEndDateChange:
-                              (DateTime startDateData, DateTime endDateData) {
+                          startEndDateChange: (DateTime startDateData, DateTime endDateData) {
                             setState(() {
                               startDate = startDateData;
                               endDate = endDateData;
@@ -120,10 +116,9 @@ class _CalendarPopupViewState extends State<CalendarPopupView>
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 16, right: 16, bottom: 16, top: 8),
+                          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16, top: 8),
                           child: CommonButton(
-                            buttonText:"Apply",
+                            buttonText: "Apply",
                             onTap: () {
                               try {
                                 widget.onApplyClick(startDate!, endDate!);

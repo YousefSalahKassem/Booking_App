@@ -1,9 +1,8 @@
 import 'package:bookingapp/injection_container.dart' as di;
-import 'package:bookingapp/src/features/booking/domain/usecases/get_all_booking_usecase.dart';
 import 'package:bookingapp/src/features/booking/presentation/controller/booking_cubit.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-void main () async {
+void main() async {
   await di.init();
   final cubit = AllBookingCubit(getAllBookingsUseCase: di.sl());
   test("get all upcoming booking", () async {

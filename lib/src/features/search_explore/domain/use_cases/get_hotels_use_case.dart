@@ -1,9 +1,8 @@
+import 'package:bookingapp/src/core/error/failures.dart';
+import 'package:bookingapp/src/core/usecases/usecase.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotels_entity.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/hotels_repository.dart';
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/error/failures.dart';
-import '../../../../core/usecases/usecase.dart';
-import '../entities/hotels_entity.dart';
-import '../repository/hotels_repository.dart';
 
 class GetHotelsUseCase implements UseCase<List<HotelsEntity>, NoParams> {
   final HotelsRepository hotelsRepository;

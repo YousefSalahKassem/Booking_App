@@ -1,6 +1,6 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/themes/app_themes.dart';
-import '../../../../../core/utils/text_styles.dart';
 
 class TabButtonUI extends StatelessWidget {
   final IconData icon;
@@ -9,17 +9,12 @@ class TabButtonUI extends StatelessWidget {
   final String text;
 
   const TabButtonUI(
-      {Key? key,
-        this.onTap,
-        required this.icon,
-        required this.isSelected,
-        required this.text})
+      {Key? key, this.onTap, required this.icon, required this.isSelected, required this.text})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final color =
-    isSelected ? AppTheme.primaryColor : AppTheme.secondaryTextColor;
+    final color = isSelected ? AppTheme.primaryColor : AppTheme.secondaryTextColor;
     return Expanded(
       child: Material(
         color: Colors.transparent,
@@ -38,7 +33,7 @@ class TabButtonUI extends StatelessWidget {
                 child: Icon(
                   icon,
                   size: 26,
-                  color: color(ThemeMode.system==ThemeMode.light),
+                  color: color(ThemeMode.system == ThemeMode.light),
                 ),
               ),
               Padding(
@@ -48,8 +43,8 @@ class TabButtonUI extends StatelessWidget {
                   child: Text(
                     text,
                     style: TextStyles(context).getDescriptionStyle().copyWith(
-                      color: color(ThemeMode.system==ThemeMode.light),
-                    ),
+                          color: color(ThemeMode.system == ThemeMode.light),
+                        ),
                   ),
                 ),
               )

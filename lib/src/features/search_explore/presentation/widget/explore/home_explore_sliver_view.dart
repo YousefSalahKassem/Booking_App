@@ -1,10 +1,11 @@
 import 'dart:async';
+
+import 'package:bookingapp/src/config/themes/app_themes.dart';
 import 'package:bookingapp/src/core/utils/asset_manager.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/page_view_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../../../../../config/themes/app_themes.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/page_view_entity.dart';
 
 class HomeExploreSliderView extends StatefulWidget {
   final double opValue;
@@ -12,6 +13,7 @@ class HomeExploreSliderView extends StatefulWidget {
 
   const HomeExploreSliderView({Key? key, this.opValue = 0.0, required this.click})
       : super(key: key);
+
   @override
   _HomeExploreSliderViewState createState() => _HomeExploreSliderViewState();
 }

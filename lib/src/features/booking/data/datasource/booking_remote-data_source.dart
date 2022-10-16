@@ -25,10 +25,10 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
   @override
   Future<List<Booking>> createBooking(Booking booking) async {
     final response = await Dio().get(Endpoints.getBooking);
-    print(response.data);
+    debugPrint(response.data);
     if (response.statusCode == 200) {
-      return List<Booking>.from((response.data["results"] as List)
-          .map((e) => BookingModel.fromJson(e)));
+      return List<Booking>.from(
+          (response.data["results"] as List).map((e) => BookingModel.fromJson(e)));
     } else {
       throw const ServerException('Error');
     }
@@ -39,21 +39,18 @@ class BookingRemoteDataSourceImpl implements BookingRemoteDataSource {
     final response = await Dio().get(Endpoints.getBooking);
     debugPrint(response.data);
     if (response.statusCode == 200) {
-      return List<Booking>.from((response.data["results"] as List)
-          .map((e) => BookingModel.fromJson(e)));
+      return List<Booking>.from(
+          (response.data["results"] as List).map((e) => BookingModel.fromJson(e)));
     } else {
       throw const ServerException('Error');
     }
   }
 
   @override
-  Future<List<Booking>> getAllBookings( String type) async {
-    final response = await apiConsumer
-        .get(Endpoints.getBooking, queryParameters: {"type": type});
-   //debugPrint(response.data.toString());
-    return (response["data"]["data"] as List)
-        .map((e) => BookingModel.fromJson(e))
-        .toList();
+  Future<List<Booking>> getAllBookings(String type) async {
+    final response = await apiConsumer.get(Endpoints.getBooking, queryParameters: {"type": type});
+    //debugPrint(response.data.toString());
+    return (response["data"]["data"] as List).map((e) => BookingModel.fromJson(e)).toList();
   }
 
   @override

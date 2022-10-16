@@ -20,5 +20,4 @@ class FilterEntity {
     this.longitude,
     this.distance,
   });
-
 }

@@ -11,14 +11,14 @@ class MyGoogleMapUIView extends StatefulWidget {
 }
 
 class _MyGoogleMapUIViewState extends State<MyGoogleMapUIView> {
-  Completer<GoogleMapController> _controller = Completer();
+  final Completer<GoogleMapController> _controller = Completer();
 
   static const CameraPosition _kGooglePlex = CameraPosition(
     target: LatLng(27.049302, 33.900214),
     zoom: 14,
   );
 
-  List<Marker> _marker = [];
+  final List<Marker> _marker = [];
   final List<Marker> _list = const [
     Marker(
       markerId: MarkerId('1'),

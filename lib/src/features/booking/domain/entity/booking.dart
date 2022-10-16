@@ -1,7 +1,7 @@
 import 'package:bookingapp/src/features/booking/data/model/booking_hotel_model.dart';
 import 'package:bookingapp/src/features/booking/data/model/booking_user_model.dart';
 
-class Booking  {
+class Booking {
   final int id;
   final String userId;
   final String hotelId;
@@ -21,6 +21,4 @@ class Booking  {
     required this.user,
     required this.hotel,
   });
-
-
 }

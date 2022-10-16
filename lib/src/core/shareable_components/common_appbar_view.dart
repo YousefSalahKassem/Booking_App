@@ -1,18 +1,15 @@
 import 'package:bookingapp/src/core/utils/app_colors.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/themes/app_themes.dart';
-import '../utils/text_styles.dart';
-
-
-class CommonAppbarView extends StatelessWidget {
+class CommonAppBarView extends StatelessWidget {
   final double? topPadding;
   final Widget? backWidget;
   final String titleText;
   final VoidCallback? onBackClick;
   final IconData? iconData;
 
-  const CommonAppbarView({
+  const CommonAppBarView({
     Key? key,
     this.topPadding,
     this.onBackClick,

@@ -1,11 +1,10 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
-import '../../config/themes/app_themes.dart';
-import '../utils/text_styles.dart';
-
-
 class CustomDialog extends StatefulWidget {
-  const CustomDialog({super.key,
+  const CustomDialog({
+    super.key,
     required this.title,
     this.description = '',
     this.topWidget,
@@ -23,17 +22,16 @@ class CustomDialog extends StatefulWidget {
   final bool isVerical;
 
   @override
-  _CustomDialogState createState() => _CustomDialogState();
+  State<CustomDialog> createState() => _CustomDialogState();
 }
 
-class _CustomDialogState extends State<CustomDialog>
-    with TickerProviderStateMixin {
+class _CustomDialogState extends State<CustomDialog> with TickerProviderStateMixin {
   AnimationController? animationController;
 
   @override
   void initState() {
-    animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 480));
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 480));
     WidgetsBinding.instance.addPostFrameCallback((_) => _startAnimation());
     super.initState();
   }
@@ -76,7 +74,7 @@ class _CustomDialogState extends State<CustomDialog>
 
   Widget dialogContent(BuildContext context) {
     return Card(
-      color: AppTheme.backgroundColor(ThemeMode.system==ThemeMode.light),
+      color: AppTheme.backgroundColor(ThemeMode.system == ThemeMode.light),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16.0),
       ),
@@ -101,8 +99,7 @@ class _CustomDialogState extends State<CustomDialog>
                   if (widget.topWidget != null)
                     Padding(
                       padding: const EdgeInsets.only(top: 8),
-                      child: SizedBox(
-                          height: 60, child: Center(child: widget.topWidget)),
+                      child: SizedBox(height: 60, child: Center(child: widget.topWidget)),
                     ),
                   if (widget.title != '')
                     Padding(
@@ -143,9 +140,7 @@ class _CustomDialogState extends State<CustomDialog>
                             ? Text(
                                 widget.description,
                                 textAlign: TextAlign.center,
-                                style: TextStyles(context)
-                                    .getRegularStyle()
-                                    .copyWith(
+                                style: TextStyles(context).getRegularStyle().copyWith(
                                       fontSize: 14,
                                     ),
                               )
@@ -158,8 +153,7 @@ class _CustomDialogState extends State<CustomDialog>
                   height: 1,
                   color: Theme.of(context).dividerColor,
                 ),
-                if (widget.actionButtonList != null &&
-                    widget.actionButtonList!.isNotEmpty)
+                if (widget.actionButtonList != null && widget.actionButtonList!.isNotEmpty)
                   widget.actionButtonList!.length > 2 || widget.isVerical
                       ? Column(
                           children: getActionButtonsList(context),
@@ -253,8 +247,7 @@ class CustomDialogActionButton extends StatelessWidget {
 }
 
 class CustomTopIconView extends StatelessWidget {
-  const CustomTopIconView({Key? key, required this.topWidget, this.bgColor})
-      : super(key: key);
+  const CustomTopIconView({Key? key, required this.topWidget, this.bgColor}) : super(key: key);
 
   final Widget topWidget;
   final Color? bgColor;

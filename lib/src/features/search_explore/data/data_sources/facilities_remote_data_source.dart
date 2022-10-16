@@ -1,7 +1,6 @@
 import 'package:bookingapp/src/core/api/api_consumer.dart';
 import 'package:bookingapp/src/core/api/endpoints.dart';
-
-import '../model/facilities_model.dart';
+import 'package:bookingapp/src/features/search_explore/data/model/facilities_model.dart';
 
 abstract class FacilitiesRemoteDataSource {
   Future<List<FacilitiesModel>> getFacilities();

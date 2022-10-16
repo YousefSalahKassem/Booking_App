@@ -1,12 +1,11 @@
+import 'package:bookingapp/src/core/error/exceptions.dart';
 import 'package:bookingapp/src/core/error/failures.dart';
+import 'package:bookingapp/src/core/network/network_info.dart';
 import 'package:bookingapp/src/features/auth/domain/entities/status_entity.dart';
 import 'package:bookingapp/src/features/search_explore/data/data_sources/update_booking_data_source.dart';
 import 'package:bookingapp/src/features/search_explore/data/model/update_booking_model.dart';
+import 'package:bookingapp/src/features/search_explore/domain/repository/update_book_repository.dart';
 import 'package:dartz/dartz.dart';
-
-import '../../../../core/error/exceptions.dart';
-import '../../../../core/network/network_info.dart';
-import '../../domain/repository/update_book_repository.dart';
 
 class UpdateBookRepositoryImpl implements UpdateBookingRepository {
   final UpdateBookingDataSource updateBookingDataSource;
@@ -26,6 +25,4 @@ class UpdateBookRepositoryImpl implements UpdateBookingRepository {
       return Left(ServerFailure());
     }
   }
-
-
 }

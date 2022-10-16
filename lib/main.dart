@@ -1,7 +1,6 @@
 import 'package:bookingapp/app.dart';
 import 'package:bookingapp/bloc_observer.dart';
 import 'package:bookingapp/injection_container.dart' as di;
-import 'package:bookingapp/src/core/api/app_interceptors.dart';
 import 'package:bookingapp/src/core/api/dio_consumer.dart';
 import 'package:bookingapp/src/core/services/form_validation/validation_helper.dart';
 import 'package:flutter/foundation.dart';

@@ -1,6 +1,6 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/themes/app_themes.dart';
-import '../../../../../core/utils/text_styles.dart';
 
 class TitleView extends StatelessWidget {
   final String titleTxt;
@@ -12,12 +12,12 @@ class TitleView extends StatelessWidget {
 
   const TitleView(
       {Key? key,
-        this.titleTxt = "",
-        this.subTxt = "",
-        required this.animationController,
-        required this.animation,
-        required this.click,
-        this.isLeftButton = false})
+      this.titleTxt = "",
+      this.subTxt = "",
+      required this.animationController,
+      required this.animation,
+      required this.click,
+      this.isLeftButton = false})
       : super(key: key);
 
   @override
@@ -27,9 +27,8 @@ class TitleView extends StatelessWidget {
       builder: (BuildContext context, Widget? child) {
         return FadeTransition(
           opacity: animation,
-          child:  Transform(
-            transform:  Matrix4.translationValues(
-                0.0, 30 * (1.0 - animation.value), 0.0),
+          child: Transform(
+            transform: Matrix4.translationValues(0.0, 30 * (1.0 - animation.value), 0.0),
             child: Padding(
               padding: const EdgeInsets.only(left: 24, right: 24),
               child: Row(
@@ -38,48 +37,48 @@ class TitleView extends StatelessWidget {
                     titleTxt,
                     textAlign: TextAlign.left,
                     style: TextStyles(context).getBoldStyle().copyWith(
-                      fontSize: 18,
-                    ),
+                          fontSize: 18,
+                        ),
                   ),
                   const Expanded(
                     child: SizedBox(),
                   ),
                   isLeftButton
                       ? Material(
-                    color: Colors.transparent,
-                    child: InkWell(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(4.0)),
-                      onTap: () {
-                        return click();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              subTxt,
-                              textAlign: TextAlign.left,
-                              style: TextStyles(context)
-                                  .getBoldStyle()
-                                  .copyWith(
-                                  fontSize: 16,
-                                  color: AppTheme.primaryColor(ThemeMode.system==ThemeMode.light)),
+                          color: Colors.transparent,
+                          child: InkWell(
+                            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
+                            onTap: () {
+                              return click();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 8, right: 8),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    subTxt,
+                                    textAlign: TextAlign.left,
+                                    style: TextStyles(context).getBoldStyle().copyWith(
+                                        fontSize: 16,
+                                        color: AppTheme.primaryColor(
+                                            ThemeMode.system == ThemeMode.light)),
+                                  ),
+                                  SizedBox(
+                                    height: 38,
+                                    width: 26,
+                                    child: Icon(
+                                      Icons.arrow_forward,
+                                      size: 18,
+                                      color: AppTheme.primaryColor(
+                                          ThemeMode.system == ThemeMode.light),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
-                            SizedBox(
-                              height: 38,
-                              width: 26,
-                              child: Icon(
-                                Icons.arrow_forward,
-                                size: 18,
-                                color: AppTheme.primaryColor(ThemeMode.system==ThemeMode.light),
-                            ),)
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
+                          ),
+                        )
                       : const SizedBox()
                 ],
               ),

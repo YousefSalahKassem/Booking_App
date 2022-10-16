@@ -1,11 +1,9 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/utils/app_colors.dart';
 import 'package:bookingapp/src/core/utils/media_query_values.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
-// import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class RatingView extends StatelessWidget {
   final HotelListData hotelData;
@@ -28,10 +26,9 @@ class RatingView extends StatelessWidget {
                     child: Text(
                       (hotelData.rating * 2).toStringAsFixed(1),
                       textAlign: TextAlign.left,
-                      style: TextStyles(context).getBoldStyle().copyWith(
-                            fontSize: 38,
-                            color: AppColors.primary,
-                          ),
+                      style: TextStyles(context)
+                          .getBoldStyle()
+                          .copyWith(fontSize: 38, color: AppColors.primary),
                     ),
                   ),
                 ),
@@ -99,7 +96,7 @@ class RatingView extends StatelessWidget {
             ),
           ),
         ),
-        Spacer(),
+        const Spacer(),
         Expanded(
           flex: 7,
           child: Row(

@@ -1,7 +1,6 @@
 import 'package:bookingapp/src/core/shareable_components/tap_effect.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/text_styles.dart';
 
 class CommonButton extends StatelessWidget {
   final VoidCallback? onTap;
@@ -11,12 +10,13 @@ class CommonButton extends StatelessWidget {
   final Color? textColor, backgroundColor;
   final bool? isClickable;
   final double radius;
+
   const CommonButton({
     Key? key,
     this.onTap,
     this.buttonText,
     this.buttonTextWidget,
-    this.textColor: Colors.white,
+    this.textColor = Colors.white,
     this.backgroundColor,
     this.padding,
     this.isClickable = true,

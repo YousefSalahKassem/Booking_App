@@ -1,6 +1,5 @@
-
-import 'package:bookingapp/src/features/booking/data/model/Booking_Hotel_image.dart';
-import 'package:bookingapp/src/features/booking/data/model/hotel_Booking_Facilities.dart';
+import 'package:bookingapp/src/features/booking/data/model/booking_hotel_image.dart';
+import 'package:bookingapp/src/features/booking/data/model/hotel_booking_facilities.dart';
 
 class BookingHotelsEntity {
   final int id;
@@ -24,5 +23,4 @@ class BookingHotelsEntity {
     required this.images,
     required this.facilities,
   });
-
 }

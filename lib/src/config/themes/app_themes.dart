@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
   static Color primaryColor(bool isLight) {
-    ColorType colorTypeData = applicationcontext == null ? ColorType.Verdigris : ColorType.Malibu;
+    ColorType colorTypeData = applicationContext == null ? ColorType.Verdigris : ColorType.Malibu;
 
     return getColor(colorTypeData, isLight);
   }
@@ -40,7 +40,7 @@ class AppTheme {
 
   static TextTheme _buildTextTheme(TextTheme base) {
     FontFamilyType fontType =
-        applicationcontext == null ? FontFamilyType.WorkSans : FontFamilyType.Satisfy;
+        applicationContext == null ? FontFamilyType.WorkSans : FontFamilyType.Satisfy;
     return base.copyWith(
       headline1: getTextStyle(fontType, base.headline1!),
       //f-size 96
@@ -203,7 +203,7 @@ class AppTheme {
         borderRadius: const BorderRadius.all(Radius.circular(24.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-              color: Theme.of(applicationcontext!).dividerColor,
+              color: Theme.of(applicationContext!).dividerColor,
               offset: const Offset(4, 4),
               blurRadius: 8.0),
         ],
@@ -214,7 +214,7 @@ class AppTheme {
         borderRadius: const BorderRadius.all(Radius.circular(24.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Theme.of(applicationcontext!).dividerColor,
+            color: Theme.of(applicationContext!).dividerColor,
             blurRadius: 8,
             offset: const Offset(4, 4),
           ),
@@ -226,7 +226,7 @@ class AppTheme {
         borderRadius: const BorderRadius.all(Radius.circular(38)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Theme.of(applicationcontext!).dividerColor,
+            color: Theme.of(applicationContext!).dividerColor,
             blurRadius: 8,
             // offset: Offset(4, 4),
           ),
@@ -238,7 +238,7 @@ class AppTheme {
         borderRadius: const BorderRadius.all(Radius.circular(16.0)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Theme.of(applicationcontext!).dividerColor,
+            color: Theme.of(applicationContext!).dividerColor,
             //   offset: Offset(2, 2),
             blurRadius: 8,
           ),

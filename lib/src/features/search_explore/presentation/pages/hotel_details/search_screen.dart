@@ -1,17 +1,15 @@
+import 'package:bookingapp/src/core/shareable_components/common_appbar_view.dart';
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/shareable_components/common_search_bar.dart';
+import 'package:bookingapp/src/core/shareable_components/remove_focus.dart';
 import 'package:bookingapp/src/features/search_explore/data/model/filter_model.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/cubit/hotels/hotels_cubit.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/explore/home_list_view_page.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/widget/hotel_details/search_type_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../../core/shareable_components/common_appbar_view.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/shareable_components/common_search_bar.dart';
-import '../../../../../core/shareable_components/remove_focuse.dart';
-import '../../../domain/entities/hotel_list_data.dart';
-import '../../cubit/hotels/hotels_cubit.dart';
-import '../../cubit/hotels/hotels_state.dart';
-import '../../widget/explore/home_list_view_page.dart';
-import '../../widget/hotel_details/search_type_list.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -20,8 +18,7 @@ class SearchScreen extends StatefulWidget {
   _SearchScreenState createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen>
-    with TickerProviderStateMixin {
+class _SearchScreenState extends State<SearchScreen> with TickerProviderStateMixin {
   List<HotelListData> lastsSearchesList = HotelListData.lastsSearchesList;
 
   late AnimationController animationController;
@@ -29,8 +26,8 @@ class _SearchScreenState extends State<SearchScreen>
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -43,7 +40,7 @@ class _SearchScreenState extends State<SearchScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: RemoveFocuse(
+      body: RemoveFocus(
         onClick: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
@@ -51,7 +48,7 @@ class _SearchScreenState extends State<SearchScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            CommonAppbarView(
+            CommonAppBarView(
               iconData: Icons.close,
               onBackClick: () {
                 Navigator.pop(context);
@@ -62,16 +59,16 @@ class _SearchScreenState extends State<SearchScreen>
               child: SingleChildScrollView(
                 child: Column(children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 16, bottom: 16),
+                    padding: const EdgeInsets.only(left: 24, right: 24, top: 16, bottom: 16),
                     child: CommonCard(
                       radius: 36,
                       child: CommonSearchBar(
                         textEditingController: myController,
                         iconData: FontAwesomeIcons.magnifyingGlass,
-                        onChanged: (value){
+                        onChanged: (value) {
                           setState(() {
-                            BlocProvider.of<HotelsCubit>(context).getFilters(FilterModel(name: value));
+                            BlocProvider.of<HotelsCubit>(context)
+                                .getFilters(FilterModel(name: value));
                           });
                         },
                         enabled: true,
@@ -97,8 +94,7 @@ class _SearchScreenState extends State<SearchScreen>
                         Material(
                           color: Colors.transparent,
                           child: InkWell(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(4.0)),
+                            borderRadius: const BorderRadius.all(Radius.circular(4.0)),
                             onTap: () {
                               setState(() {
                                 myController.text = '';

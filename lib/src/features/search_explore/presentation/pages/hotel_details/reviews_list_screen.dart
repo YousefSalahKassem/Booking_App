@@ -1,8 +1,7 @@
+import 'package:bookingapp/src/core/shareable_components/common_appbar_view.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
+import 'package:bookingapp/src/features/search_explore/presentation/pages/hotel_details/review_data_view.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/shareable_components/common_appbar_view.dart';
-import '../../../domain/entities/hotel_list_data.dart';
-import 'review_data_view.dart';
 
 class ReviewsListScreen extends StatefulWidget {
   const ReviewsListScreen({super.key});
@@ -11,14 +10,14 @@ class ReviewsListScreen extends StatefulWidget {
   _ReviewsListScreenState createState() => _ReviewsListScreenState();
 }
 
-class _ReviewsListScreenState extends State<ReviewsListScreen>
-    with TickerProviderStateMixin {
+class _ReviewsListScreenState extends State<ReviewsListScreen> with TickerProviderStateMixin {
   List<HotelListData> reviewsList = HotelListData.reviewsList;
   late AnimationController animationController;
+
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -35,7 +34,7 @@ class _ReviewsListScreenState extends State<ReviewsListScreen>
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          CommonAppbarView(
+          CommonAppBarView(
             iconData: Icons.close,
             onBackClick: () {
               Navigator.pop(context);
@@ -46,16 +45,13 @@ class _ReviewsListScreenState extends State<ReviewsListScreen>
           Expanded(
             child: ListView.builder(
               physics: const BouncingScrollPhysics(),
-              padding: EdgeInsets.only(
-                  top: 8, bottom: MediaQuery.of(context).padding.bottom + 8),
+              padding: EdgeInsets.only(top: 8, bottom: MediaQuery.of(context).padding.bottom + 8),
               itemCount: reviewsList.length,
               itemBuilder: (context, index) {
                 var count = reviewsList.length > 10 ? 10 : reviewsList.length;
-                var animation = Tween(begin: 0.0, end: 1.0).animate(
-                    CurvedAnimation(
-                        parent: animationController,
-                        curve: Interval((1 / count) * index, 1.0,
-                            curve: Curves.fastOutSlowIn)));
+                var animation = Tween(begin: 0.0, end: 1.0).animate(CurvedAnimation(
+                    parent: animationController,
+                    curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn)));
                 animationController.forward();
                 // page to redirect the feedback and review data
                 return ReviewsView(

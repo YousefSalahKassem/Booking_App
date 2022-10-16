@@ -15,5 +15,6 @@ class DateText {
 
 class PeopleSleeps {
   int peopleNumber;
+
   PeopleSleeps(this.peopleNumber);
 }

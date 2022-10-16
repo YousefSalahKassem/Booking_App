@@ -1,5 +1,5 @@
-import 'package:bookingapp/src/features/booking/data/model/Booking_Hotel_image.dart';
-import 'package:bookingapp/src/features/booking/data/model/hotel_Booking_Facilities.dart';
+import 'package:bookingapp/src/features/booking/data/model/booking_hotel_image.dart';
+import 'package:bookingapp/src/features/booking/data/model/hotel_booking_facilities.dart';
 import 'package:bookingapp/src/features/booking/domain/entity/booking_hotels.dart';
 
 class BookingHotelModel extends BookingHotelsEntity {
@@ -26,8 +26,8 @@ class BookingHotelModel extends BookingHotelsEntity {
       longitude: json["longitude"],
       images: List<BookingHotelImages>.from(
           json["hotel_images"].map((e) => BookingHotelImages.fromJson(e))),
-      facilities: List<BookingFacilitiesModel>.from(json["facilities"]
-          .map((e) => BookingFacilitiesModel.fromJson(e))),
+      facilities: List<BookingFacilitiesModel>.from(
+          json["facilities"].map((e) => BookingFacilitiesModel.fromJson(e))),
     );
   }
 }

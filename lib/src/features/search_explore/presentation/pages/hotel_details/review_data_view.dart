@@ -1,9 +1,9 @@
+import 'package:bookingapp/src/config/themes/app_themes.dart';
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
+import 'package:bookingapp/src/core/shareable_components/list_cell_animation_view.dart';
+import 'package:bookingapp/src/core/utils/text_styles.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
-import '../../../../../config/themes/app_themes.dart';
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../../../core/shareable_components/list_cell_animation_view.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class ReviewsView extends StatelessWidget {
   final VoidCallback callback;
@@ -66,18 +66,14 @@ class ReviewsView extends StatelessWidget {
                       children: [
                         Text(
                           "last update",
-                          style: TextStyles(context)
-                              .getDescriptionStyle()
-                              .copyWith(
+                          style: TextStyles(context).getDescriptionStyle().copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).disabledColor,
                               ),
                         ),
                         Text(
                           reviewsList.dateTxt,
-                          style: TextStyles(context)
-                              .getDescriptionStyle()
-                              .copyWith(
+                          style: TextStyles(context).getDescriptionStyle().copyWith(
                                 fontWeight: FontWeight.w500,
                                 color: Theme.of(context).disabledColor,
                               ),
@@ -88,9 +84,7 @@ class ReviewsView extends StatelessWidget {
                       children: <Widget>[
                         Text(
                           "(${reviewsList.rating})",
-                          style: TextStyles(context)
-                              .getRegularStyle()
-                              .copyWith(
+                          style: TextStyles(context).getRegularStyle().copyWith(
                                 fontWeight: FontWeight.w500,
                               ),
                         ),
@@ -127,11 +121,10 @@ class ReviewsView extends StatelessWidget {
                           Text(
                             "Replay",
                             textAlign: TextAlign.left,
-                            style:
-                                TextStyles(context).getRegularStyle().copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14,
-                                    ),
+                            style: TextStyles(context).getRegularStyle().copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 14,
+                                ),
                           ),
                           const SizedBox(
                             height: 38,

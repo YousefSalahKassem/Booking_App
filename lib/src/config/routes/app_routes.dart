@@ -43,8 +43,7 @@ class AppRoutes {
           );
         }));
       case Routes.getStartedRoute:
-        return MaterialPageRoute(
-            builder: ((context) => const GetStartedScreen()));
+        return MaterialPageRoute(builder: ((context) => const GetStartedScreen()));
       case Routes.loginRoute:
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
@@ -80,7 +79,7 @@ class AppRoutes {
         return MaterialPageRoute(builder: ((context) {
           return BlocProvider(
             create: ((context) => di.sl<AllBookingCubit>()),
-            child: const AllMyBooking( ),
+            child: const AllMyBooking(),
           );
         }));
       case Routes.hotelHomeScreenRoute:
@@ -97,6 +96,5 @@ class AppRoutes {
   }
 
   static Route<dynamic> undefinedRoute() => MaterialPageRoute(
-      builder: (context) =>
-          const Scaffold(body: Center(child: Text(Routes.noRouteFound))));
+      builder: (context) => const Scaffold(body: Center(child: Text(Routes.noRouteFound))));
 }

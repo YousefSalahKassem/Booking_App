@@ -1,7 +1,6 @@
 import 'dart:convert';
+import 'package:bookingapp/app.dart';
 import 'package:flutter/material.dart';
-
-import '../../../app.dart';
 
 class AppLocalizations {
   final BuildContext context;
@@ -13,11 +12,10 @@ class AppLocalizations {
     final List<Map<String, String>> allTexts = [];
 
     List<dynamic> jsonData = json.decode(
-      await DefaultAssetBundle.of(context)
-          .loadString('lib/language/lang/language_text.json'),
+      await DefaultAssetBundle.of(context).loadString('lib/language/lang/language_text.json'),
     );
 
-    jsonData.forEach((value) {
+    for (var value in jsonData) {
       if (value is Map && value['text_id'] != null) {
         Map<String, String> texts = {};
         texts['text_id'] = value['text_id'] ?? '';
@@ -27,18 +25,13 @@ class AppLocalizations {
         texts['ja'] = value['ja'] ?? '';
         allTexts.add(texts);
       }
-    });
-
+    }
   }
 
-
-
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -48,7 +41,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations localization = AppLocalizations(applicationcontext!);
+    AppLocalizations localization = AppLocalizations(applicationContext!);
     await localization.load();
     return localization;
   }

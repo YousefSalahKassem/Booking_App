@@ -61,24 +61,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     /// validation Provider
-    final _validationProvider = Provider.of<ValidationHelper>(context);
+    final validationProvider = Provider.of<ValidationHelper>(context);
 
     /// getting validation items
-    final name = _validationProvider.name;
-    final email = _validationProvider.email;
-    final pass = _validationProvider.pass;
-    final passConfirm = _validationProvider.passConfirm;
+    final name = validationProvider.name;
+    final email = validationProvider.email;
+    final pass = validationProvider.pass;
+    final passConfirm = validationProvider.passConfirm;
 
     /// validation methods from Provider
-    void validateNameForm(String? value) => _validationProvider.validateNameForm(value);
-    void validateEmailForm(String? value) => _validationProvider.validateEmailForm(value);
-    void validatePassForm(String? value) => _validationProvider.validateRegisterPassForm(value);
+    void validateNameForm(String? value) => validationProvider.validateNameForm(value);
+    void validateEmailForm(String? value) => validationProvider.validateEmailForm(value);
+    void validatePassForm(String? value) => validationProvider.validateRegisterPassForm(value);
     void validatePassConfirmForm(String? value) =>
-        _validationProvider.validatePassConfirmForm(value);
+        validationProvider.validatePassConfirmForm(value);
 
-    bool _btnEnabled = _validationProvider.enableLoginButton;
+    bool btnEnabled = validationProvider.enableLoginButton;
 
-    MyTextFormField _buildNameField() {
+    MyTextFormField buildNameField() {
       return MyTextFormField(
         focusNode: _nameFocus,
         labelText: 'Your name',
@@ -91,7 +91,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     }
 
-    MyTextFormField _buildEmailField() {
+    MyTextFormField buildEmailField() {
       return MyTextFormField(
         focusNode: _emailFocus,
         labelText: 'Your email',
@@ -104,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     }
 
-    MyTextFormField _buildPasswordField() {
+    MyTextFormField buildPasswordField() {
       return MyTextFormField(
         focusNode: _passFocus,
         obscureText: true,
@@ -118,7 +118,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       );
     }
 
-    MyTextFormField _buildPasswordConfirmationField() {
+    MyTextFormField buildPasswordConfirmationField() {
       return MyTextFormField(
         focusNode: _passConfirmFocus,
         obscureText: true,
@@ -157,10 +157,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      _buildNameField(),
-                      _buildEmailField(),
-                      _buildPasswordField(),
-                      _buildPasswordConfirmationField(),
+                      buildNameField(),
+                      buildEmailField(),
+                      buildPasswordField(),
+                      buildPasswordConfirmationField(),
                     ],
                   ),
                 ),
@@ -169,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   builder: (context, state) {
                     return MyButton(
                       text: 'Sign up',
-                      onPressed: !_btnEnabled
+                      onPressed: !btnEnabled
                           ? null
                           : () => _register(
                                 RegisterModel(

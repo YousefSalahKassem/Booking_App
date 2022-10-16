@@ -14,15 +14,14 @@ class BookingUserModel extends BookingUser {
 
   factory BookingUserModel.fromJson(Map<String, dynamic>? json) {
     return BookingUserModel(
-      userId: json?['id'],
-      name: json?['name'],
-      email: json?['email'],
-      emailVerifiedAt: json?['email_verified_at'],
-      apiToken: json?['api_token'],
-      image: json?['image'],
-      createdAt: json?['created_at'],
-      updatedAt: json?['updated_at']
-    );
+        userId: json?['id'],
+        name: json?['name'],
+        email: json?['email'],
+        emailVerifiedAt: json?['email_verified_at'],
+        apiToken: json?['api_token'],
+        image: json?['image'],
+        createdAt: json?['created_at'],
+        updatedAt: json?['updated_at']);
   }
 
   Map<String, dynamic> toJson() => {

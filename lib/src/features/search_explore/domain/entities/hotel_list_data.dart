@@ -3,7 +3,6 @@ import 'package:bookingapp/src/features/search_explore/domain/entities/room_data
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-
 class HotelListData {
   String imagePath;
   String titleTxt;
@@ -42,7 +41,7 @@ class HotelListData {
   // we need location in this hotelList bcz we using that in map
   static List<HotelListData> hotelList = [
     HotelListData(
-      imagePath: ImageAssets.hotel_1,
+      imagePath: ImageAssets.hotel1,
       titleTxt: 'Palm Inn Hotel',
       subTxt: 'Hurghada, Egypt',
       dist: 2.0,
@@ -55,7 +54,7 @@ class HotelListData {
       location: const LatLng(27.259102, 33.812999),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_2,
+      imagePath: ImageAssets.hotel2,
       titleTxt: 'Albatros Aqua Park Resort - By Pickalbatros',
       subTxt: 'Hurghada, Egypt',
       dist: 4.0,
@@ -68,7 +67,7 @@ class HotelListData {
       location: const LatLng(27.135312, 33.8116368),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_3,
+      imagePath: ImageAssets.hotel3,
       titleTxt: 'Elite Suites Hurghada',
       subTxt: 'Hurghada, Egypt',
       dist: 3.0,
@@ -81,7 +80,7 @@ class HotelListData {
       location: const LatLng(27.150182, 33.826711),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_4,
+      imagePath: ImageAssets.hotel4,
       titleTxt: 'Pyramisa Beach Resort Sahl Hasheesh',
       subTxt: 'Hurghada, Egypt',
       dist: 7.0,
@@ -94,7 +93,7 @@ class HotelListData {
       location: const LatLng(27.049302, 33.900214),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_5,
+      imagePath: ImageAssets.hotel5,
       titleTxt: 'Pyramisa Beach',
       subTxt: 'Hurghada, Egypt',
       dist: 2.0,
@@ -107,7 +106,7 @@ class HotelListData {
       location: const LatLng(27.049302, 33.900214),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_1,
+      imagePath: ImageAssets.hotel1,
       titleTxt: 'Pyramisa Beach 2',
       subTxt: 'Hurghada, Egypt',
       dist: 2.0,
@@ -120,7 +119,7 @@ class HotelListData {
       location: const LatLng(27.049302, 33.900214),
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_2,
+      imagePath: ImageAssets.hotel2,
       titleTxt: 'Pyramisa Beach 3',
       subTxt: 'Hurghada, Egypt',
       dist: 4.0,
@@ -435,42 +434,41 @@ class HotelListData {
 
   static List<HotelListData> popularList = [
     HotelListData(
-      imagePath: ImageAssets.popular_1,
+      imagePath: ImageAssets.popular1,
       titleTxt: 'Paris',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_2,
+      imagePath: ImageAssets.popular2,
       titleTxt: 'Spain',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_3,
+      imagePath: ImageAssets.popular3,
       titleTxt: 'Vernazza',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_4,
+      imagePath: ImageAssets.popular4,
       titleTxt: 'London',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_5,
+      imagePath: ImageAssets.popular5,
       titleTxt: 'Venice',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_6,
+      imagePath: ImageAssets.popular6,
       titleTxt: 'Diamond Head',
     ),
   ];
 
   static List<HotelListData> reviewsList = [
     HotelListData(
-      imagePath: ImageAssets.avatar1,
+      imagePath: ImageAssets.avatar3,
       titleTxt: 'Alexia Jane',
-      subTxt:
-          'This is located in a great spot close to shops and bars, very quiet location',
+      subTxt: 'This is located in a great spot close to shops and bars, very quiet location',
       rating: 8.0,
       dateTxt: '21 May, 2019',
     ),
     HotelListData(
-      imagePath: ImageAssets.avatar3,
+      imagePath: ImageAssets.avatar5,
       titleTxt: 'Jacky Depp',
       subTxt:
           'Good staff, very comfortable bed, very quiet location, place could do with an update',
@@ -478,15 +476,14 @@ class HotelListData {
       dateTxt: '21 May, 2019',
     ),
     HotelListData(
-      imagePath: ImageAssets.avatar5,
+      imagePath: ImageAssets.avatar6,
       titleTxt: 'Alex Carl',
-      subTxt:
-          'This is located in a great spot close to shops and bars, very quiet location',
+      subTxt: 'This is located in a great spot close to shops and bars, very quiet location',
       rating: 6.0,
       dateTxt: '21 May, 2019',
     ),
     HotelListData(
-      imagePath: ImageAssets.avatar2,
+      imagePath: ImageAssets.avatar7,
       titleTxt: 'May June',
       subTxt:
           'Good staff, very comfortable bed, very quiet location, place could do with an update',
@@ -494,10 +491,9 @@ class HotelListData {
       dateTxt: '21 May, 2019',
     ),
     HotelListData(
-      imagePath: ImageAssets.avatar4,
+      imagePath: ImageAssets.avatar5,
       titleTxt: 'Lesley Rivas',
-      subTxt:
-          'This is located in a great spot close to shops and bars, very quiet location',
+      subTxt: 'This is located in a great spot close to shops and bars, very quiet location',
       rating: 8.0,
       dateTxt: '21 May, 2019',
     ),
@@ -512,8 +508,7 @@ class HotelListData {
     HotelListData(
       imagePath: ImageAssets.avatar7,
       titleTxt: 'Oliver Smith',
-      subTxt:
-          'This is located in a great spot close to shops and bars, very quiet location',
+      subTxt: 'This is located in a great spot close to shops and bars, very quiet location',
       rating: 9.0,
       dateTxt: '21 May, 2019',
     ),
@@ -521,36 +516,31 @@ class HotelListData {
 
   static List<HotelListData> romeList = [
     HotelListData(
-        imagePath:
-            'assets/images/room_1.jpg assets/images/room_2.jpg assets/images/room_3.jpg',
+        imagePath: 'assets/images/room1.jpg assets/images/room2.jpg assets/images/room3.jpg',
         titleTxt: 'Deluxe Room',
         perNight: 180,
         dateTxt: 'Sleeps 3 people',
         roomData: RoomData(2, 2)),
     HotelListData(
-        imagePath:
-            'assets/images/room_4.jpg assets/images/room_5.jpg assets/images/room_6.jpg',
+        imagePath: 'assets/images/room4.jpg assets/images/room5.jpg assets/images/room6.jpg',
         titleTxt: 'Premium Room',
         perNight: 200,
         dateTxt: 'Sleeps 3 people + 2 children',
         roomData: RoomData(3, 2)),
     HotelListData(
-        imagePath:
-            'assets/images/room_7.jpg assets/images/room_8.jpg assets/images/room_9.jpg',
+        imagePath: 'assets/images/room7.jpg assets/images/room8.jpg assets/images/room9.jpg',
         titleTxt: 'Queen Room',
         perNight: 240,
         dateTxt: 'Sleeps 4 people + 4 children',
         roomData: RoomData(4, 4)),
     HotelListData(
-        imagePath:
-            'assets/images/room_10.jpg assets/images/room_11.jpg assets/images/room_12.jpg',
+        imagePath: 'assets/images/room10.jpg assets/images/room11.jpg assets/images/room12.jpg',
         titleTxt: 'King Room',
         perNight: 240,
         dateTxt: 'Sleeps 4 people + 4 children',
         roomData: RoomData(4, 4)),
     HotelListData(
-        imagePath:
-            'assets/images/room_11.jpg assets/images/room_1.jpg assets/images/room_2.jpg',
+        imagePath: 'assets/images/room11.jpg assets/images/room1.jpg assets/images/room2.jpg',
         titleTxt: 'Hollywood Twin\nRoom',
         perNight: 260,
         dateTxt: 'Sleeps 4 people + 4 children',
@@ -559,89 +549,89 @@ class HotelListData {
 
   static List<HotelListData> hotelTypeList = [
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_1,
+      imagePath: ImageAssets.hotelType1,
       titleTxt: 'hotel_data',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_2,
+      imagePath: ImageAssets.hotelType2,
       titleTxt: 'Backpacker_data',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_3,
+      imagePath: ImageAssets.hotelType3,
       titleTxt: 'Resort_data',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_4,
+      imagePath: ImageAssets.hotelType4,
       titleTxt: 'villa_data',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_5,
+      imagePath: ImageAssets.hotelType5,
       titleTxt: 'apartment',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_6,
+      imagePath: ImageAssets.hotelType6,
       titleTxt: 'guest_house',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_7,
+      imagePath: ImageAssets.hotelType7,
       titleTxt: 'motel',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_8,
+      imagePath: ImageAssets.hotelType8,
       titleTxt: 'accommodation',
       isSelected: false,
     ),
     HotelListData(
-      imagePath: ImageAssets.hotel_Type_9,
+      imagePath: ImageAssets.hotelType9,
       titleTxt: 'Bed_breakfast',
       isSelected: false,
     ),
   ];
   static List<HotelListData> lastsSearchesList = [
     HotelListData(
-      imagePath: ImageAssets.popular_4,
+      imagePath: ImageAssets.popular4,
       titleTxt: 'London',
       roomData: RoomData(1, 3),
       date: DateText(12, 22),
       dateTxt: '12 - 22 Dec',
     ),
     HotelListData(
-      imagePath: ImageAssets.popular_1,
+      imagePath: ImageAssets.popular1,
       titleTxt: 'Paris',
       roomData: RoomData(1, 3),
       date: DateText(12, 24),
       dateTxt: '12 - 24 Sep',
     ),
     HotelListData(
-      imagePath: ImageAssets.city_3,
+      imagePath: ImageAssets.city3,
       titleTxt: 'New York',
       roomData: RoomData(1, 3),
       date: DateText(20, 22),
       dateTxt: '20 - 22 Sep',
     ),
     HotelListData(
-      imagePath: ImageAssets.city_4,
+      imagePath: ImageAssets.city4,
       titleTxt: 'Tokyo',
       roomData: RoomData(12, 22),
       date: DateText(12, 22),
       dateTxt: '12 - 22 Nov',
     ),
     HotelListData(
-      imagePath: ImageAssets.city_5,
+      imagePath: ImageAssets.city5,
       titleTxt: 'Shanghai',
       roomData: RoomData(10, 15),
       date: DateText(10, 15),
       dateTxt: '10 - 15 Dec',
     ),
     HotelListData(
-      imagePath: ImageAssets.city_6,
+      imagePath: ImageAssets.city6,
       titleTxt: 'Moscow',
       roomData: RoomData(12, 14),
       date: DateText(12, 14),

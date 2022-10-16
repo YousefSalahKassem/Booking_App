@@ -1,10 +1,8 @@
+import 'package:bookingapp/src/core/shareable_components/common_card.dart';
 import 'package:bookingapp/src/core/utils/app_colors.dart';
+import 'package:bookingapp/src/features/search_explore/domain/entities/hotel_list_data.dart';
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../../../../core/shareable_components/common_card.dart';
-import '../../../domain/entities/hotel_list_data.dart';
 
 class SearchTypeListView extends StatefulWidget {
   const SearchTypeListView({Key? key}) : super(key: key);
@@ -13,16 +11,15 @@ class SearchTypeListView extends StatefulWidget {
   _SearchTypeListViewState createState() => _SearchTypeListViewState();
 }
 
-class _SearchTypeListViewState extends State<SearchTypeListView>
-    with TickerProviderStateMixin {
+class _SearchTypeListViewState extends State<SearchTypeListView> with TickerProviderStateMixin {
   List<HotelListData> hotelTypeList = HotelListData.hotelTypeList;
 
   late AnimationController animationController;
 
   @override
   void initState() {
-    animationController = AnimationController(
-        duration: const Duration(milliseconds: 2000), vsync: this);
+    animationController =
+        AnimationController(duration: const Duration(milliseconds: 2000), vsync: this);
     super.initState();
   }
 
@@ -45,8 +42,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
           var animation = Tween(begin: 0.0, end: 1.0).animate(
             CurvedAnimation(
               parent: animationController,
-              curve: Interval((1 / count) * index, 1.0,
-                  curve: Curves.fastOutSlowIn),
+              curve: Interval((1 / count) * index, 1.0, curve: Curves.fastOutSlowIn),
             ),
           );
           animationController.forward();
@@ -56,11 +52,9 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
               return FadeTransition(
                 opacity: animation,
                 child: Transform(
-                  transform: Matrix4.translationValues(
-                      50 * (1.0 - animation.value), 0.0, 0.0),
+                  transform: Matrix4.translationValues(50 * (1.0 - animation.value), 0.0, 0.0),
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        left: 8.0, right: 8.0, bottom: 8, top: 0),
+                    padding: const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8, top: 0),
                     child: Column(
                       children: <Widget>[
                         Stack(
@@ -69,8 +63,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                               width: 80,
                               decoration: BoxDecoration(
                                 color: Theme.of(context).primaryColor,
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(80.0)),
+                                borderRadius: const BorderRadius.all(Radius.circular(80.0)),
                                 boxShadow: <BoxShadow>[
                                   BoxShadow(
                                     color: Theme.of(context).dividerColor,
@@ -80,8 +73,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                                 ],
                               ),
                               child: ClipRRect(
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(80.0)),
+                                borderRadius: const BorderRadius.all(Radius.circular(80.0)),
                                 child: AspectRatio(
                                   aspectRatio: 1,
                                   child: Image.asset(
@@ -94,26 +86,19 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                             Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                borderRadius:
-                                const BorderRadius.all(Radius.circular(80.0)),
+                                borderRadius: const BorderRadius.all(Radius.circular(80.0)),
                                 highlightColor: Colors.transparent,
-                                splashColor: Theme.of(context)
-                                    .primaryColor
-                                    .withOpacity(0.4),
+                                splashColor: Theme.of(context).primaryColor.withOpacity(0.4),
                                 onTap: () {
                                   setState(() {
                                     hotelTypeList[index].isSelected =
-                                    !hotelTypeList[index].isSelected;
+                                        !hotelTypeList[index].isSelected;
                                   });
                                 },
                                 child: Opacity(
-                                  opacity: hotelTypeList[index].isSelected
-                                      ? 1.0
-                                      : 0.0,
+                                  opacity: hotelTypeList[index].isSelected ? 1.0 : 0.0,
                                   child: CommonCard(
-                                    color: Theme.of(context)
-                                        .primaryColor
-                                        .withOpacity(0.4),
+                                    color: Theme.of(context).primaryColor.withOpacity(0.4),
                                     radius: 48,
                                     child: const SizedBox(
                                       height: 80,
@@ -121,8 +106,7 @@ class _SearchTypeListViewState extends State<SearchTypeListView>
                                       child: Center(
                                         child: Icon(
                                           FontAwesomeIcons.check,
-                                          color:
-                                          AppColors.primary,
+                                          color: AppColors.primary,
                                         ),
                                       ),
                                     ),
